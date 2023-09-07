@@ -19,8 +19,9 @@ vim.keymap.set("n", "j", "j", { noremap = true, silent = true })
 vim.keymap.set("n", "k", "k", { noremap = true, silent = true })
 
 -- Moving hilighted lines in visual mode
-vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
-vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
+vim.keymap.set({"v", "x"}, "=", "=", { silent = true })
+vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", { noremap = true, silent = true })
+vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", { noremap = true, silent = true })
 
 vim.keymap.set("n", "J", "mzJ`z") -- Join next line without moving cursor
 vim.keymap.set("n", "<C-d>", "<C-d>zz")

@@ -55,9 +55,6 @@ vim.opt.showmode = false
 vim.opt.updatetime = 300
 vim.opt.cmdheight = 0
 
--- Set matching pairs of characters and highlight matching brackets
-vim.opt.matchpairs:append({ "「:」", "『:』", "【:】", "“:”", "‘:’", "《:》" })
-
 vim.opt.mouse = ""
 
 -- Break line at predefined characters
@@ -66,15 +63,11 @@ vim.opt.showbreak = "↪"
 
 vim.opt.autowrite = true
 vim.opt.undofile = true
-vim.opt.shortmess:append({ c = true, S = true, I = true })
+vim.opt.shortmess = "cosOCSIF"
 
 vim.opt.shiftround = true
 vim.opt.virtualedit = "block"
 vim.opt.formatoptions:append({ m = true, M = true })
-
--- Tilde (~) is an operator
-vim.opt.tildeop = true
-vim.opt.synmaxcol = 250
 
 -- External program to use for grep command
 if vim.fn.executable("rg") then
@@ -89,7 +82,6 @@ vim.opt.termguicolors = true
 vim.opt.guicursor = "i:block"
 
 -- Remove certain characters from file name pattern matching
-vim.opt.isfname:remove({ "-", "=" })
 vim.opt.isfname:remove({ "," })
 
 -- Diff options
