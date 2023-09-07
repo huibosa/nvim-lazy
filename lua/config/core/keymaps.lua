@@ -33,17 +33,12 @@ vim.api.nvim_set_keymap("n", "<Right>", ":vertical resize+5<CR>", { noremap = tr
 vim.api.nvim_set_keymap("i", "<C-a>", "", {
 	callback = function()
 		local current_line = vim.fn.getline(".")
-		local current_col = vim.fn.col(".")
 		local non_blank_column = string.find(current_line, "%S") or 1
 
-		-- Check if the cursor is at the start of the line or non-blank character
-		if current_col == 1 or vim.fn.match(current_line, "\\S", current_col - 1) == -1 then
-			-- Cursor is at the start of the line or before a non-blank character
-			-- Move to the first non-blank character
-			vim.fn.cursor(current_line, non_blank_column)
-		else
-			-- Cursor is at a non-blank character
-			-- Move to the start of the line
+		local start_col = vim.fn.col(".")
+		vim.fn.cursor(current_line, non_blank_column)
+
+		if vim.fn.col(".") == start_col then
 			vim.fn.cursor(current_line, 1)
 		end
 	end,
