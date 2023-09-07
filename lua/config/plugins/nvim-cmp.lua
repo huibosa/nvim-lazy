@@ -14,13 +14,24 @@ return {
 		local luasnip = require("luasnip")
 		local lspkind = require("lspkind")
 
+		local border = {
+			{ "┏", "FloatBorder" },
+			{ "━", "FloatBorder" },
+			{ "┓", "FloatBorder" },
+			{ "┃", "FloatBorder" },
+			{ "┛", "FloatBorder" },
+			{ "━", "FloatBorder" },
+			{ "┗", "FloatBorder" },
+			{ "┃", "FloatBorder" },
+		}
+
 		-- loads vscode style snippets from installed plugins (e.g. friendly-snippets)
 		require("luasnip.loaders.from_vscode").lazy_load()
 
 		cmp.setup({
 			window = {
 				completion = { border = "none", scrollbar = true },
-				documentation = { border = "double", scrollbar = true },
+				documentation = { border = border, scrollbar = true },
 			},
 			completion = {
 				completeopt = "menu,menuone,preview",
