@@ -1,47 +1,39 @@
 return {
-	{
-		"nvim-treesitter/nvim-treesitter",
-		event = { "BufReadPre", "BufNewFile" },
-		build = ":TSUpdate",
-		dependencies = {
-			"windwp/nvim-ts-autotag",
-		},
-		config = function()
-			-- import nvim-treesitter plugin
-			local treesitter = require("nvim-treesitter.configs")
+  {
+    "nvim-treesitter/nvim-treesitter",
+    event = { "BufReadPre", "BufNewFile" },
+    build = ":TSUpdate",
+    config = function()
+      local treesitter = require("nvim-treesitter.configs")
+      treesitter.setup({
+        ensure_installed = {
+          "json",
+          "markdown",
+          "markdown_inline",
+          "dockerfile",
+          "gitignore",
+          "go",
+          "c",
+          "cpp",
+          "bash",
+          "lua",
+          "csv",
+          "python",
+        },
 
-			-- configure treesitter
-			treesitter.setup({ -- enable syntax highlighting
-				highlight = {
-					enable = true,
-				},
-				-- enable indentation
-				indent = { enable = true },
-				-- enable autotagging (w/ nvim-ts-autotag plugin)
-				autotag = { enable = true },
-				-- ensure these language parsers are installed
-				ensure_installed = {
-					"json",
-					"markdown",
-					"markdown_inline",
-					"dockerfile",
-					"gitignore",
-					"go",
-					"c",
-					"cpp",
-					"bash",
-					"lua",
-					"csv",
-					"python",
-				},
-				-- enable nvim-ts-context-commentstring plugin for commenting tsx and jsx
-				context_commentstring = {
-					enable = true,
-					enable_autocmd = false,
-				},
-				-- auto install above language parsers
-				auto_install = true,
-			})
-		end,
-	},
+        auto_install = true,
+
+        highlight = {
+          enable = true,
+          -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
+          -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
+          -- Using this option may slow down your editor, and you may see some duplicate highlights.
+          -- Instead of true it can also be a list of languages
+          addtional_vim_regex_highlighting = false,
+        },
+
+        indent = { enable = true },
+      })
+    end,
+  },
 }
