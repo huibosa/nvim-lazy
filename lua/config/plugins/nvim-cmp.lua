@@ -50,6 +50,12 @@ return {
 					mode = "text",
 					maxwidth = 50,
 					ellipsis_char = "...",
+					menu = {
+						nvim_lsp = "[LSP]",
+						luasnip = "[LuaSnip]",
+						path = "[Path]",
+						buffer = "[Buffer]",
+					},
 				}),
 			},
 		})
