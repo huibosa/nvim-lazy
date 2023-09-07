@@ -1,36 +1,34 @@
 -- Disable Space key (map it to Nop)
-vim.api.nvim_set_keymap("n", "<Space>", "<Nop>", { noremap = true, silent = true })
+vim.keymap.set("n", "<Space>", "<Nop>", { noremap = true, silent = true })
 
 -- Set mapleader to Space
 vim.g.mapleader = " "
 
-vim.api.nvim_set_keymap("n", "Y", "y$", { noremap = true })
-vim.api.nvim_set_keymap("x", "Y", '"+y', { noremap = true })
+vim.keymap.set("n", "Y", "y$", { noremap = true })
+vim.keymap.set("x", "Y", '"+y', { noremap = true })
 
-vim.api.nvim_set_keymap("n", "Q", ":q!<CR>", { noremap = true })
+vim.keymap.set("n", "Q", ":q!<CR>", { noremap = true })
 
-vim.api.nvim_set_keymap("n", "<", "<<", { noremap = true })
-vim.api.nvim_set_keymap("n", ">", ">>", { noremap = true })
+vim.keymap.set("n", "<", "<<", { noremap = true })
+vim.keymap.set("n", ">", ">>", { noremap = true })
 
-vim.api.nvim_set_keymap("n", "c*", "*Ncgn", { noremap = true })
+vim.keymap.set("n", "c*", "*Ncgn", { noremap = true })
 
-vim.api.nvim_set_keymap("n", "H", "^", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "L", "$", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("x", "H", "^", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("x", "L", "$", { noremap = true, silent = true })
+vim.keymap.set({ "n", "x" }, "H", "^", { noremap = true, silent = true })
+vim.keymap.set({ "n", "x" }, "L", "$", { noremap = true, silent = true })
 
 -- Keeping j and k silent in normal mode
-vim.api.nvim_set_keymap("n", "j", "j", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("n", "k", "k", { noremap = true, silent = true })
+vim.keymap.set("n", "j", "j", { noremap = true, silent = true })
+vim.keymap.set("n", "k", "k", { noremap = true, silent = true })
 
 -- Resize mappings
-vim.api.nvim_set_keymap("n", "<Up>", ":res +5<CR>", { noremap = true })
-vim.api.nvim_set_keymap("n", "<Down>", ":res -5<CR>", { noremap = true })
-vim.api.nvim_set_keymap("n", "<Left>", ":vertical resize-5<CR>", { noremap = true })
-vim.api.nvim_set_keymap("n", "<Right>", ":vertical resize+5<CR>", { noremap = true })
+vim.keymap.set("n", "<Up>", ":res +5<CR>", { noremap = true })
+vim.keymap.set("n", "<Down>", ":res -5<CR>", { noremap = true })
+vim.keymap.set("n", "<Left>", ":vertical resize-5<CR>", { noremap = true })
+vim.keymap.set("n", "<Right>", ":vertical resize+5<CR>", { noremap = true })
 
 -- Emulate <C-a> as vscode <Home> key
-vim.api.nvim_set_keymap("i", "<C-a>", "", {
+vim.keymap.set("i", "<C-a>", "", {
 	callback = function()
 		local current_line = vim.fn.getline(".")
 		local non_blank_column = string.find(current_line, "%S") or 1
@@ -47,7 +45,7 @@ vim.api.nvim_set_keymap("i", "<C-a>", "", {
 })
 
 -- Map <C-k> to kill line like emacs
-vim.api.nvim_set_keymap("i", "<C-k>", "", {
+vim.keymap.set("i", "<C-k>", "", {
 	callback = function()
 		local current_line = vim.fn.getline(".")
 		local cursor_col = vim.fn.col(".")
@@ -64,21 +62,21 @@ vim.api.nvim_set_keymap("i", "<C-k>", "", {
 	end,
 })
 
-vim.api.nvim_set_keymap("i", "<C-e>", "<End>", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("i", "<C-b>", "<Left>", { noremap = true })
-vim.api.nvim_set_keymap("i", "<C-f>", "<Right>", { noremap = true })
-vim.api.nvim_set_keymap("i", "<C-d>", "<Del>", { noremap = true })
+vim.keymap.set("i", "<C-e>", "<End>", { noremap = true, silent = true })
+vim.keymap.set("i", "<C-b>", "<Left>", { noremap = true })
+vim.keymap.set("i", "<C-f>", "<Right>", { noremap = true })
+vim.keymap.set("i", "<C-d>", "<Del>", { noremap = true })
 
 -- Command-line mappings
-vim.api.nvim_set_keymap("c", "<C-a>", "<Home>", { noremap = true })
-vim.api.nvim_set_keymap("c", "<C-e>", "<End>", { noremap = true })
-vim.api.nvim_set_keymap("c", "<C-b>", "<Left>", { noremap = true })
-vim.api.nvim_set_keymap("c", "<C-f>", "<Right>", { noremap = true })
-vim.api.nvim_set_keymap("c", "<C-d>", "<Del>", { noremap = true })
+vim.keymap.set("c", "<C-a>", "<Home>", { noremap = true })
+vim.keymap.set("c", "<C-e>", "<End>", { noremap = true })
+vim.keymap.set("c", "<C-b>", "<Left>", { noremap = true })
+vim.keymap.set("c", "<C-f>", "<Right>", { noremap = true })
+vim.keymap.set("c", "<C-d>", "<Del>", { noremap = true })
 
 -- Buffer navigation mappings
-vim.api.nvim_set_keymap("n", "]b", ":bnext<CR>", { noremap = true })
-vim.api.nvim_set_keymap("n", "[b", ":bprev<CR>", { noremap = true })
+vim.keymap.set("n", "]b", ":bnext<CR>", { noremap = true })
+vim.keymap.set("n", "[b", ":bprev<CR>", { noremap = true })
 
 -- Delete buffer without closing split
-vim.api.nvim_set_keymap("n", "<leader>d", ":bp<Bar>bd #<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<leader>d", ":bp<Bar>bd #<CR>", { noremap = true, silent = true })
