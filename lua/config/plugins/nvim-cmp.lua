@@ -19,8 +19,8 @@ return {
 
 		cmp.setup({
 			window = {
-				completion = cmp.config.window.bordered(),
-				documentation = cmp.config.window.bordered(),
+				completion = { border = "none", scrollbar = true },
+				documentation = { border = "double", scrollbar = true },
 			},
 			completion = {
 				completeopt = "menu,menuone,preview",
