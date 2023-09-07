@@ -74,12 +74,35 @@ return {
 			on_attach = on_attach,
 		})
 
+		lspconfig["clangd"].setup({
+			capabilities = capabilities,
+			on_attach = on_attach,
+			filetypes = { "c", "cpp", "cc", "h", "hpp" },
+			flags = {
+				debounce_text_changes = 500,
+			},
+		})
+
+		lspconfig["bashls"].setup({
+			on_attach = on_attach,
+			capabilities = capabilities,
+		})
+
+		lspconfig["gopls"].setup({
+			on_attach = on_attach,
+			capabilities = capabilities,
+		})
+
 		-- configure lua server (with special settings)
 		lspconfig["lua_ls"].setup({
 			capabilities = capabilities,
 			on_attach = on_attach,
 			settings = { -- custom settings for lua
 				Lua = {
+					runtime = {
+						-- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
+						version = "LuaJIT",
+					},
 					-- make the language server recognize "vim" global
 					diagnostics = {
 						globals = { "vim" },
