@@ -1,9 +1,9 @@
 -- Check if in a git repo
 local git_status = vim.fn.system("git rev-parse --is-inside-work-tree 2>/dev/null")
 if git_status then
-	vim.opt.signcolumn = "yes"
+  vim.opt.signcolumn = "yes"
 else
-	vim.opt.signcolumn = "no"
+  vim.opt.signcolumn = "no"
 end
 
 -- Change fillchars for folding, vertical split, end of buffer, and message separator
@@ -29,8 +29,10 @@ vim.g.backupdir = vim.fn.expand(vim.fn.stdpath("data") .. "/backup//")
 vim.opt.filetype = "plugin"
 vim.opt.number = true
 vim.opt.hidden = true
+
 vim.opt.hlsearch = true
 vim.opt.incsearch = true
+
 vim.opt.inccommand = "nosplit"
 vim.opt.scrolloff = 5
 vim.opt.ignorecase = true
@@ -50,7 +52,7 @@ vim.opt.splitright = true
 vim.opt.splitbelow = true
 vim.opt.encoding = "utf-8"
 vim.opt.showmode = false
-vim.opt.updatetime = 500
+vim.opt.updatetime = 300
 vim.opt.cmdheight = 0
 
 -- Set matching pairs of characters and highlight matching brackets
@@ -76,14 +78,15 @@ vim.opt.synmaxcol = 250
 
 -- External program to use for grep command
 if vim.fn.executable("rg") then
-	vim.opt.grepprg = "rg --vimgrep --no-heading --smart-case"
-	vim.opt.grepformat = "%f:%l:%c:%m"
+  vim.opt.grepprg = "rg --vimgrep --no-heading --smart-case"
+  vim.opt.grepformat = "%f:%l:%c:%m"
 end
 
 vim.opt.termguicolors = true
 
 -- Set up cursor color and shape in various modes
-vim.opt.guicursor = "n-v-c:block-Cursor/lCursor,i-ci-ve:ver25-Cursor2/lCursor2,r-cr:hor20,o:hor20"
+-- vim.opt.guicursor = "n-v-c:block-Cursor/lCursor,i-ci-ve:ver25-Cursor2/lCursor2,r-cr:hor20,o:hor20"
+vim.opt.guicursor = "i:block"
 
 -- Remove certain characters from file name pattern matching
 vim.opt.isfname:remove({ "-", "=" })
@@ -91,9 +94,9 @@ vim.opt.isfname:remove({ "," })
 
 -- Diff options
 vim.opt.diffopt = {}
-vim.opt.diffopt:append("vertical") -- Show diff in vertical position
-vim.opt.diffopt:append("filler") -- Show filler for deleted lines
-vim.opt.diffopt:append("closeoff") -- Turn off diff when one file window is closed
+vim.opt.diffopt:append("vertical")  -- Show diff in vertical position
+vim.opt.diffopt:append("filler")    -- Show filler for deleted lines
+vim.opt.diffopt:append("closeoff")  -- Turn off diff when one file window is closed
 vim.opt.diffopt:append("context:3") -- Context for diff
 vim.opt.diffopt:append("internal,indent-heuristic,algorithm:histogram")
 
