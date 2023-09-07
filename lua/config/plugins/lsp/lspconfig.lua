@@ -7,55 +7,89 @@ return {
 	config = function()
 		-- import lspconfig plugin
 		local lspconfig = require("lspconfig")
-
-		-- import cmp-nvim-lsp plugin
 		local cmp_nvim_lsp = require("cmp_nvim_lsp")
 
-		local keymap = vim.keymap -- for conciseness
-
-		local opts = { noremap = true, silent = true }
 		local on_attach = function(client, bufnr)
-			opts.buffer = bufnr
+			-- Mappings.
+			local map = function(mode, l, r, opts)
+				opts = opts or {}
+				opts.silent = true
+				opts.buffer = bufnr
+				vim.keymap.set(mode, l, r, opts)
+			end
 
 			-- set keybinds
-			opts.desc = "Show LSP references"
-			keymap.set("n", "gR", "<cmd>Telescope lsp_references<CR>", opts) -- show definition, references
+			map("n", "gR", "<cmd>Telescope lsp_references<CR>", { desc = "Show LSP references" })
+			map("n", "gD", vim.lsp.buf.declaration, { desc = "Go to declaration" })
+			map("n", "gd", "<cmd>Telescope lsp_definitions<CR>", { desc = "Show LSP definitions" }) -- show lsp definitions
+			map("n", "gi", "<cmd>Telescope lsp_implementations<CR>", { desc = "Show LSP implementations" })
+			map("n", "gt", "<cmd>Telescope lsp_type_definitions<CR>", { desc = "Show LSP type definitions" })
+			map({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, { desc = "See available code actions" })
+			map("n", "<leader>rn", vim.lsp.buf.rename, { desc = "Smart rename" })
+			map("n", "<leader>D", "<cmd>Telescope diagnostics bufnr=0<CR>", { desc = "Show buffer diagnostics" })
+			map("n", "<leader>d", vim.diagnostic.open_float, { desc = "Show line diagnostics" })
+			map("n", "[d", vim.diagnostic.goto_prev, { desc = "Go to previous diagnostic" })
+			map("n", "]d", vim.diagnostic.goto_next, { desc = "Go to next diagnostic" })
+			map("n", "K", vim.lsp.buf.hover, { desc = "Show documentation for what is under cursor" })
+			map("n", "<leader>rs", "<cmd>LspRestart<CR>", { desc = "Restart LSP" })
 
-			opts.desc = "Go to declaration"
-			keymap.set("n", "gD", vim.lsp.buf.declaration, opts) -- go to declaration
+			-- Set some key bindings conditional on server capabilities
+			if client.server_capabilities.documentFormattingProvider then
+				map("n", "==", vim.lsp.buf.format, { desc = "format code" })
+			end
 
-			opts.desc = "Show LSP definitions"
-			keymap.set("n", "gd", "<cmd>Telescope lsp_definitions<CR>", opts) -- show lsp definitions
+			vim.api.nvim_create_autocmd("CursorHold", {
+				buffer = bufnr,
+				callback = function()
+					local float_opts = {
+						focusable = false,
+						close_events = { "BufLeave", "CursorMoved", "InsertEnter", "FocusLost" },
+						border = "rounded",
+						source = "always", -- show source in diagnostic popup window
+						prefix = " ",
+					}
 
-			opts.desc = "Show LSP implementations"
-			keymap.set("n", "gi", "<cmd>Telescope lsp_implementations<CR>", opts) -- show lsp implementations
+					if not vim.b.diagnostics_pos then
+						vim.b.diagnostics_pos = { nil, nil }
+					end
 
-			opts.desc = "Show LSP type definitions"
-			keymap.set("n", "gt", "<cmd>Telescope lsp_type_definitions<CR>", opts) -- show lsp type definitions
+					local cursor_pos = vim.api.nvim_win_get_cursor(0)
+					if
+						(cursor_pos[1] ~= vim.b.diagnostics_pos[1] or cursor_pos[2] ~= vim.b.diagnostics_pos[2])
+						and #vim.diagnostic.get() > 0
+					then
+						vim.diagnostic.open_float(nil, float_opts)
+					end
 
-			opts.desc = "See available code actions"
-			keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, opts) -- see available code actions, in visual mode will apply to selection
+					vim.b.diagnostics_pos = cursor_pos
+				end,
+			})
 
-			opts.desc = "Smart rename"
-			keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts) -- smart rename
+			-- The blow command will highlight the current variable and its usages in the buffer.
+			if client.server_capabilities.documentHighlightProvider then
+				vim.cmd([[
+      hi! link LspReferenceRead Visual
+      hi! link LspReferenceText Visual
+      hi! link LspReferenceWrite Visual
+    ]])
 
-			opts.desc = "Show buffer diagnostics"
-			keymap.set("n", "<leader>D", "<cmd>Telescope diagnostics bufnr=0<CR>", opts) -- show  diagnostics for file
+				local gid = vim.api.nvim_create_augroup("lsp_document_highlight", { clear = true })
+				vim.api.nvim_create_autocmd("CursorHold", {
+					group = gid,
+					buffer = bufnr,
+					callback = function()
+						vim.lsp.buf.document_highlight()
+					end,
+				})
 
-			opts.desc = "Show line diagnostics"
-			keymap.set("n", "<leader>d", vim.diagnostic.open_float, opts) -- show diagnostics for line
-
-			opts.desc = "Go to previous diagnostic"
-			keymap.set("n", "[d", vim.diagnostic.goto_prev, opts) -- jump to previous diagnostic in buffer
-
-			opts.desc = "Go to next diagnostic"
-			keymap.set("n", "]d", vim.diagnostic.goto_next, opts) -- jump to next diagnostic in buffer
-
-			opts.desc = "Show documentation for what is under cursor"
-			keymap.set("n", "K", vim.lsp.buf.hover, opts) -- show documentation for what is under cursor
-
-			opts.desc = "Restart LSP"
-			keymap.set("n", "<leader>rs", "<cmd>LspRestart<CR>", opts) -- mapping to restart lsp if necessary
+				vim.api.nvim_create_autocmd("CursorMoved", {
+					group = gid,
+					buffer = bufnr,
+					callback = function()
+						vim.lsp.buf.clear_references()
+					end,
+				})
+			end
 		end
 
 		-- used to enable autocompletion (assign to every lsp server config)
