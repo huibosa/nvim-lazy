@@ -1,8 +1,8 @@
 -- Disable Space key (map it to Nop)
 vim.keymap.set("n", "<Space>", "<Nop>", { noremap = true, silent = true })
 
--- Set mapleader to Space
-vim.g.mapleader = " "
+-- -- Set mapleader to Space
+-- vim.g.mapleader = " "
 
 vim.keymap.set("n", "Y", "y$", { noremap = true })
 vim.keymap.set("x", "Y", '"+y', { noremap = true })
