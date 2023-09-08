@@ -94,3 +94,5 @@ vim.opt.diffopt:append("internal,indent-heuristic,algorithm:histogram")
 
 vim.opt.wrap = false
 vim.opt.ruler = false
+
+vim.opt.laststatus = 0

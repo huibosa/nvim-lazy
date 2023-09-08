@@ -24,46 +24,26 @@ return {
       map("n", "gd", "<cmd>Telescope lsp_definitions<CR>", { desc = "Show LSP definitions" }) -- show lsp definitions
       map("n", "gi", "<cmd>Telescope lsp_implementations<CR>", { desc = "Show LSP implementations" })
       map("n", "gt", "<cmd>Telescope lsp_type_definitions<CR>", { desc = "Show LSP type definitions" })
-      map({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, { desc = "See available code actions" })
-      map("n", "<leader>rn", vim.lsp.buf.rename, { desc = "Smart rename" })
-      map("n", "<leader>D", "<cmd>Telescope diagnostics bufnr=0<CR>", { desc = "Show buffer diagnostics" })
-      map("n", "<leader>d", vim.diagnostic.open_float, { desc = "Show line diagnostics" })
+
+      map("n", "<leader>fs", "<cmd>Telescope lsp_document_symbols<CR>", { desc = "Show LSP document symbols" })
+      map("n", "<leader>fS", "<cmd>Telescope lsp_workspace_symbols<CR>", { desc = "Show LSP workspace symbols" })
+      map("n", "<leader>fb", "<cmd>Telescope buffers<CR>", { desc = "Show buffers" })
+
+      map("n", "<leader>fD", "<cmd>Telescope diagnostics bufnr=0<CR>", { desc = "Show buffer diagnostics" })
+      map("n", "<leader>fd", vim.diagnostic.open_float, { desc = "Show line diagnostics" })
+
       map("n", "[d", vim.diagnostic.goto_prev, { desc = "Go to previous diagnostic" })
       map("n", "]d", vim.diagnostic.goto_next, { desc = "Go to next diagnostic" })
+
+      map({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, { desc = "See available code actions" })
       map("n", "K", vim.lsp.buf.hover, { desc = "Show documentation for what is under cursor" })
+      map("n", "<leader>rn", vim.lsp.buf.rename, { desc = "Smart rename" })
       map("n", "<leader>rs", "<cmd>LspRestart<CR>", { desc = "Restart LSP" })
 
       -- Set some key bindings conditional on server capabilities
       if client.server_capabilities.documentFormattingProvider then
         map("n", "==", vim.lsp.buf.format, { desc = "format code" })
       end
-
-      -- vim.api.nvim_create_autocmd("CursorHold", {
-      --   buffer = bufnr,
-      --   callback = function()
-      --     local float_opts = {
-      --       focusable = false,
-      --       close_events = { "BufLeave", "CursorMoved", "InsertEnter", "FocusLost" },
-      --       border = "rounded",
-      --       source = "always", -- show source in diagnostic popup window
-      --       prefix = " ",
-      --     }
-      --
-      --     if not vim.b.diagnostics_pos then
-      --       vim.b.diagnostics_pos = { nil, nil }
-      --     end
-      --
-      --     local cursor_pos = vim.api.nvim_win_get_cursor(0)
-      --     if
-      --         (cursor_pos[1] ~= vim.b.diagnostics_pos[1] or cursor_pos[2] ~= vim.b.diagnostics_pos[2])
-      --         and #vim.diagnostic.get() > 0
-      --     then
-      --       vim.diagnostic.open_float(nil, float_opts)
-      --     end
-      --
-      --     vim.b.diagnostics_pos = cursor_pos
-      --   end,
-      -- })
 
       -- The blow command will highlight the current variable and its usages in the buffer.
       if client.server_capabilities.documentHighlightProvider then
