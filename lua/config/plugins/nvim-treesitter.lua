@@ -19,6 +19,8 @@ return {
           "lua",
           "csv",
           "python",
+          "vim",
+          "regex",
         },
 
         auto_install = true,
