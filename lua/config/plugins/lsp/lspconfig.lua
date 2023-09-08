@@ -45,31 +45,39 @@ return {
         map("n", "==", vim.lsp.buf.format, { desc = "format code" })
       end
 
-      -- The blow command will highlight the current variable and its usages in the buffer.
-      if client.server_capabilities.documentHighlightProvider then
-        vim.cmd([[
-      hi! link LspReferenceRead Visual
-      hi! link LspReferenceText Visual
-      hi! link LspReferenceWrite Visual
-    ]])
+      vim.cmd([[
+        hi! link LspReferenceRead Visual
+        hi! link LspReferenceText Visual
+        hi! link LspReferenceWrite Visual
+      ]])
 
-        local gid = vim.api.nvim_create_augroup("lsp_document_highlight", { clear = true })
-        vim.api.nvim_create_autocmd("CursorHold", {
-          group = gid,
-          buffer = bufnr,
-          callback = function()
-            vim.lsp.buf.document_highlight()
-          end,
-        })
+      vim.api.nvim_create_autocmd("CursorHold", {
+        pattern = "*",
+        callback = function()
+          vim.lsp.buf.document_highlight()
+        end
+      })
 
-        vim.api.nvim_create_autocmd("CursorMoved", {
-          group = gid,
-          buffer = bufnr,
-          callback = function()
-            vim.lsp.buf.clear_references()
-          end,
-        })
-      end
+      vim.api.nvim_create_autocmd("CursorHoldI", {
+        pattern = "*",
+        callback = function()
+          vim.lsp.buf.document_highlight()
+        end
+      })
+
+      vim.api.nvim_create_autocmd("CursorMoved", {
+        pattern = "*",
+        callback = function()
+          vim.lsp.buf.clear_references()
+        end
+      })
+
+      vim.api.nvim_create_autocmd("CursorMovedI", {
+        pattern = "*",
+        callback = function()
+          vim.lsp.buf.clear_references()
+        end
+      })
     end
 
     -- used to enable autocompletion (assign to every lsp server config)
