@@ -33,11 +33,11 @@ return {
       map("n", "K", vim.lsp.buf.hover, { desc = "Show documentation for what is under cursor" })
       map("n", "<leader>rs", "<cmd>LspRestart<CR>", { desc = "Restart LSP" })
 
-      -- -- Set some key bindings conditional on server capabilities
-      -- if client.server_capabilities.documentFormattingProvider then
-      --   map("n", "==", vim.lsp.buf.format, { desc = "format code" })
-      -- end
-      --
+      -- Set some key bindings conditional on server capabilities
+      if client.server_capabilities.documentFormattingProvider then
+        map("n", "==", vim.lsp.buf.format, { desc = "format code" })
+      end
+
       -- vim.api.nvim_create_autocmd("CursorHold", {
       --   buffer = bufnr,
       --   callback = function()
