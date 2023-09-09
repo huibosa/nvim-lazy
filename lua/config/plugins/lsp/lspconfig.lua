@@ -19,15 +19,15 @@ return {
       end
 
       -- set keybinds
-      map("n", "gR", "<cmd>Telescope lsp_references<CR>", { desc = "Show LSP references" })
+      map("n", "gr", "<cmd>Telescope lsp_references<CR>", { desc = "Show LSP references" })
       map("n", "gD", vim.lsp.buf.declaration, { desc = "Go to declaration" })
-      map("n", "gd", "<cmd>Telescope lsp_definitions<CR>", { desc = "Show LSP definitions" }) -- show lsp definitions
+      map("n", "gd", "<cmd>Telescope lsp_definitions<CR>", { desc = "Show LSP definitions" })
       map("n", "gi", "<cmd>Telescope lsp_implementations<CR>", { desc = "Show LSP implementations" })
+
       map("n", "gt", "<cmd>Telescope lsp_type_definitions<CR>", { desc = "Show LSP type definitions" })
 
       map("n", "<leader>fs", "<cmd>Telescope lsp_document_symbols<CR>", { desc = "Show LSP document symbols" })
       map("n", "<leader>fS", "<cmd>Telescope lsp_workspace_symbols<CR>", { desc = "Show LSP workspace symbols" })
-      map("n", "<leader>fb", "<cmd>Telescope buffers<CR>", { desc = "Show buffers" })
 
       map("n", "<leader>fD", "<cmd>Telescope diagnostics bufnr=0<CR>", { desc = "Show buffer diagnostics" })
       map("n", "<leader>fd", vim.diagnostic.open_float, { desc = "Show line diagnostics" })

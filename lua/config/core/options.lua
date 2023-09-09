@@ -59,6 +59,7 @@ vim.opt.mouse = ""
 
 -- Break line at predefined characters
 vim.opt.linebreak = true
+vim.notify('hello')
 vim.opt.showbreak = "↪"
 
 vim.opt.autowrite = true

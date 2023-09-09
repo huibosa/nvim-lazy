@@ -31,5 +31,6 @@ return {
     vim.keymap.set("n", "<leader>fg", builtin.live_grep, { desc = "Find string in cwd" })
     vim.keymap.set("n", "<leader>fc", builtin.grep_string, { desc = "Find string under cursor in cwd" })
     vim.keymap.set("n", "<leader>fh", builtin.help_tags, { desc = "Find help tags" })
+    vim.keymap.set("n", "<leader>fb", builtin.buffers, { desc = "Show buffers" })
   end,
 }
