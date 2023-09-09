@@ -19,7 +19,6 @@ vim.keymap.set("n", "j", "j", { noremap = true, silent = true })
 vim.keymap.set("n", "k", "k", { noremap = true, silent = true })
 
 -- Moving hilighted lines in visual mode
-vim.keymap.set({"v", "x"}, "=", "=", { silent = true })
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", { noremap = true, silent = true })
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", { noremap = true, silent = true })
 
@@ -28,12 +27,6 @@ vim.keymap.set("n", "<C-d>", "<C-d>zz")
 vim.keymap.set("n", "<C-u>", "<C-u>zz")
 vim.keymap.set("n", "n", "nzzzv")
 vim.keymap.set("n", "N", "Nzzzv")
-
--- Resize mappings
-vim.keymap.set("n", "<Up>", ":res +5<CR>", { noremap = true })
-vim.keymap.set("n", "<Down>", ":res -5<CR>", { noremap = true })
-vim.keymap.set("n", "<Left>", ":vertical resize-5<CR>", { noremap = true })
-vim.keymap.set("n", "<Right>", ":vertical resize+5<CR>", { noremap = true })
 
 -- Emulate <C-a> as vscode <Home> key
 vim.keymap.set("i", "<C-a>", "", {
@@ -55,19 +48,19 @@ vim.keymap.set("i", "<C-a>", "", {
 -- Map <C-k> to kill line like emacs
 vim.keymap.set("i", "<C-k>", "", {
   callback = function()
+    local linenr = vim.fn.line('.')
+    local colnr = vim.fn.col('.')
     local current_line = vim.fn.getline(".")
-    local cursor_col = vim.fn.col(".")
-    local line_length = #current_line
+    local str_before_cursor = current_line:sub(1, colnr - 1)
 
-    -- Check if there are characters to delete after the cursor
-    if cursor_col <= line_length then
-      -- Delete the characters
-      vim.fn.setline(vim.fn.line("."), current_line:sub(1, cursor_col - 1))
-
-      -- Move the cursor to the end of the modified text
-      vim.fn.cursor(vim.fn.line("."), cursor_col)
+    if colnr == #current_line + 1 then
+      vim.cmd [[normal! gJ]]
+    else
+      vim.fn.setline(linenr, str_before_cursor)
     end
   end,
+  noremap = true,
+  silent = true,
 })
 
 vim.keymap.set("i", "<C-e>", "<End>", { noremap = true, silent = true })

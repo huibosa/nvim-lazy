@@ -59,7 +59,6 @@ vim.opt.mouse = ""
 
 -- Break line at predefined characters
 vim.opt.linebreak = true
-vim.notify('hello')
 vim.opt.showbreak = "↪"
 
 vim.opt.autowrite = true
@@ -96,4 +95,4 @@ vim.opt.diffopt:append("internal,indent-heuristic,algorithm:histogram")
 vim.opt.wrap = false
 vim.opt.ruler = false
 
-vim.opt.laststatus = 0
+vim.opt.laststatus = 3
