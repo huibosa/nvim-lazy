@@ -6,8 +6,8 @@ vim.keymap.set("x", "Y", '"+y', { noremap = true })
 
 vim.keymap.set("n", "Q", ":q!<CR>", { noremap = true })
 
-vim.keymap.set("n", "<", "<<", { noremap = true })
-vim.keymap.set("n", ">", ">>", { noremap = true })
+-- vim.keymap.set("n", "<", "<<", { noremap = true })
+-- vim.keymap.set("n", ">", ">>", { noremap = true })
 
 vim.keymap.set("n", "c*", "*Ncgn", { noremap = true })
 
@@ -54,7 +54,7 @@ vim.keymap.set("i", "<C-k>", "", {
     local str_before_cursor = current_line:sub(1, colnr - 1)
 
     if colnr == #current_line + 1 then
-      vim.cmd [[normal! gJ]]
+      vim.cmd([[normal! gJ]])
     else
       vim.fn.setline(linenr, str_before_cursor)
     end

@@ -1,9 +1,6 @@
-local fn = vim.fn
-local api = vim.api
-
 -- highlight yanked region, see `:h lua-highlight`
-local yank_group = api.nvim_create_augroup("highlight_yank", { clear = true })
-api.nvim_create_autocmd({ "TextYankPost" }, {
+local yank_group = vim.api.nvim_create_augroup("highlight_yank", { clear = true })
+vim.api.nvim_create_autocmd({ "TextYankPost" }, {
   pattern = "*",
   group = yank_group,
   callback = function()
@@ -11,7 +8,7 @@ api.nvim_create_autocmd({ "TextYankPost" }, {
   end,
 })
 
-api.nvim_create_autocmd({ "CursorMoved" }, {
+vim.api.nvim_create_autocmd({ "CursorMoved" }, {
   pattern = "*",
   group = yank_group,
   callback = function()
@@ -19,7 +16,7 @@ api.nvim_create_autocmd({ "CursorMoved" }, {
   end,
 })
 
-api.nvim_create_autocmd("TextYankPost", {
+vim.api.nvim_create_autocmd("TextYankPost", {
   pattern = "*",
   group = yank_group,
   callback = function(ev)
@@ -30,15 +27,15 @@ api.nvim_create_autocmd("TextYankPost", {
 })
 
 -- Auto-create dir when saving a file, in case some intermediate directory does not exist
-api.nvim_create_autocmd({ "BufWritePre" }, {
+vim.api.nvim_create_autocmd({ "BufWritePre" }, {
   pattern = "*",
-  group = api.nvim_create_augroup("auto_create_dir", { clear = true }),
+  group = vim.api.nvim_create_augroup("auto_create_dir", { clear = true }),
   callback = function(ctx)
-    local dir = fn.fnamemodify(ctx.file, ":p:h")
-    local res = fn.isdirectory(dir)
+    local dir = vim.fn.fnamemodify(ctx.file, ":p:h")
+    local res = vim.fn.isdirectory(dir)
 
     if res == 0 then
-      fn.mkdir(dir, "p")
+      vim.fn.mkdir(dir, "p")
     end
   end,
 })
@@ -46,9 +43,9 @@ api.nvim_create_autocmd({ "BufWritePre" }, {
 -- Automatically reload the file if it is changed outside of Nvim, see https://unix.stackexchange.com/a/383044/221410.
 -- It seems that `checktime` does not work in command line. We need to check if we are in command
 -- line before executing this command, see also https://vi.stackexchange.com/a/20397/15292 .
-api.nvim_create_augroup("auto_read", { clear = true })
+vim.api.nvim_create_augroup("auto_read", { clear = true })
 
-api.nvim_create_autocmd({ "FileChangedShellPost" }, {
+vim.api.nvim_create_autocmd({ "FileChangedShellPost" }, {
   pattern = "*",
   group = "auto_read",
   callback = function()
@@ -56,12 +53,47 @@ api.nvim_create_autocmd({ "FileChangedShellPost" }, {
   end,
 })
 
-api.nvim_create_autocmd({ "FocusGained", "CursorHold" }, {
+vim.api.nvim_create_autocmd({ "FocusGained", "CursorHold" }, {
   pattern = "*",
   group = "auto_read",
   callback = function()
-    if fn.getcmdwintype() == "" then
-      vim.cmd("checktime")
+    if vim.fn.getcmdwintype() == "" then
+      vim.cmd([[checktime]])
     end
   end,
 })
+
+vim.api.nvim_create_autocmd("CursorHold", {
+  pattern = "*",
+  callback = function()
+    vim.lsp.buf.document_highlight()
+  end
+})
+
+vim.api.nvim_create_autocmd("CursorHoldI", {
+  pattern = "*",
+  callback = function()
+    vim.lsp.buf.document_highlight()
+  end
+})
+
+vim.api.nvim_create_autocmd("CursorMoved", {
+  pattern = "*",
+  callback = function()
+    vim.lsp.buf.clear_references()
+  end
+})
+
+vim.api.nvim_create_autocmd("CursorMovedI", {
+  pattern = "*",
+  callback = function()
+    vim.lsp.buf.clear_references()
+  end
+})
+
+-- vim.vim.api.nvim_create_autocmd("CursorHold", {
+--   pattern = "*",
+--   callback = function()
+--     vim.diagnostic.open_float()
+--   end
+-- })

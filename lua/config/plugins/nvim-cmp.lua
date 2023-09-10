@@ -26,46 +26,45 @@ return {
         completeopt = "menu,menuone,preview",
       },
 
-      snippet = { -- configure how nvim-cmp interacts with snippet engine
-        expand = function(args)
-          luasnip.lsp_expand(args.body)
-        end,
-      },
-
       mapping = cmp.mapping.preset.insert({
         ["<C-b>"] = cmp.mapping.scroll_docs(-4),
         ["<C-f>"] = cmp.mapping.scroll_docs(4),
         ["<C-Space>"] = cmp.mapping.complete(),            -- show completion suggestions
         ["<C-e>"] = cmp.mapping.abort(),                   -- close completion window
         ["<CR>"] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+
+        ["<Tab>"] = cmp.mapping(function(fallback)
+          if luasnip.jumpable(1) then
+            luasnip.jump(1)
+          else
+            fallback()
+          end
+        end, {'i', 's'}),
+
+        ["<S-Tab>"] = cmp.mapping(function(fallback)
+          if luasnip.jumpable(-1) then
+            luasnip.jump(-1)
+          else
+            fallback()
+          end
+        end, {'i', 's'})
       }),
 
       sources = cmp.config.sources({
         { name = "nvim_lsp" },
         { name = "nvim_lua" },
         { name = "luasnip" }, -- snippets
-        { name = "buffer" },  -- text within current buffer
         { name = "path" },    -- file system paths
+        { name = "buffer" },  -- text within current buffer
       }),
-
-      -- configure lspkind for vs-code like pictograms in completion menu
-      -- formatting = {
-      --   format = lspkind.cmp_format({
-      --     mode = "text",
-      --     maxwidth = 50,
-      --     ellipsis_char = "...",
-      --     menu = {
-      --     },
-      --   }),
-      -- },
 
       formatting = {
         fields = { 'abbr', 'kind', 'menu' },
         format = function(entry, item)
           local short_name = {
             nvim_lsp = "LSP",
-            nvim_lua = "NvimLua",
-            luasnip = "LuaSnip",
+            nvim_lua = "Lua",
+            luasnip = "Snippet",
             path = "Path",
             buffer = "Buffer",
           }
@@ -75,7 +74,12 @@ return {
           item.menu = string.format('[%s]', menu_name)
           return item
         end,
-      }
+      },
+      snippet = { -- configure how nvim-cmp interacts with snippet engine
+        expand = function(args)
+          luasnip.lsp_expand(args.body)
+        end,
+      },
     })
   end,
 }

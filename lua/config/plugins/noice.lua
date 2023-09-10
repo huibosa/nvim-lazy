@@ -35,7 +35,7 @@ return {
       },
 
       views = {
-        mini = { timeout = 3000, },
+        mini = { timeout = 5000 },
         hover = {
           border = { style = vim.g.window_borders, padding = { 0, 0 } },
           position = { row = 2, col = 1 },
