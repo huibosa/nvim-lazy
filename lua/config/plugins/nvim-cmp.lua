@@ -39,7 +39,7 @@ return {
           else
             fallback()
           end
-        end, {'i', 's'}),
+        end, { 'i', 's' }),
 
         ["<S-Tab>"] = cmp.mapping(function(fallback)
           if luasnip.jumpable(-1) then
@@ -47,7 +47,7 @@ return {
           else
             fallback()
           end
-        end, {'i', 's'})
+        end, { 'i', 's' })
       }),
 
       sources = cmp.config.sources({
