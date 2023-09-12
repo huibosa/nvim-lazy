@@ -6,9 +6,6 @@ vim.keymap.set("x", "Y", '"+y', { noremap = true })
 
 vim.keymap.set("n", "Q", ":q!<CR>", { noremap = true })
 
--- vim.keymap.set("n", "<", "<<", { noremap = true })
--- vim.keymap.set("n", ">", ">>", { noremap = true })
-
 vim.keymap.set("n", "c*", "*Ncgn", { noremap = true })
 
 vim.keymap.set({ "n", "x" }, "H", "^", { noremap = true, silent = true })
@@ -23,47 +20,47 @@ vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", { noremap = true, silent = true })
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", { noremap = true, silent = true })
 
 vim.keymap.set("n", "J", "mzJ`z") -- Join next line without moving cursor
-vim.keymap.set("n", "<C-d>", "<C-d>zz")
-vim.keymap.set("n", "<C-u>", "<C-u>zz")
-vim.keymap.set("n", "n", "nzzzv")
-vim.keymap.set("n", "N", "Nzzzv")
+vim.keymap.set("n", "<C-d>", "<C-d>zz", { noremap = true, silent = true })
+vim.keymap.set("n", "<C-u>", "<C-u>zz", { noremap = true, silent = true })
+vim.keymap.set("n", "n", "nzzzv", { noremap = true, silent = true })
+vim.keymap.set("n", "N", "Nzzzv", { noremap = true, silent = true })
 
 -- Emulate <C-a> as vscode <Home> key
 vim.keymap.set("i", "<C-a>", "", {
-  callback = function()
-    local current_line = vim.fn.getline(".")
-    local non_blank_column = string.find(current_line, "%S") or 1
+    callback = function()
+        local current_line = vim.fn.getline(".")
+        local non_blank_column = string.find(current_line, "%S") or 1
 
-    local start_col = vim.fn.col(".")
-    vim.fn.cursor(current_line, non_blank_column)
+        local start_col = vim.fn.col(".")
+        vim.fn.cursor(current_line, non_blank_column)
 
-    if vim.fn.col(".") == start_col then
-      vim.fn.cursor(current_line, 1)
-    end
-  end,
-  noremap = true,
-  silent = true,
+        if vim.fn.col(".") == start_col then
+            vim.fn.cursor(current_line, 1)
+        end
+    end,
+    noremap = true,
+    silent = true,
 })
 
 -- Map <C-k> to kill line like emacs
 vim.keymap.set("i", "<C-k>", "", {
-  callback = function()
-    local linenr = vim.fn.line('.')
-    local colnr = vim.fn.col('.')
-    local current_line = vim.fn.getline(".")
-    local str_before_cursor = current_line:sub(1, colnr - 1)
+    callback = function()
+        local linenr = vim.fn.line('.')
+        local colnr = vim.fn.col('.')
+        local current_line = vim.fn.getline(".")
+        local str_before_cursor = current_line:sub(1, colnr - 1)
 
-    if colnr == #current_line + 1 then
-      vim.cmd([[normal! gJ]])
-    else
-      vim.fn.setline(linenr, str_before_cursor)
-    end
-  end,
-  noremap = true,
-  silent = true,
+        if colnr == #current_line + 1 then
+            vim.cmd([[normal! gJ]])
+        else
+            vim.fn.setline(linenr, str_before_cursor)
+        end
+    end,
+    noremap = true,
+    silent = true,
 })
 
-vim.keymap.set("i", "<C-e>", "<End>", { noremap = true, silent = true })
+vim.keymap.set("i", "<C-e>", "<End>", { noremap = true })
 vim.keymap.set("i", "<C-b>", "<Left>", { noremap = true })
 vim.keymap.set("i", "<C-f>", "<Right>", { noremap = true })
 vim.keymap.set("i", "<C-d>", "<Del>", { noremap = true })

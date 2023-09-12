@@ -1,9 +1,8 @@
 -- Check if in a git repo
-local git_status = vim.fn.system("git rev-parse --is-inside-work-tree 2>/dev/null")
-if git_status then
-  vim.opt.signcolumn = "yes"
+if not require('utils').is_git_dir() then
+    vim.opt.signcolumn = "yes"
 else
-  vim.opt.signcolumn = "no"
+    vim.opt.signcolumn = "no"
 end
 
 -- Change fillchars for folding, vertical split, end of buffer, and message separator
@@ -71,8 +70,8 @@ vim.opt.formatoptions:append({ m = true, M = true })
 
 -- External program to use for grep command
 if vim.fn.executable("rg") then
-  vim.opt.grepprg = "rg --vimgrep --no-heading --smart-case"
-  vim.opt.grepformat = "%f:%l:%c:%m"
+    vim.opt.grepprg = "rg --vimgrep --no-heading --smart-case"
+    vim.opt.grepformat = "%f:%l:%c:%m"
 end
 
 vim.opt.termguicolors = true
@@ -100,6 +99,9 @@ vim.opt.laststatus = 3
 ------------------------------------------------------------------------
 --                         builtin variables                          --
 ------------------------------------------------------------------------
+-- vim.g.do_filetype_lua = 1
+-- vim.g.did_load_filetypes = 0
+
 vim.g.loaded_perl_provider = 0      -- Disable perl provider
 vim.g.loaded_ruby_provider = 0      -- Disable ruby provider
 vim.g.loaded_node_provider = 0      -- Disable node provider
@@ -141,24 +143,24 @@ vim.g.loaded_tutor_mode_plugin = 1
 vim.g.loaded_sql_completion    = 1
 
 vim.g.window_borders           = {
-  { "┏", "FloatBorder" },
-  { "━", "FloatBorder" },
-  { "┓", "FloatBorder" },
-  { "┃", "FloatBorder" },
-  { "┛", "FloatBorder" },
-  { "━", "FloatBorder" },
-  { "┗", "FloatBorder" },
-  { "┃", "FloatBorder" },
+    { "┏", "FloatBorder" },
+    { "━", "FloatBorder" },
+    { "┓", "FloatBorder" },
+    { "┃", "FloatBorder" },
+    { "┛", "FloatBorder" },
+    { "━", "FloatBorder" },
+    { "┗", "FloatBorder" },
+    { "┃", "FloatBorder" },
 }
 
 vim.diagnostic.config {
-  virtual_text = {
-    spacing = 3,
-    severity_sort = true,
-    source = "if_many",
-  },
-  float = {
-    border = vim.g.window_borders,
-    source = 'always'
-  }
+    virtual_text = {
+        spacing = 3,
+        severity_sort = true,
+        source = "if_many",
+    },
+    float = {
+        border = vim.g.window_borders,
+        source = 'always'
+    }
 }
