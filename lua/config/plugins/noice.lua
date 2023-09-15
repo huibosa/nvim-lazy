@@ -1,10 +1,10 @@
 return {
-    'folke/noice.nvim',
+    "folke/noice.nvim",
     dependencies = {
-        'MunifTanjim/nui.nvim',
+        "MunifTanjim/nui.nvim",
     },
     config = function()
-        require('noice').setup({
+        require("noice").setup({
             lsp = {
                 hover = { enabled = true },
                 signature = { enabled = true },
@@ -15,23 +15,23 @@ return {
 
             override = {
                 -- override the default lsp markdown formatter with Noice
-                ['vim.lsp.util.convert_input_to_markdown_lines'] = false,
+                ["vim.lsp.util.convert_input_to_markdown_lines"] = false,
                 -- override the lsp markdown formatter with Noice
-                ['vim.lsp.util.stylize_markdown'] = false,
+                ["vim.lsp.util.stylize_markdown"] = false,
                 -- override cmp documentation with Noice (needs the other options to work)
-                ['cmp.entry.get_documentation'] = false,
+                ["cmp.entry.get_documentation"] = false,
             },
 
             cmdline = {
                 enabled = true,
-                view = 'cmdline',
+                view = "cmdline",
                 format = {
-                    cmdline = { pattern = '^:', icon = '>', lang = 'vim' },
-                    search_down = { kind = 'search', pattern = '^/', icon = '/', lang = 'regex' },
-                    search_up = { kind = 'search', pattern = '^%?', icon = '?', lang = 'regex' },
-                    filter = { pattern = '^:%s*!', icon = '$', lang = 'bash' },
-                    lua = { pattern = { '^:%s*lua%s+', '^:%s*lua%s*=%s*', '^:%s*=%s*' }, icon = 'Lua', lang = 'lua' },
-                    help = { pattern = '^:%s*he?l?p?%s+', icon = 'h' },
+                    cmdline = { pattern = "^:", icon = ">", lang = "vim" },
+                    search_down = { kind = "search", pattern = "^/", icon = "/", lang = "regex" },
+                    search_up = { kind = "search", pattern = "^%?", icon = "?", lang = "regex" },
+                    filter = { pattern = "^:%s*!", icon = "$", lang = "bash" },
+                    lua = { pattern = { "^:%s*lua%s+", "^:%s*lua%s*=%s*", "^:%s*=%s*" }, icon = "Lua", lang = "lua" },
+                    help = { pattern = "^:%s*he?l?p?%s+", icon = "h" },
                 },
             },
 
