@@ -1,25 +1,25 @@
 return {
-    "nvim-treesitter/nvim-treesitter",
-    event = { "BufReadPre", "BufNewFile" },
-    build = ":TSUpdate",
+    'nvim-treesitter/nvim-treesitter',
+    event = { 'BufReadPre', 'BufNewFile' },
+    build = ':TSUpdate',
     config = function()
-        local treesitter = require("nvim-treesitter.configs")
+        local treesitter = require('nvim-treesitter.configs')
         treesitter.setup({
             ensure_installed = {
-                "json",
-                "markdown",
-                "markdown_inline",
-                "dockerfile",
-                "gitignore",
-                "go",
-                "c",
-                "cpp",
-                "bash",
-                "lua",
-                "csv",
-                "python",
-                "vim",
-                "regex",
+                'json',
+                'markdown',
+                'markdown_inline',
+                'dockerfile',
+                'gitignore',
+                'go',
+                'c',
+                'cpp',
+                'bash',
+                'lua',
+                'csv',
+                'python',
+                'vim',
+                'regex',
             },
             auto_install = true,
             indent = {
@@ -33,7 +33,6 @@ return {
                 -- Instead of true it can also be a list of languages
                 addtional_vim_regex_highlighting = false,
             },
-
         })
     end,
 }

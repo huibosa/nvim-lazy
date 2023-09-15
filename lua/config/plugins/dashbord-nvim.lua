@@ -3,7 +3,7 @@ return {
     event = 'VimEnter',
     dependencies = { 'nvim-tree/nvim-web-devicons' },
     config = function()
-        local dashboard = require("dashboard")
+        local dashboard = require('dashboard')
         dashboard.setup({
             theme = 'hyper',
             shortcut_type = 'letter',
@@ -28,40 +28,39 @@ return {
                         desc = 'Grep',
                         group = '@property',
                         action = 'Telescope live_grep',
-                        key = 'g'
+                        key = 'g',
                     },
                     {
-                        icon = "   ",
-                        desc = "Conf",
+                        icon = '   ',
+                        desc = 'Conf',
                         group = 'Number',
                         action = function()
-                            local config_dir = vim.fn.stdpath("config")
+                            local config_dir = vim.fn.stdpath('config')
                             vim.loop.chdir(config_dir)
 
-                            local telescope = require("telescope.builtin")
+                            local telescope = require('telescope.builtin')
                             telescope.find_files({
-                                cwd = config_dir
+                                cwd = config_dir,
                             })
                         end,
-                        key = "c",
+                        key = 'c',
                     },
                     {
-                        icon = "  󰗼 ",
-                        desc = "Quit",
+                        icon = '  󰗼 ',
+                        desc = 'Quit',
                         group = '@conditional',
-                        action = "qa",
-                        key = "q",
+                        action = 'qa',
+                        key = 'q',
                     },
-
                 },
                 preview = {
                     file_height = 5,
                 },
                 disable_move = true,
-                week_header = { enable = true, },
-                packages = { enable = true, },
-                footer = { "" }
+                week_header = { enable = true },
+                packages = { enable = true },
+                footer = { '' },
             },
         })
-    end
+    end,
 }

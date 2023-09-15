@@ -1,41 +1,41 @@
 return {
-    "lewis6991/gitsigns.nvim",
-    event = { "BufReadPre", "BufNewFile" },
+    'lewis6991/gitsigns.nvim',
+    event = { 'BufReadPre', 'BufNewFile' },
     config = function()
-        local gitsigns = require("gitsigns")
+        local gitsigns = require('gitsigns')
 
         gitsigns.setup({
             signs = {
-                add = { hl = "GitSignsAdd", text = "▐", numhl = "GitSignsAddNr", linehl = "GitSignsAddLn" },
+                add = { hl = 'GitSignsAdd', text = '▐', numhl = 'GitSignsAddNr', linehl = 'GitSignsAddLn' },
                 change = {
-                    hl = "GitSignsChange",
-                    text = "▐",
-                    numhl = "GitSignsChangeNr",
-                    linehl = "GitSignsChangeLn",
+                    hl = 'GitSignsChange',
+                    text = '▐',
+                    numhl = 'GitSignsChangeNr',
+                    linehl = 'GitSignsChangeLn',
                 },
                 delete = {
-                    hl = "GitSignsDelete",
-                    text = "▁",
-                    numhl = "GitSignsDeleteNr",
-                    linehl = "GitSignsDeleteLn",
+                    hl = 'GitSignsDelete',
+                    text = '▁',
+                    numhl = 'GitSignsDeleteNr',
+                    linehl = 'GitSignsDeleteLn',
                 },
                 topdelete = {
-                    hl = "GitSignsDelete",
-                    text = "▔",
-                    numhl = "GitSignsDeleteNr",
-                    linehl = "GitSignsDeleteLn",
+                    hl = 'GitSignsDelete',
+                    text = '▔',
+                    numhl = 'GitSignsDeleteNr',
+                    linehl = 'GitSignsDeleteLn',
                 },
                 changedelete = {
-                    hl = "GitSignsChange",
-                    text = "▟",
-                    numhl = "GitSignsChangeNr",
-                    linehl = "GitSignsChangeLn",
+                    hl = 'GitSignsChange',
+                    text = '▟',
+                    numhl = 'GitSignsChangeNr',
+                    linehl = 'GitSignsChangeLn',
                 },
                 untracked = {
-                    hl = "GitSignsUntracked",
-                    text = "▐ ",
-                    numhl = "GitSignsUntrackedNr",
-                    linehl = "GitSignsUntrackedLn",
+                    hl = 'GitSignsUntracked',
+                    text = '▐ ',
+                    numhl = 'GitSignsUntrackedNr',
+                    linehl = 'GitSignsUntrackedLn',
                 },
             },
             on_attach = function(bufnr)
@@ -57,8 +57,12 @@ return {
                 map('n', '<leader>hu', '<cmd>Gitsigns undo_stage_hunk<CR>', { desc = '[Unstage] hunk' })
                 map('n', '<leader>hR', '<cmd>Gitsigns reset_buffer<CR>', { desc = '[Reset] buffer' })
                 map('n', '<leader>hp', '<cmd>Gitsigns preview_hunk<CR>', { desc = '[Preview] hunk' })
-                map('n', '<leader>hbf', '<cmd>lua require"gitsigns".blame_line{full=true}<CR>',
-                    { desc = '[Blame] float' })
+                map(
+                    'n',
+                    '<leader>hbf',
+                    '<cmd>lua require"gitsigns".blame_line{full=true}<CR>',
+                    { desc = '[Blame] float' }
+                )
                 map('n', '<leader>hbt', '<cmd>Gitsigns toggle_current_line_blame<CR>', { desc = 'Blame line [toggle]' })
                 map('n', '<leader>hd', '<cmd>Gitsigns diffthis<CR>', { desc = '[Diff] hunk' })
                 map('n', '<leader>hD', '<cmd>lua require"gitsigns".diffthis("~")<CR>', { desc = '[Diff] hunk' })
@@ -67,7 +71,7 @@ return {
                 -- Text object
                 map('o', 'ih', ':<C-U>Gitsigns select_hunk<CR>', { desc = '[Hunk]' })
                 map('x', 'ih', ':<C-U>Gitsigns select_hunk<CR>', { desc = '[Hunk]' })
-            end
+            end,
         })
     end,
 }
