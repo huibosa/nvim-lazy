@@ -64,7 +64,7 @@ return {
                     local short_name = {
                         nvim_lsp = "LSP",
                         nvim_lua = "Lua",
-                        luasnip = "Snippet",
+                        luasnip = "Snip",
                         path = "Path",
                         buffer = "Buffer",
                     }

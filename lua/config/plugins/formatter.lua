@@ -33,6 +33,25 @@ return {
                 cpp = {
                     require("formatter.filetypes.cpp").clangformat,
                 },
+                sh = {
+                    require("formatter.filetypes.sh").shfmt,
+                    function()
+                        local shiftwidth = vim.opt.shiftwidth:get()
+                        local expandtab = vim.opt.expandtab:get()
+
+                        if not expandtab then shiftwidth = 0 end
+
+                        return {
+                            exe = "shfmt",
+                            args = {
+                                "-i",
+                                shiftwidth,
+                                "--space-redirects",
+                            },
+                            stdin = true,
+                        }
+                    end,
+                },
             },
         })
     end,

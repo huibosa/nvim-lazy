@@ -55,7 +55,7 @@ vim.api.nvim_create_autocmd({ "FocusGained", "CursorHold" }, {
 })
 
 vim.api.nvim_create_autocmd("FileType", {
-    pattern = { "lua", "py" },
+    pattern = { "lua", "py", "sh" },
     callback = function()
         vim.bo.softtabstop = 4
         vim.bo.shiftwidth = 4

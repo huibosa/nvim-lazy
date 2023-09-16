@@ -1,9 +1,10 @@
 -- Check if in a git repo
-if not require("utils").is_git_dir() then
-    vim.opt.signcolumn = "yes"
-else
-    vim.opt.signcolumn = "no"
-end
+-- if require("utils").is_git_dir() then
+--     vim.opt.signcolumn = "yes"
+-- else
+--     vim.opt.signcolumn = "no"
+-- end
+vim.opt.signcolumn = "yes"
 
 -- Change fillchars for folding, vertical split, end of buffer, and message separator
 vim.opt.fillchars:append({ fold = " ", vert = "│", eob = " ", msgsep = "‾" })
