@@ -53,13 +53,12 @@ return {
                         key = "q",
                     },
                 },
-                preview = {
-                    file_height = 5,
-                },
                 disable_move = true,
                 week_header = { enable = true },
                 packages = { enable = true },
-                footer = { "" },
+                project = { enable = true, limit = 5 },
+                mru = { limit = 5 },
+                footer = { "", "🚀 Practice, practice, practice" },
             },
         })
     end,

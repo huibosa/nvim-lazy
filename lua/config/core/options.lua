@@ -51,9 +51,9 @@ vim.opt.foldenable = false
 vim.opt.splitright = true
 vim.opt.splitbelow = true
 vim.opt.encoding = "utf-8"
-vim.opt.showmode = false
+vim.opt.showmode = true
 vim.opt.updatetime = 300
-vim.opt.cmdheight = 0
+vim.opt.cmdheight = 1
 
 vim.opt.mouse = ""
 
@@ -95,7 +95,7 @@ vim.opt.diffopt:append("internal,indent-heuristic,algorithm:histogram")
 vim.opt.wrap = false
 vim.opt.ruler = false
 
-vim.opt.laststatus = 3
+vim.opt.laststatus = 0
 
 ------------------------------------------------------------------------
 --                         builtin variables                          --
@@ -137,7 +137,7 @@ vim.g.loaded_tarPlugin = 1
 vim.g.loaded_tutor_mode_plugin = 1
 
 -- Do not use builtin matchit.vim and matchparen.vim since we use vim-matchup
--- vim.g.loaded_matchit = 1
+vim.g.loaded_matchit = 1
 -- vim.g.loaded_matchparen = 1
 
 -- Disable sql omni completion, it is broken.

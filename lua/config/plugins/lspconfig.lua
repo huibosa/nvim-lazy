@@ -25,6 +25,22 @@ return {
         vim.api.nvim_set_hl(0, "LspReferenceText", { default = false, link = "Visual" })
         vim.api.nvim_set_hl(0, "LspReferenceWrite", { default = false, link = "Visual" })
 
+        vim.lsp.handlers["textDocument/publishDiagnostics"] = function(...)
+            vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
+                underline = true,
+                update_in_insert = false,
+            })(...)
+            pcall(vim.diagnostic.setloclist, { open = false })
+        end
+
+        vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
+            border = vim.g.window_borders,
+        })
+
+        vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
+            border = vim.g.window_borders,
+        })
+
         vim.api.nvim_create_autocmd("LspAttach", {
             group = vim.api.nvim_create_augroup("UserLspConfig", {}),
             callback = function(ev)
@@ -47,24 +63,9 @@ return {
 
                 keymap("n", "[d", vim.diagnostic.goto_prev, { desc = "Previous [diagnostic]" })
                 keymap("n", "]d", vim.diagnostic.goto_next, { desc = "Next [diagnostic]" })
+
                 keymap("n", "<leader>rn", vim.lsp.buf.rename, { desc = "[Rename]" })
                 keymap({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, { desc = "[Code] actions" })
-
-                keymap(
-                    "n",
-                    "<leader>fs",
-                    "<cmd>Telescope lsp_document_symbols<CR>",
-                    { desc = "LSP document [symbols]" }
-                )
-                keymap(
-                    "n",
-                    "<leader>fS",
-                    "<cmd>Telescope lsp_workspace_symbols<CR>",
-                    { desc = "LSP workspace [symbols]" }
-                )
-
-                keymap("n", "<leader>fd", "<cmd>Telescope diagnostics bufnr=0<CR>", { desc = "LSP [diagnostics]" })
-                keymap("n", "<leader>rs", "<cmd>LspRestart<CR>", { desc = "LSP [restart]" })
 
                 vim.api.nvim_create_autocmd("CursorHold", {
                     buffer = bufnr,
