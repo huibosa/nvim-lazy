@@ -24,6 +24,7 @@ return {
         vim.api.nvim_set_hl(0, "LspReferenceRead", { default = false, link = "Visual" })
         vim.api.nvim_set_hl(0, "LspReferenceText", { default = false, link = "Visual" })
         vim.api.nvim_set_hl(0, "LspReferenceWrite", { default = false, link = "Visual" })
+        vim.api.nvim_set_hl(0, "CurrentWord", { default = false, link = "Visual" })
 
         vim.lsp.handlers["textDocument/publishDiagnostics"] = function(...)
             vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
@@ -66,26 +67,6 @@ return {
 
                 keymap("n", "<leader>rn", vim.lsp.buf.rename, { desc = "[Rename]" })
                 keymap({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, { desc = "[Code] actions" })
-
-                vim.api.nvim_create_autocmd("CursorHold", {
-                    buffer = bufnr,
-                    callback = function() vim.lsp.buf.document_highlight() end,
-                })
-
-                vim.api.nvim_create_autocmd("CursorHoldI", {
-                    buffer = bufnr,
-                    callback = function() vim.lsp.buf.document_highlight() end,
-                })
-
-                vim.api.nvim_create_autocmd("CursorMoved", {
-                    buffer = bufnr,
-                    callback = function() vim.lsp.buf.clear_references() end,
-                })
-
-                vim.api.nvim_create_autocmd("CursorMovedI", {
-                    buffer = bufnr,
-                    callback = function() vim.lsp.buf.clear_references() end,
-                })
             end,
         })
 
