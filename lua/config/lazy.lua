@@ -22,4 +22,7 @@ require("lazy").setup({ import = "config.plugins" }, {
     change_detection = {
         notify = false,
     },
+    ui = {
+        border = vim.g.window_borders,
+    },
 })
