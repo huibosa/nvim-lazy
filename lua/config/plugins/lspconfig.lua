@@ -56,7 +56,7 @@ return {
 
                 keymap("n", "gd", "<cmd>Telescope lsp_definitions<CR>", { desc = "LSP [definitions]" })
                 keymap("n", "gD", vim.lsp.buf.declaration, { desc = "LSP [declaration]" })
-                keymap("n", "gi", vim.lsp.buf.implementation, { desc = "LSP [implementation]" })
+                -- keymap("n", "gi", vim.lsp.buf.implementation, { desc = "LSP [implementation]" })
                 keymap("n", "gt", vim.lsp.buf.type_definition, { desc = "LSP [type] definition" })
                 keymap("n", "gr", "<cmd>Telescope lsp_references<CR>", { desc = "LSP [references]" })
                 keymap("n", "gs", vim.lsp.buf.signature_help, { desc = "LSP [signature]" })
@@ -108,18 +108,16 @@ return {
                     diagnostics = {
                         globals = { "vim" },
                     },
-                    workspace = {
-                        library = {
-                            [vim.fn.expand("$VIMRUNTIME/lua")] = true,
-                            [vim.fn.stdpath("config") .. "/lua"] = true,
-                        },
-                    },
                 },
             },
         })
 
         lspconfig.pyright.setup({
             on_attach = custom_attach,
+        })
+
+        lspconfig.elixirls.setup({
+            cmd = { vim.fn.expand("~/.local/share/nvim/mason/packages/elixir-ls/language_server.sh") },
         })
 
         lspconfig.clangd.setup({

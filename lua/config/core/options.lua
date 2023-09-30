@@ -63,7 +63,7 @@ vim.opt.showbreak = "↪"
 
 vim.opt.autowrite = true
 vim.opt.undofile = true
-vim.opt.shortmess = "cosOCIF"
+vim.opt.shortmess = "acosOCIF"
 
 vim.opt.shiftround = true
 vim.opt.virtualedit = "block"

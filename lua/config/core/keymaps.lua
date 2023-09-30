@@ -4,7 +4,7 @@ vim.keymap.set("n", "<Space>", "<Nop>", { noremap = true, silent = true })
 vim.keymap.set("n", "Y", "y$", { noremap = true })
 vim.keymap.set("x", "Y", '"+y', { noremap = true })
 
-vim.keymap.set("n", "Q", ":q!<CR>", { noremap = true })
+vim.keymap.set("n", "Q", ":q!<CR>", { noremap = true, silent = true })
 
 vim.keymap.set("n", "c*", "*Ncgn", { noremap = true })
 

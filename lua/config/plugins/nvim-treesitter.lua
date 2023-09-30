@@ -20,6 +20,9 @@ return {
                 "python",
                 "vim",
                 "regex",
+                "elixir",
+                "eex",
+                "heex",
             },
             auto_install = true,
             indent = {

@@ -56,7 +56,7 @@ return {
                 disable_move = true,
                 week_header = { enable = true },
                 packages = { enable = true },
-                project = { enable = true, limit = 5 },
+                project = { enable = true, limit = 4 },
                 mru = { limit = 5 },
                 footer = { "", "🚀 Practice, practice, practice" },
             },

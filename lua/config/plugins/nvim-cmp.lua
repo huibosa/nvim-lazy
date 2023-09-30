@@ -52,7 +52,7 @@ return {
             }),
             sources = cmp.config.sources({
                 { name = "nvim_lsp" },
-                { name = "nvim_lua" },
+                { name = "nvim_lua", priority = 1000 },
                 { name = "luasnip" }, -- snippets
                 { name = "path" }, -- file system paths
                 { name = "buffer" }, -- text within current buffer
