@@ -57,7 +57,7 @@ return {
                 week_header = { enable = true },
                 packages = { enable = true },
                 project = { enable = true, limit = 4 },
-                mru = { limit = 5 },
+                mru = { limit = 8 },
                 footer = { "", "🚀 Practice, practice, practice" },
             },
         })

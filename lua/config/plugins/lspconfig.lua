@@ -18,10 +18,10 @@ return {
         vim.fn.sign_define("DiagnosticSignInfo", { text = "", numhl = "BlueSign" })
         vim.fn.sign_define("DiagnosticSignHint", { text = "", numhl = "GreenSign" })
 
-        vim.api.nvim_set_hl(0, "LspReferenceRead", { default = false, link = "Visual" })
-        vim.api.nvim_set_hl(0, "LspReferenceText", { default = false, link = "Visual" })
-        vim.api.nvim_set_hl(0, "LspReferenceWrite", { default = false, link = "Visual" })
-        vim.api.nvim_set_hl(0, "CurrentWord", { default = false, link = "Visual" })
+        -- vim.api.nvim_set_hl(0, "LspReferenceRead", { default = false, link = "Visual" })
+        -- vim.api.nvim_set_hl(0, "LspReferenceText", { default = false, link = "Visual" })
+        -- vim.api.nvim_set_hl(0, "LspReferenceWrite", { default = false, link = "Visual" })
+        -- vim.api.nvim_set_hl(0, "CurrentWord", { default = false, link = "Visual" })
 
         vim.lsp.handlers["textDocument/publishDiagnostics"] = function(...)
             vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
@@ -59,6 +59,15 @@ return {
                 keymap("n", "gr", "<cmd>Telescope lsp_references<CR>", { desc = "LSP [references]" })
                 keymap("n", "gs", vim.lsp.buf.signature_help, { desc = "LSP [signature]" })
 
+                keymap("n", "<leader>wa", vim.lsp.buf.add_workspace_folder, { desc = "[Add] workspace folder" })
+                keymap("n", "<leader>wr", vim.lsp.buf.remove_workspace_folder, { desc = "[Remove] workspace folder" })
+                keymap(
+                    "n",
+                    "<leader>wl",
+                    "<CMD>print(vim.inspect(vim.lsp.buf.list_workspace_folders))<CR>",
+                    { desc = "[List] workspace folders" }
+                )
+
                 keymap("n", "[d", vim.diagnostic.goto_prev, { desc = "Previous [diagnostic]" })
                 keymap("n", "]d", vim.diagnostic.goto_next, { desc = "Next [diagnostic]" })
 
@@ -91,6 +100,10 @@ return {
         })
 
         lspconfig.pyright.setup({
+            on_attach = custom_attach,
+        })
+
+        lspconfig.erlangls.setup({
             on_attach = custom_attach,
         })
 

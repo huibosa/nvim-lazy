@@ -35,5 +35,6 @@ return {
         vim.keymap.set("n", "<leader>fc", builtin.grep_string, { desc = "[Cursor] string" })
         vim.keymap.set("n", "<leader>fb", builtin.buffers, { desc = "Find [buffers]" })
         vim.keymap.set("n", "<leader>fh", builtin.help_tags, { desc = "Find [help]" })
+        vim.keymap.set("n", "<leader>ft", builtin.treesitter, { desc = "Treesitter" })
     end,
 }
