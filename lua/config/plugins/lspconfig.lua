@@ -1,9 +1,6 @@
 return {
     "neovim/nvim-lspconfig",
     event = { "BufReadPre", "BufNewFile" },
-    dependencies = {
-        "hrsh7th/cmp-nvim-lsp",
-    },
     config = function()
         local lspconfig = require("lspconfig")
 
@@ -65,8 +62,8 @@ return {
                 keymap("n", "[d", vim.diagnostic.goto_prev, { desc = "Previous [diagnostic]" })
                 keymap("n", "]d", vim.diagnostic.goto_next, { desc = "Next [diagnostic]" })
 
-                keymap("n", "<leader>rn", vim.lsp.buf.rename, { desc = "[Rename]" })
-                keymap({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, { desc = "[Code] actions" })
+                keymap("n", "<leader>cr", vim.lsp.buf.rename, { desc = "[Rename] variable" })
+                keymap({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, { desc = "Code [actions]" })
             end,
         })
 
@@ -98,6 +95,12 @@ return {
         })
 
         lspconfig.elixirls.setup({
+            on_attach = function()
+                vim.api.nvim_create_autocmd("BufWritePre", {
+                    pattern = "*.exs, *.ex",
+                    callback = function() vim.lsp.buf.format({ async = true }) end,
+                })
+            end,
             cmd = { vim.fn.expand("~/.local/share/nvim/mason/packages/elixir-ls/language_server.sh") },
         })
 
