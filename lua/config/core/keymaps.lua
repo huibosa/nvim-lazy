@@ -1,29 +1,37 @@
+local keymap = function(mode, lhs, rhs, opts)
+    opts = vim.tbl_extend("force", {
+        noremap = true,
+        silent = true,
+    }, opts or {})
+    vim.keymap.set(mode, lhs, rhs, opts)
+end
+
 -- Disable Space key (map it to Nop)
-vim.keymap.set("n", "<Space>", "<Nop>", { noremap = true, silent = true })
+keymap("n", "<Space>", "<Nop>")
 
-vim.keymap.set("n", "Y", "y$", { noremap = true })
-vim.keymap.set("x", "Y", '"+y', { noremap = true })
+keymap("n", "Y", "y$")
+keymap("x", "Y", '"+y')
 
-vim.keymap.set("n", "Q", ":q!<CR>", { noremap = true, silent = true })
+keymap("n", "Q", ":q!<CR>")
 
-vim.keymap.set("n", "c*", "*Ncgn", { noremap = true })
+keymap("n", "c*", "*Ncgn")
 
-vim.keymap.set({ "n", "x" }, "H", "^", { noremap = true, silent = true })
-vim.keymap.set({ "n", "x" }, "L", "$", { noremap = true, silent = true })
+keymap({ "n", "x" }, "H", "^")
+keymap({ "n", "x" }, "L", "$")
 
--- Keeping j and k silent in normal mode
-vim.keymap.set("n", "j", "j", { noremap = true, silent = true })
-vim.keymap.set("n", "k", "k", { noremap = true, silent = true })
+keymap("n", "j", "j")
+keymap("n", "k", "k")
 
--- Moving hilighted lines in visual mode
-vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", { noremap = true, silent = true })
-vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", { noremap = true, silent = true })
+-- Moving highlighted line in visual mode
+keymap("v", "K", ":m '<-2<CR>gv=gv")
+keymap("v", "J", ":m '>+1<CR>gv=gv")
 
-vim.keymap.set("n", "J", "mzJ`z") -- Join next line without moving cursor
-vim.keymap.set("n", "<C-d>", "<C-d>zz", { noremap = true, silent = true })
-vim.keymap.set("n", "<C-u>", "<C-u>zz", { noremap = true, silent = true })
-vim.keymap.set("n", "n", "nzzzv", { noremap = true, silent = true })
-vim.keymap.set("n", "N", "Nzzzv", { noremap = true, silent = true })
+-- Join next line without moving cursor
+keymap("n", "J", "mzJ`z")
+keymap("n", "<C-d>", "<C-d>zz")
+keymap("n", "<C-u>", "<C-u>zz")
+keymap("n", "n", "nzzzv")
+keymap("n", "N", "Nzzzv")
 
 -- Emulate <C-a> as vscode <Home> key
 vim.keymap.set("i", "<C-a>", "", {
@@ -58,18 +66,16 @@ vim.keymap.set("i", "<C-k>", "", {
     silent = true,
 })
 
-vim.keymap.set("i", "<C-e>", "<End>", { noremap = true })
-vim.keymap.set("i", "<C-b>", "<Left>", { noremap = true })
-vim.keymap.set("i", "<C-f>", "<Right>", { noremap = true })
-vim.keymap.set("i", "<C-d>", "<Del>", { noremap = true })
+keymap("i", "<C-e>", "<End>")
+keymap("i", "<C-b>", "<Left>")
+keymap("i", "<C-f>", "<Right>")
+keymap("i", "<C-d>", "<Del>")
 
--- Command-line mappings
-vim.keymap.set("c", "<C-a>", "<Home>", { noremap = true })
-vim.keymap.set("c", "<C-e>", "<End>", { noremap = true })
-vim.keymap.set("c", "<C-b>", "<Left>", { noremap = true })
-vim.keymap.set("c", "<C-f>", "<Right>", { noremap = true })
-vim.keymap.set("c", "<C-d>", "<Del>", { noremap = true })
+keymap("c", "<C-a>", "<Home>")
+keymap("c", "<C-e>", "<End>")
+keymap("c", "<C-b>", "<Left>")
+keymap("c", "<C-f>", "<Right>")
+keymap("c", "<C-d>", "<Del>")
 
--- Buffer navigation mappings
-vim.keymap.set("n", "]b", ":bnext<CR>", { noremap = true })
-vim.keymap.set("n", "[b", ":bprev<CR>", { noremap = true })
+keymap("n", "]b", ":bnext<CR>")
+keymap("n", "[b", ":bprev<CR>")
