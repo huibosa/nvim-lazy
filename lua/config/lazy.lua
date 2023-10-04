@@ -25,4 +25,18 @@ require("lazy").setup({ import = "config.plugins" }, {
     ui = {
         border = vim.g.window_borders,
     },
+    performance = {
+        rtp = {
+            disabled_plugins = {
+                "gzip",
+                "matchit",
+                "matchparen",
+                "netrwPlugin",
+                "tarPlugin",
+                "tohtml",
+                "tutor",
+                "zipPlugin",
+            },
+        },
+    },
 })

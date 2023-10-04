@@ -5,7 +5,7 @@ return {
         require("illuminate").configure(
             -- default configuration
             require("illuminate").configure({
-                delay = 300,
+                delay = 100,
             })
         )
     end,

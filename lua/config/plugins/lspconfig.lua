@@ -108,12 +108,7 @@ return {
         })
 
         lspconfig.elixirls.setup({
-            on_attach = function()
-                vim.api.nvim_create_autocmd("BufWritePre", {
-                    pattern = "*.exs, *.ex",
-                    callback = function() vim.lsp.buf.format({ async = true }) end,
-                })
-            end,
+            on_attach = custom_attach,
             cmd = { vim.fn.expand("~/.local/share/nvim/mason/packages/elixir-ls/language_server.sh") },
         })
 
