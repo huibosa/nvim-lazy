@@ -76,17 +76,7 @@ return {
             end,
         })
 
-        local custom_attach = function(_, bufnr)
-            vim.keymap.set("n", "==", ":Format<cr>", { silent = true })
-
-            vim.api.nvim_create_autocmd("BufWritePost", {
-                buffer = bufnr,
-                command = ":FormatWrite",
-            })
-        end
-
         lspconfig.lua_ls.setup({
-            on_attach = custom_attach,
             settings = {
                 Lua = {
                     runtime = {
@@ -99,30 +89,22 @@ return {
             },
         })
 
-        lspconfig.pyright.setup({
-            on_attach = custom_attach,
-        })
+        lspconfig.pyright.setup({})
 
-        lspconfig.erlangls.setup({
-            on_attach = custom_attach,
-        })
+        lspconfig.erlangls.setup({})
 
         lspconfig.elixirls.setup({
-            on_attach = custom_attach,
             cmd = { vim.fn.expand("~/.local/share/nvim/mason/packages/elixir-ls/language_server.sh") },
         })
 
         lspconfig.clangd.setup({
-            on_attach = custom_attach,
             filetypes = { "c", "cpp", "cc", "h", "hpp" },
             flags = {
                 debounce_text_changes = 500,
             },
         })
 
-        lspconfig.bashls.setup({
-            on_attach = custom_attach,
-        })
+        lspconfig.bashls.setup({})
 
         lspconfig.gopls.setup({
             on_attach = function()
