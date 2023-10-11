@@ -91,8 +91,6 @@ return {
 
         lspconfig.pyright.setup({})
 
-        lspconfig.erlangls.setup({})
-
         lspconfig.elixirls.setup({
             cmd = { vim.fn.expand("~/.local/share/nvim/mason/packages/elixir-ls/language_server.sh") },
         })
