@@ -45,6 +45,9 @@ return {
                     node_decremental = "V",
                 },
             },
+            match = {
+                enable = true,
+            },
         })
     end,
 }

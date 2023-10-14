@@ -7,7 +7,16 @@
 vim.opt.signcolumn = "yes"
 
 -- Change fillchars for folding, vertical split, end of buffer, and message separator
-vim.opt.fillchars:append({ fold = " ", vert = "│", eob = " ", msgsep = "‾" })
+vim.opt.fillchars:append({ fold = " ", vert = "┃", eob = " ", msgsep = "‾" })
+vim.opt.fillchars:append({
+    horiz = "━",
+    horizup = "┻",
+    horizdown = "┳",
+    vert = "┃",
+    vertleft = "┫",
+    vertright = "┣",
+    verthoriz = "╋",
+})
 
 -- Ignore certain files and folders when globbing
 vim.opt.wildignore:append({ "*.o", "*.obj", "*.dylib", "*.bin", "*.dll", "*.exe" })
