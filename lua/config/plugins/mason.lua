@@ -1,5 +1,7 @@
 return {
     "williamboman/mason.nvim",
+    event = { "BufReadPre", "BufNewFile" },
+    cmd = { "Mason" },
     dependencies = {
         "williamboman/mason-lspconfig.nvim",
     },

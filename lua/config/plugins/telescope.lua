@@ -30,8 +30,8 @@ return {
                     i = {
                         ["<C-q>"] = actions.send_selected_to_qflist + actions.open_qflist,
                         ["<Esc>"] = actions.close,
-                        ["<C-e>"] = function(bufnr) slow_scroll(bufnr, 1) end,
-                        ["<C-y>"] = function(bufnr) slow_scroll(bufnr, -1) end,
+                        ["<C-d>"] = function(bufnr) slow_scroll(bufnr, 2) end,
+                        ["<C-u>"] = function(bufnr) slow_scroll(bufnr, -2) end,
                     },
                 },
                 borderchars = { "━", "┃", "━", "┃", "┏", "┓", "┛", "┗" },

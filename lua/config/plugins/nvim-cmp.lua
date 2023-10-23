@@ -9,6 +9,7 @@ return {
         "saadparwaiz1/cmp_luasnip", -- for autocompletion
         "L3MON4D3/LuaSnip", -- snippet engine
         "rafamadriz/friendly-snippets", -- useful snippets
+        "hrsh7th/cmp-nvim-lsp-signature-help",
     },
     config = function()
         local cmp = require("cmp")
@@ -29,8 +30,8 @@ return {
                 expand = function(args) luasnip.lsp_expand(args.body) end,
             },
             mapping = cmp.mapping.preset.insert({
-                -- ["<C-b>"] = cmp.mapping.scroll_docs(-4),
-                -- ["<C-f>"] = cmp.mapping.scroll_docs(4),
+                ["<C-b>"] = cmp.mapping.scroll_docs(-4),
+                ["<C-f>"] = cmp.mapping.scroll_docs(4),
                 ["<C-Space>"] = cmp.mapping.complete(), -- show completion suggestions
                 ["<C-e>"] = cmp.mapping.abort(), -- close completion window
                 ["<CR>"] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
@@ -57,6 +58,7 @@ return {
                 { name = "luasnip" }, -- snippets
                 { name = "path" }, -- file system paths
                 { name = "buffer" }, -- text within current buffer
+                { name = "nvim_lsp_signature_help" },
             }),
 
             formatting = {
@@ -64,10 +66,11 @@ return {
                 format = function(entry, item)
                     local short_name = {
                         nvim_lsp = "LSP",
-                        nvim_lua = "Lua",
-                        luasnip = "Snip",
-                        path = "Path",
-                        buffer = "Buffer",
+                        nvim_lua = "LUA",
+                        luasnip = "SNIP",
+                        path = "PATH",
+                        buffer = "BUFR",
+                        nvim_lsp_signature_help = "SIGR",
                     }
 
                     local menu_name = short_name[entry.source.name] or entry.source.name
