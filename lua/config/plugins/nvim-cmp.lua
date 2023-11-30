@@ -7,16 +7,11 @@ return {
         "hrsh7th/cmp-nvim-lsp",
         "hrsh7th/cmp-nvim-lua", -- source for nvim lua completetion
         "saadparwaiz1/cmp_luasnip", -- for autocompletion
-        "L3MON4D3/LuaSnip", -- snippet engine
-        "rafamadriz/friendly-snippets", -- useful snippets
         "hrsh7th/cmp-nvim-lsp-signature-help",
     },
     config = function()
         local cmp = require("cmp")
         local luasnip = require("luasnip")
-
-        -- loads vscode style snippets from installed plugins (e.g. friendly-snippets)
-        require("luasnip.loaders.from_vscode").lazy_load()
 
         cmp.setup({
             window = {
@@ -53,9 +48,9 @@ return {
                 end, { "i", "s" }),
             }),
             sources = cmp.config.sources({
+                { name = "luasnip" }, -- snippets
                 { name = "nvim_lsp" },
                 { name = "nvim_lua", priority = 1000 },
-                { name = "luasnip" }, -- snippets
                 { name = "path" }, -- file system paths
                 { name = "buffer" }, -- text within current buffer
                 { name = "nvim_lsp_signature_help" },
