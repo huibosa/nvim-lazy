@@ -17,8 +17,8 @@ return {
         local slow_format_filetypes = {}
         require("conform").setup({
             formatters_by_ft = {
-                c = { "clangformat" },
-                cpp = { "clangformat" },
+                c = { "clang_format" },
+                cpp = { "clang_format" },
                 elixir = { "mix" },
                 python = { "isort", "black" },
                 sh = { "shfmt" },
