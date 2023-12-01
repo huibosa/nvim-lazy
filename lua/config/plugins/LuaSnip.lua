@@ -6,7 +6,7 @@ return {
         if vim.loop.os_uname().sysname == "Darwin" then
             path = "~/Library/Application Support/Code/User/snippets"
         else
-            path = "~/winhome/AppData/Code/User/snippets"
+            path = "~/winhome/AppData/Roaming/Code/User/snippets"
         end
 
         require("luasnip.loaders.from_vscode").lazy_load({ paths = path })
