@@ -91,9 +91,9 @@ return {
 
         lspconfig.pyright.setup({})
 
-        lspconfig.elixirls.setup({
-            cmd = { vim.fn.expand("~/.local/share/nvim/mason/packages/elixir-ls/language_server.sh") },
-        })
+        -- lspconfig.elixirls.setup({
+        --     cmd = { vim.fn.expand("~/.local/share/nvim/mason/packages/elixir-ls/language_server.sh") },
+        -- })
 
         lspconfig.clangd.setup({
             filetypes = { "c", "cpp", "cc", "h", "hpp" },

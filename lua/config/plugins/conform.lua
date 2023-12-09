@@ -19,7 +19,6 @@ return {
             formatters_by_ft = {
                 c = { "clang_format" },
                 cpp = { "clang_format" },
-                elixir = { "mix" },
                 python = { "isort", "black" },
                 sh = { "shfmt" },
                 lua = { "stylua" },
