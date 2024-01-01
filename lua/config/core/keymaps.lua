@@ -16,8 +16,8 @@ keymap("n", "Q", ":q!<CR>")
 
 keymap("n", "c*", "*Ncgn")
 
-keymap({ "n", "x" }, "H", "^")
-keymap({ "n", "x" }, "L", "$")
+-- keymap({ "n", "x" }, "H", "^")
+-- keymap({ "n", "x" }, "L", "$")
 
 keymap("n", "j", "j")
 keymap("n", "k", "k")
@@ -30,8 +30,8 @@ keymap("v", "J", ":m '>+1<CR>gv=gv")
 keymap("n", "J", "mzJ`z")
 keymap("n", "<C-d>", "<C-d>zz")
 keymap("n", "<C-u>", "<C-u>zz")
-keymap("n", "n", "nzzzv")
-keymap("n", "N", "Nzzzv")
+-- keymap("n", "n", "nzzzv")
+-- keymap("n", "N", "Nzzzv")
 
 -- Emulate <C-a> as vscode <Home> key
 vim.keymap.set("i", "<C-a>", "", {
