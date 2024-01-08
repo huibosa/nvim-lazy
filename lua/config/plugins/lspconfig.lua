@@ -98,6 +98,11 @@ return {
         -- })
 
         lspconfig.clangd.setup({
+            cmd = {
+                "clangd",
+                "--completion-style=detailed",
+                "--header-insertion=never",
+            },
             filetypes = { "c", "cpp", "cc", "h", "hpp" },
             flags = {
                 debounce_text_changes = 500,
