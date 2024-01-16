@@ -16,8 +16,8 @@ keymap("n", "Q", ":q!<CR>")
 
 keymap("n", "c*", "*Ncgn")
 
--- keymap({ "n", "x" }, "H", "^")
--- keymap({ "n", "x" }, "L", "$")
+keymap({ "n", "x" }, "H", "^")
+keymap({ "n", "x" }, "L", "$")
 
 keymap("n", "j", "j")
 keymap("n", "k", "k")
