@@ -31,7 +31,7 @@ return {
                 disable = function(_, buf) return vim.api.nvim_buf_line_count(buf) > 5000 end,
             },
             incremental_selection = {
-                enable = false,
+                enable = true,
                 keymaps = {
                     init_selection = "<CR>",
                     scope_incremental = "<CR>",

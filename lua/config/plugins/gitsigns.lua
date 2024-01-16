@@ -57,17 +57,17 @@ return {
                 end
 
                 -- Navigation
-                map("n", "]h", function()
-                    if vim.wo.diff then return "]h" end
-                    vim.schedule(function() gs.next_hunk() end)
-                    return "<Ignore>"
-                end, { expr = true })
-
-                map("n", "[h", function()
-                    if vim.wo.diff then return "[h" end
-                    vim.schedule(function() gs.prev_hunk() end)
-                    return "<Ignore>"
-                end, { expr = true })
+                -- map("n", "]h", function()
+                --     if vim.wo.diff then return "]h" end
+                --     vim.schedule(function() gs.next_hunk() end)
+                --     return "<Ignore>"
+                -- end, { expr = true })
+                --
+                -- map("n", "[h", function()
+                --     if vim.wo.diff then return "[h" end
+                --     vim.schedule(function() gs.prev_hunk() end)
+                --     return "<Ignore>"
+                -- end, { expr = true })
 
                 -- Actions
                 map("n", "<leader>hs", gs.stage_hunk, { desc = "[Stage] hunk" })
