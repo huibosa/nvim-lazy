@@ -58,7 +58,7 @@ return {
                     goto_next_start = {
                         ["]a"] = { query = "@parameter.outer", desc = "Next argument start" },
                         ["]f"] = { query = "@function.outer", desc = "Next function start" },
-                        ["]r"] = { query = "@function.outer", desc = "Next return start" },
+                        ["]r"] = { query = "@return.outer", desc = "Next return start" },
                         ["]c"] = { query = "@class.outer", desc = "Next class start" },
                         ["]j"] = { query = "@conditional.outer", desc = "Next judge start" },
                         ["]l"] = { query = "@loop.outer", desc = "Next loop start" },
@@ -66,7 +66,7 @@ return {
                     goto_next_end = {
                         ["]A"] = { query = "@parameter.outer", desc = "Next argument end" },
                         ["]F"] = { query = "@function.outer", desc = "Next function end" },
-                        ["]R"] = { query = "@function.outer", desc = "Next return end" },
+                        ["]R"] = { query = "@return.outer", desc = "Next return end" },
                         ["]C"] = { query = "@class.outer", desc = "Next class end" },
                         ["]J"] = { query = "@conditional.outer", desc = "Next judge end" },
                         ["]L"] = { query = "@loop.outer", desc = "Next loop end" },
@@ -74,7 +74,7 @@ return {
                     goto_previous_start = {
                         ["[a"] = { query = "@parameter.outer", desc = "Previous argument start" },
                         ["[f"] = { query = "@function.outer", desc = "Previous function start" },
-                        ["[r"] = { query = "@function.outer", desc = "Previous return start" },
+                        ["[r"] = { query = "@return.outer", desc = "Previous return start" },
                         ["[c"] = { query = "@class.outer", desc = "Previous class start" },
                         ["[j"] = { query = "@conditional.outer", desc = "Previous judge start" },
                         ["[l"] = { query = "@loop.outer", desc = "Previous loop start" },
@@ -82,7 +82,7 @@ return {
                     goto_previous_end = {
                         ["[A"] = { query = "@parameter.outer", desc = "Previous argument end" },
                         ["[F"] = { query = "@function.outer", desc = "Previous function end" },
-                        ["[R"] = { query = "@function.outer", desc = "Previous return end" },
+                        ["[R"] = { query = "@return.outer", desc = "Previous return end" },
                         ["[C"] = { query = "@class.outer", desc = "Previous class end" },
                         ["[J"] = { query = "@conditional.outer", desc = "Previous judge end" },
                         ["[L"] = { query = "@loop.outer", desc = "Previous loop end" },
