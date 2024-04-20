@@ -20,14 +20,14 @@ return {
                         icon = "   ",
                         desc = "File",
                         group = "Label",
-                        action = "Telescope find_files",
+                        action = "FzfLua files",
                         key = "f",
                     },
                     {
                         icon = "   ",
                         desc = "Grep",
                         group = "@property",
-                        action = "Telescope live_grep",
+                        action = "FzfLua live_grep",
                         key = "g",
                     },
                     {
@@ -38,10 +38,8 @@ return {
                             local config_dir = vim.fn.stdpath("config")
                             vim.loop.chdir(config_dir)
 
-                            local telescope = require("telescope.builtin")
-                            telescope.find_files({
-                                cwd = config_dir,
-                            })
+                            local fzf = require("fzf-lua")
+                            fzf.files({ cwd = config_dir })
                         end,
                         key = "c",
                     },

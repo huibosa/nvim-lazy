@@ -52,14 +52,14 @@ return {
 
                 keymap("n", "K", vim.lsp.buf.hover, { desc = "LSP [documentation]" })
 
-                keymap("n", "gd", "<cmd>Telescope lsp_definitions<CR>", { desc = "LSP [definitions]" })
+                keymap("n", "gd", "<cmd>FzfLua lsp_definitions<CR>", { desc = "LSP [definitions]" })
                 keymap("n", "gD", vim.lsp.buf.declaration, { desc = "LSP [declaration]" })
                 -- keymap("n", "gi", vim.lsp.buf.implementation, { desc = "LSP [implementation]" })
                 keymap("n", "gt", vim.lsp.buf.type_definition, { desc = "LSP [type] definition" })
-                keymap("n", "gr", "<cmd>Telescope lsp_references<CR>", { desc = "LSP [references]" })
+                keymap("n", "gr", "<cmd>FzfLua lsp_references<CR>", { desc = "LSP [references]" })
                 -- keymap("n", "gs", vim.lsp.buf.signature_help, { desc = "LSP [signature]" })
-                keymap("n", "gs", "<cmd>Telescope lsp_document_symbols<cr>", { desc = "LSP document [symbols]" })
-                keymap("n", "gS", "<cmd>Telescope lsp_workspace_symbols<cr>", { desc = "LSP workspace [symbols]" })
+                keymap("n", "gs", "<cmd>FzfLua lsp_document_symbols<cr>", { desc = "LSP document [symbols]" })
+                keymap("n", "gS", "<cmd>FzfLua lsp_workspace_symbols<cr>", { desc = "LSP workspace [symbols]" })
 
                 keymap("n", "<leader>wa", vim.lsp.buf.add_workspace_folder, { desc = "[Add] workspace folder" })
                 keymap("n", "<leader>wr", vim.lsp.buf.remove_workspace_folder, { desc = "[Remove] workspace folder" })
