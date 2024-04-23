@@ -6,14 +6,14 @@ return {
         winopts = {
             border = vim.g.window_borders,
         },
-        defaults = {
-            file_icons = false,
-        },
-        lsp = {
-            symbols = {
-                symbol_style = false,
-            },
-        },
+        -- defaults = {
+        --     file_icons = false,
+        -- },
+        -- lsp = {
+        --     symbols = {
+        --         symbol_style = false,
+        --     },
+        -- },
     },
     keys = {
         {

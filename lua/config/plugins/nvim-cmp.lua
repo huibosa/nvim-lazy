@@ -20,7 +20,9 @@ return {
             },
             completion = {
                 completeopt = "menu,menuone,preview",
-                -- keyword_length = 2,
+            },
+            preselect = {
+                cmp.PreselectMode.None,
             },
             snippet = { -- configure how nvim-cmp interacts with snippet engine
                 expand = function(args) luasnip.lsp_expand(args.body) end,
