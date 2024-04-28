@@ -48,12 +48,12 @@ return {
         },
         {
             "gT",
-            function() require("fzf-lua").typedefs() end,
+            function() require("fzf-lua").lsp_typedefs() end,
             desc = "LSP type definitions",
         },
         {
             "gI",
-            function() require("fzf-lua").implementations() end,
+            function() require("fzf-lua").lsp_implementations() end,
             desc = "LSP implementations",
         },
         {

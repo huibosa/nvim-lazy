@@ -90,9 +90,10 @@ return {
                 },
             },
         })
+
         local ts_repeat_move = require("nvim-treesitter.textobjects.repeatable_move")
 
-        -- Repeat movement with ; and ,
+        -- Repeat movement with ; and , vim way
         vim.keymap.set({ "n", "x", "o" }, ";", ts_repeat_move.repeat_last_move)
         vim.keymap.set({ "n", "x", "o" }, ",", ts_repeat_move.repeat_last_move_opposite)
 
@@ -115,8 +116,14 @@ return {
         vim.keymap.set({ "n", "x", "o" }, "[d", prev_diagnostic_repeat, { desc = "Prev diagnostic" })
 
         -- Make ]b, [b also repeatable with ; and ,
-        local next_buffer = function() vim.api.nvim_command("bnext") end
-        local prev_buffer = function() vim.api.nvim_command("bprev") end
+        local next_buffer = function()
+            vim.api.nvim_command("bnext")
+            vim.api.nvim_command("file")
+        end
+        local prev_buffer = function()
+            vim.api.nvim_command("bprev")
+            vim.api.nvim_command("file")
+        end
         local next_buffer_repeat, prev_buffer_repeat =
             ts_repeat_move.make_repeatable_move_pair(next_buffer, prev_buffer)
         vim.keymap.set({ "n", "x", "o" }, "]b", next_buffer_repeat, { desc = "Next buffer" })

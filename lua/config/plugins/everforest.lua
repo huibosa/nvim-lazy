@@ -1,12 +1,11 @@
 return {
     "sainnhe/everforest",
-    lazy = false,
-    priority = 1000,
+    lazy = true,
     config = function()
-        vim.g.everforest_transparent_background = 1
+        vim.g.everforest_background = "hard"
         vim.g.everforest_better_performance = 1
         vim.g.everforest_current_word = "grey background"
 
-        vim.cmd([[colorscheme everforest]])
+        -- vim.cmd([[colorscheme everforest]])
     end,
 }
