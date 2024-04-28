@@ -76,6 +76,3 @@ vim.keymap.set("c", "<C-e>", "<End>")
 vim.keymap.set("c", "<C-b>", "<Left>")
 vim.keymap.set("c", "<C-f>", "<Right>")
 vim.keymap.set("c", "<C-d>", "<Del>")
-
-keymap("n", "]b", ":bnext<CR>")
-keymap("n", "[b", ":bprev<CR>")

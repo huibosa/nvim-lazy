@@ -96,20 +96,30 @@ return {
         vim.keymap.set({ "n", "x", "o" }, ";", ts_repeat_move.repeat_last_move)
         vim.keymap.set({ "n", "x", "o" }, ",", ts_repeat_move.repeat_last_move_opposite)
 
-        -- Optionally, make builtin f, F, t, T also repeatable with ; and ,
+        -- Make builtin f, F, t, T also repeatable with ; and ,
         vim.keymap.set({ "n", "x", "o" }, "f", ts_repeat_move.builtin_f)
         vim.keymap.set({ "n", "x", "o" }, "F", ts_repeat_move.builtin_F)
         vim.keymap.set({ "n", "x", "o" }, "t", ts_repeat_move.builtin_t)
         vim.keymap.set({ "n", "x", "o" }, "T", ts_repeat_move.builtin_T)
 
-        -- example: make gitsigns.nvim movement repeatable with ; and , keys.
+        -- Make ]h, [h also repeatable with ; and ,
         local gs = require("gitsigns")
-
-        -- make sure forward function comes first
         local next_hunk_repeat, prev_hunk_repeat = ts_repeat_move.make_repeatable_move_pair(gs.next_hunk, gs.prev_hunk)
-        -- Or, use `make_repeatable_move` or `set_last_move` functions for more control. See the code for instructions.
-
         vim.keymap.set({ "n", "x", "o" }, "]h", next_hunk_repeat, { desc = "Next hunk" })
         vim.keymap.set({ "n", "x", "o" }, "[h", prev_hunk_repeat, { desc = "Prev hunk" })
+
+        -- Make ]d, [d also repeatable with ; and ,
+        local next_diagnostic_repeat, prev_diagnostic_repeat =
+            ts_repeat_move.make_repeatable_move_pair(vim.diagnostic.goto_next, vim.diagnostic.goto_prev)
+        vim.keymap.set({ "n", "x", "o" }, "]d", next_diagnostic_repeat, { desc = "Next diagnostic" })
+        vim.keymap.set({ "n", "x", "o" }, "[d", prev_diagnostic_repeat, { desc = "Prev diagnostic" })
+
+        -- Make ]b, [b also repeatable with ; and ,
+        local next_buffer = function() vim.api.nvim_command("bnext") end
+        local prev_buffer = function() vim.api.nvim_command("bprev") end
+        local next_buffer_repeat, prev_buffer_repeat =
+            ts_repeat_move.make_repeatable_move_pair(next_buffer, prev_buffer)
+        vim.keymap.set({ "n", "x", "o" }, "]b", next_buffer_repeat, { desc = "Next buffer" })
+        vim.keymap.set({ "n", "x", "o" }, "[b", prev_buffer_repeat, { desc = "Prev buffer" })
     end,
 }

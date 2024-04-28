@@ -51,28 +51,16 @@ return {
                 end
 
                 keymap("n", "K", vim.lsp.buf.hover, { desc = "LSP [documentation]" })
-
-                keymap("n", "gd", "<cmd>FzfLua lsp_definitions<CR>", { desc = "LSP [definitions]" })
-                keymap("n", "gD", vim.lsp.buf.declaration, { desc = "LSP [declaration]" })
-                -- keymap("n", "gi", vim.lsp.buf.implementation, { desc = "LSP [implementation]" })
-                keymap("n", "gt", vim.lsp.buf.type_definition, { desc = "LSP [type] definition" })
-                keymap("n", "gr", "<cmd>FzfLua lsp_references<CR>", { desc = "LSP [references]" })
                 -- keymap("n", "gs", vim.lsp.buf.signature_help, { desc = "LSP [signature]" })
-                keymap("n", "gs", "<cmd>FzfLua lsp_document_symbols<cr>", { desc = "LSP document [symbols]" })
-                keymap("n", "gS", "<cmd>FzfLua lsp_workspace_symbols<cr>", { desc = "LSP workspace [symbols]" })
 
-                keymap("n", "<leader>wa", vim.lsp.buf.add_workspace_folder, { desc = "[Add] workspace folder" })
-                keymap("n", "<leader>wr", vim.lsp.buf.remove_workspace_folder, { desc = "[Remove] workspace folder" })
+                keymap("n", "<leader>cwa", vim.lsp.buf.add_workspace_folder, { desc = "[Add] workspace folder" })
+                keymap("n", "<leader>cwr", vim.lsp.buf.remove_workspace_folder, { desc = "[Remove] workspace folder" })
                 keymap(
                     "n",
-                    "<leader>wl",
+                    "<leader>cwl",
                     "<CMD>print(vim.inspect(vim.lsp.buf.list_workspace_folders))<CR>",
                     { desc = "[List] workspace folders" }
                 )
-
-                keymap("n", "[d", vim.diagnostic.goto_prev, { desc = "Previous [diagnostic]" })
-                keymap("n", "]d", vim.diagnostic.goto_next, { desc = "Next [diagnostic]" })
-
                 keymap("n", "<leader>cr", vim.lsp.buf.rename, { desc = "[Rename] variable" })
                 keymap({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, { desc = "Code [actions]" })
             end,
