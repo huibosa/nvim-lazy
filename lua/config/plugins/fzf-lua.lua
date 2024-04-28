@@ -17,7 +17,7 @@ return {
     },
     keys = {
         {
-            "<c-\\>",
+            "<c-_>",
             function() require("fzf-lua").builtin() end,
             "Builtin",
         },
@@ -30,6 +30,41 @@ return {
             "<c-q>",
             function() require("fzf-lua").live_grep_native() end,
             desc = "Live grep",
+        },
+        {
+            "gd",
+            function() require("fzf-lua").lsp_definitions() end,
+            desc = "LSP definitions",
+        },
+        {
+            "gD",
+            function() require("fzf-lua").lsp_declarations() end,
+            desc = "LSP declarations",
+        },
+        {
+            "gr",
+            function() require("fzf-lua").lsp_references() end,
+            desc = "LSP references",
+        },
+        {
+            "gT",
+            function() require("fzf-lua").typedefs() end,
+            desc = "LSP type definitions",
+        },
+        {
+            "gI",
+            function() require("fzf-lua").implementations() end,
+            desc = "LSP implementations",
+        },
+        {
+            "gs",
+            function() require("fzf-lua").lsp_document_symbols() end,
+            desc = "LSP document symbols",
+        },
+        {
+            "gS",
+            function() require("fzf-lua").lsp_live_workspace_symbols() end,
+            desc = "LSP workspace symbols",
         },
     },
 }
