@@ -38,8 +38,8 @@ return {
                         ["ar"] = { query = "@return.outer", desc = "outer return" },
                         ["ir"] = { query = "@return.outer", desc = "inner return" },
 
-                        ["a/"] = { query = "@comment.outer", desc = "outer comment" },
-                        ["i/"] = { query = "@comment.inner", desc = "inner comment" },
+                        -- ["a_"] = { query = "@comment.outer", desc = "outer comment" },
+                        -- ["i_"] = { query = "@comment.inner", desc = "inner comment" },
                     },
                     include_surrounding_whitespace = true,
                 },

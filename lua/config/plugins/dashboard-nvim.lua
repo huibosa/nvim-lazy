@@ -6,6 +6,12 @@ return {
         theme = "hyper",
         shortcut_type = "letter",
         config = {
+            disable_move = true,
+            week_header = { enable = true },
+            packages = { enable = true },
+            project = { enable = true, limit = 4, action = "FzfLua files cwd=" },
+            mru = { limit = 8 },
+            footer = { "", "🚀 Practice, practice, practice" },
             shortcut = {
                 {
                     icon = " ",
@@ -49,12 +55,6 @@ return {
                     key = "q",
                 },
             },
-            disable_move = true,
-            week_header = { enable = true },
-            packages = { enable = true },
-            project = { enable = true, limit = 4, action = "FzfLua files cwd=" },
-            mru = { limit = 8 },
-            footer = { "", "🚀 Practice, practice, practice" },
         },
     },
 }

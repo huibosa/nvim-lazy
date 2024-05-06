@@ -6,14 +6,28 @@ return {
         winopts = {
             border = vim.g.window_borders,
         },
-        -- defaults = {
-        --     file_icons = false,
-        -- },
-        -- lsp = {
-        --     symbols = {
-        --         symbol_style = false,
-        --     },
-        -- },
+        keymap = {
+            builtin = {
+                ["<C-d>"] = "preview-page-down",
+                ["<C-u>"] = "preview-page-up",
+            },
+        },
+        fzf_colors = {
+            ["fg"] = { "fg", "Comment" },
+            ["bg"] = "-1",
+            ["hl"] = { "fg", "String" },
+            ["fg+"] = { "fg", "Normal" },
+            ["bg+"] = { "bg", "Visual" },
+            ["hl+"] = { "fg", "String" },
+            ["info"] = { "fg", "WarningMsg" },
+            -- ["prompt"] = { "fg", "SpecialKey" },
+            ["pointer"] = { "fg", "DiagnosticError" },
+            ["marker"] = { "fg", "DiagnosticError" },
+            ["spinner"] = { "fg", "Label" },
+            ["header"] = { "fg", "Comment" },
+            ["gutter"] = "-1",
+            ["scrollbar"] = { "fg", "WarningMsg" },
+        },
     },
     keys = {
         {
@@ -47,7 +61,7 @@ return {
             desc = "LSP references",
         },
         {
-            "gT",
+            "gy",
             function() require("fzf-lua").lsp_typedefs() end,
             desc = "LSP type definitions",
         },
