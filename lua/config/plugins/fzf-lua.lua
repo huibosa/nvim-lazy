@@ -31,7 +31,7 @@ return {
     },
     keys = {
         {
-            "<c-_>",
+            "<c-\\>",
             function() require("fzf-lua").builtin() end,
             "Builtin",
         },
@@ -66,7 +66,7 @@ return {
             desc = "LSP type definitions",
         },
         {
-            "gI",
+            "gm",
             function() require("fzf-lua").lsp_implementations() end,
             desc = "LSP implementations",
         },
