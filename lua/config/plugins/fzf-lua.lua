@@ -81,4 +81,14 @@ return {
             desc = "LSP workspace symbols",
         },
     },
+    config = function(_, opts)
+        require("fzf-lua").setup(opts)
+
+        local dark = "#1b1b1b"
+        local yellow = "#d8a657"
+
+        vim.api.nvim_set_hl(0, "FzfLuaBorder", { fg = dark, bg = dark })
+        vim.api.nvim_set_hl(0, "FzfLuaNormal", { bg = dark })
+        vim.api.nvim_set_hl(0, "FzfLuaTitle", { bg = yellow })
+    end,
 }
