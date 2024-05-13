@@ -21,9 +21,6 @@ require("lazy").setup("config.plugins", {
         enabled = false,
         notify = false,
     },
-    ui = {
-        border = vim.g.window_borders,
-    },
     performance = {
         rtp = {
             disabled_plugins = {

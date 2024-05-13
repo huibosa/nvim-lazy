@@ -81,9 +81,18 @@ return {
 
         lspconfig.pyright.setup({})
 
-        -- lspconfig.elixirls.setup({
-        --     cmd = { vim.fn.expand("~/.local/share/nvim/mason/packages/elixir-ls/language_server.sh") },
-        -- })
+        lspconfig.rust_analyzer.setup({
+            settings = {
+                ["rust-analyzer"] = {
+                    procMacro = { enable = true },
+                    cargo = { allFeatures = true },
+                    checkOnSave = {
+                        command = "clippy",
+                        extraArgs = { "--no-deps" },
+                    },
+                },
+            },
+        })
 
         lspconfig.clangd.setup({
             cmd = {

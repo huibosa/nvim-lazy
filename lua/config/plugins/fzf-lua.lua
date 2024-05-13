@@ -17,11 +17,11 @@ return {
             ["bg"] = "-1",
             ["hl"] = { "fg", "String" },
             ["fg+"] = { "fg", "Normal" },
-            ["bg+"] = { "bg", "Visual" },
+            -- ["bg+"] = { "bg", "Visual" },
             ["hl+"] = { "fg", "String" },
             ["info"] = { "fg", "WarningMsg" },
             -- ["prompt"] = { "fg", "SpecialKey" },
-            ["pointer"] = { "fg", "DiagnosticError" },
+            -- ["pointer"] = { "fg", "DiagnosticError" },
             ["marker"] = { "fg", "DiagnosticError" },
             ["spinner"] = { "fg", "Label" },
             ["header"] = { "fg", "Comment" },
@@ -84,7 +84,7 @@ return {
     config = function(_, opts)
         require("fzf-lua").setup(opts)
 
-        local dark = "#1b1b1b"
+        local dark = "#45403d"
         local yellow = "#d8a657"
 
         vim.api.nvim_set_hl(0, "FzfLuaBorder", { fg = dark, bg = dark })

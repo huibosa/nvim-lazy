@@ -17,7 +17,6 @@ return {
                     package_pending = "➜",
                     package_uninstalled = "✗",
                 },
-                border = vim.g.window_borders,
             },
         })
 
