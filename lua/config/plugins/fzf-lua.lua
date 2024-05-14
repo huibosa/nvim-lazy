@@ -80,6 +80,21 @@ return {
             function() require("fzf-lua").lsp_live_workspace_symbols() end,
             desc = "LSP workspace symbols",
         },
+        {
+            "<leader>fl",
+            function() require("fzf-lua").blines() end,
+            desc = "Current buffer lines",
+        },
+        {
+            "<leader>fh",
+            function() require("fzf-lua").helptags() end,
+            desc = "Help",
+        },
+        {
+            "<leader>fb",
+            function() require("fzf-lua").buffers() end,
+            desc = "Buffers",
+        },
     },
     config = function(_, opts)
         require("fzf-lua").setup(opts)

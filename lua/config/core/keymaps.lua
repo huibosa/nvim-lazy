@@ -66,8 +66,8 @@ vim.keymap.set("i", "<C-k>", "", {
     silent = true,
 })
 
-keymap("i", "<C-e>", "<End>")
-keymap("i", "<C-b>", "<Left>")
+keymap({ "i", "x", "o" }, "<C-e>", "<End>")
+keymap({ "i", "x", "o" }, "<C-b>", "<Left>")
 keymap("i", "<C-f>", "<Right>")
 keymap("i", "<C-d>", "<Del>")
 
