@@ -6,27 +6,17 @@ return {
         local treesitter = require("nvim-treesitter.configs")
         treesitter.setup({
             ensure_installed = {
-                "json",
-                "markdown",
-                "markdown_inline",
-                "dockerfile",
-                "gitignore",
+                "rust",
                 "go",
                 "c",
                 "cpp",
-                "bash",
-                "lua",
-                "csv",
                 "python",
-                "vim",
-                "regex",
             },
-            auto_install = true,
             indent = {
                 enable = true,
             },
             highlight = {
-                enable = true,
+                enable = false,
                 addtional_vim_regex_highlighting = false,
                 disable = function(_, buf) return vim.api.nvim_buf_line_count(buf) > 5000 end,
             },
