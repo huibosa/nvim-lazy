@@ -39,7 +39,7 @@ return {
                 },
                 untracked = {
                     hl = "GitSignsUntracked",
-                    text = "▐ ",
+                    text = "▐",
                     numhl = "GitSignsUntrackedNr",
                     linehl = "GitSignsUntrackedLn",
                 },
@@ -56,43 +56,36 @@ return {
                     vim.keymap.set(mode, lhs, rhs, opts)
                 end
 
-                -- Navigation
-                -- map("n", "]h", function()
-                --     if vim.wo.diff then return "]h" end
-                --     vim.schedule(function() gs.next_hunk() end)
-                --     return "<Ignore>"
-                -- end, { expr = true })
-                --
-                -- map("n", "[h", function()
-                --     if vim.wo.diff then return "[h" end
-                --     vim.schedule(function() gs.prev_hunk() end)
-                --     return "<Ignore>"
-                -- end, { expr = true })
-
-                -- Actions
-                map("n", "<leader>gs", gs.stage_hunk, { desc = "Stage hunk" })
-                map("n", "<leader>gr", gs.reset_hunk, { desc = "Reset hunk" })
+                -- Actions for stage
+                map("n", "<leader>ga", gs.stage_hunk, { desc = "Stage hunk" })
+                map("n", "<leader>gA", gs.stage_buffer, { desc = "Stage buffer" })
                 map(
                     "v",
-                    "<leader>gs",
+                    "<leader>ga",
                     function() gs.stage_hunk({ vim.fn.line("."), vim.fn.line("v") }) end,
                     { desc = "Stage hunk" }
                 )
+
+                -- Actions for reset
+                map("n", "<leader>gr", gs.reset_hunk, { desc = "Reset hunk" })
                 map(
                     "v",
                     "<leader>gr",
                     function() gs.reset_hunk({ vim.fn.line("."), vim.fn.line("v") }) end,
                     { desc = "Stage hunk" }
                 )
-                map("n", "<leader>gS", gs.stage_buffer, { desc = "Stage buffer" })
-                map("n", "<leader>gu", gs.undo_stage_hunk, { desc = "Unstage hunk" })
                 map("n", "<leader>gR", gs.reset_buffer, { desc = "Reset buffer" })
-                map("n", "<leader>gp", gs.preview_hunk, { desc = "Preview hunk" })
+
+                -- Action for undo stage
+                map("n", "<leader>gu", gs.undo_stage_hunk, { desc = "Unstage hunk" })
+
                 map("n", "<leader>gbf", function() gs.blame_line({ full = true }) end, { desc = "Blame float" })
                 map("n", "<leader>gbt", gs.toggle_current_line_blame, { desc = "Blame line toggle" })
-                map("n", "<leader>gd", gs.diffthis, { desc = "Diff hunk" })
-                map("n", "<leader>gD", function() gs.diffthis("~") end, { desc = "Diff hunk" })
-                map("n", "<leader>gt", gs.toggle_deleted, { desc = "Toggle hunk" })
+
+                map("n", "<leader>gdd", gs.diffthis, { desc = "Diff hunk" })
+                map("n", "<leader>gdD", function() gs.diffthis("~") end, { desc = "Diff hunk" })
+                map("n", "<leader>gdt", gs.toggle_deleted, { desc = "Toggle hunk" })
+                map("n", "<leader>gdp", gs.preview_hunk, { desc = "Preview hunk" })
 
                 map({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>", { desc = "Hunk" })
             end,

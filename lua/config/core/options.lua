@@ -8,7 +8,7 @@ vim.opt.encoding = "utf-8" -- encoding for specifying text
 vim.opt.matchpairs = { "(:)", "{:}", "[:]", "<:>" }
 
 vim.opt.cmdheight = 1 -- cmdline height
-vim.opt.scrolloff = 3 -- min number of lines to keep between cursor and screen edge
+vim.opt.scrolloff = 10 -- min number of lines to keep between cursor and screen edge
 vim.opt.sidescrolloff = 5 -- min number of cols to keep between cursor and screen edge
 vim.opt.number = true
 
@@ -19,6 +19,8 @@ vim.opt.number = true
 --     vim.opt.signcolumn = "no"
 -- end
 vim.opt.signcolumn = "yes"
+vim.opt.numberwidth = 3
+vim.opt.stc = "%=%l%s"
 
 -- General tab settings
 vim.opt.tabstop = 2 -- Tab indentation levels every two columns
