@@ -3,11 +3,15 @@ return {
     event = "VeryLazy",
     cmd = { "FzfLua" },
     opts = {
-        winopts = {
-            border = vim.g.window_borders,
-        },
+        -- winopts = {
+        --     border = vim.g.window_borders,
+        -- },
         keymap = {
             builtin = {
+                ["<C-d>"] = "preview-page-down",
+                ["<C-u>"] = "preview-page-up",
+            },
+            commits = {
                 ["<C-d>"] = "preview-page-down",
                 ["<C-u>"] = "preview-page-up",
             },
@@ -31,7 +35,7 @@ return {
     },
     keys = {
         {
-            "<c-\\>",
+            "<leader><leader>",
             function() require("fzf-lua").builtin() end,
             "Builtin",
         },
@@ -41,49 +45,59 @@ return {
             desc = "Files",
         },
         {
+            "<leader>ff",
+            function() require("fzf-lua").files() end,
+            desc = "Files",
+        },
+        {
             "<c-q>",
             function() require("fzf-lua").live_grep_native() end,
-            desc = "Live grep",
+            desc = "Live Grep",
         },
         {
             "gd",
             function() require("fzf-lua").lsp_definitions() end,
-            desc = "LSP definitions",
+            desc = "LSP Definitions",
         },
         {
             "gD",
             function() require("fzf-lua").lsp_declarations() end,
-            desc = "LSP declarations",
+            desc = "LSP Declarations",
         },
         {
             "gr",
             function() require("fzf-lua").lsp_references() end,
-            desc = "LSP references",
+            desc = "LSP References",
         },
         {
             "gy",
             function() require("fzf-lua").lsp_typedefs() end,
-            desc = "LSP type definitions",
+            desc = "LSP Type Definitions",
         },
         {
-            "gm",
+            "gI",
             function() require("fzf-lua").lsp_implementations() end,
-            desc = "LSP implementations",
+            desc = "LSP Implementations",
         },
         {
-            "gs",
+            "<leader>fs",
             function() require("fzf-lua").lsp_document_symbols() end,
-            desc = "LSP document symbols",
+            desc = "Document Symbols",
         },
         {
-            "gS",
+            "<leader>fS",
             function() require("fzf-lua").lsp_live_workspace_symbols() end,
-            desc = "LSP workspace symbols",
+            desc = "LSP Workspace Symbols",
         },
         {
             "<leader>fl",
             function() require("fzf-lua").blines() end,
-            desc = "Current buffer lines",
+            desc = "Buffer Lines",
+        },
+        {
+            "<leader>fL",
+            function() require("fzf-lua").blines() end,
+            desc = "All Lines",
         },
         {
             "<leader>fh",
@@ -94,6 +108,11 @@ return {
             "<leader>fb",
             function() require("fzf-lua").buffers() end,
             desc = "Buffers",
+        },
+        {
+            "<leader>fr",
+            function() require("fzf-lua").oldfiles() end,
+            desc = "Recent Files",
         },
     },
     config = function(_, opts)

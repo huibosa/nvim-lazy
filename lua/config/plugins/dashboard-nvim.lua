@@ -22,10 +22,17 @@ return {
                 },
                 {
                     icon = "   ",
-                    desc = "File",
+                    desc = "Find",
                     group = "Label",
                     action = "FzfLua files",
                     key = "f",
+                },
+                {
+                    icon = "   ",
+                    desc = "Recent",
+                    group = "@module",
+                    action = "FzfLua oldfiles",
+                    key = "r",
                 },
                 {
                     icon = "   ",
@@ -36,7 +43,7 @@ return {
                 },
                 {
                     icon = "   ",
-                    desc = "Conf",
+                    desc = "Config",
                     group = "Number",
                     action = function()
                         local config_dir = vim.fn.stdpath("config")

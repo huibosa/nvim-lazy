@@ -4,92 +4,93 @@ return {
     dependencies = {
         "nvim-treesitter/nvim-treesitter",
     },
-    config = function()
-        require("nvim-treesitter.configs").setup({
-            textobjects = {
-                select = {
-                    enable = true,
+    opts = {
+        textobjects = {
+            select = {
+                enable = true,
 
-                    -- Automatically jump forward to textobj, similar to targets.vim
-                    lookahead = true,
+                -- Automatically jump forward to textobj, similar to targets.vim
+                lookahead = true,
 
-                    keymaps = {
-                        ["a="] = { query = "@assignment.outer", desc = "outer assignment" },
-                        ["i="] = { query = "@assignment.inner", desc = "inner assignment" },
+                keymaps = {
+                    ["a="] = { query = "@assignment.outer", desc = "outer assignment" },
+                    ["i="] = { query = "@assignment.inner", desc = "inner assignment" },
 
-                        ["aa"] = { query = "@parameter.outer", desc = "outer parameter" },
-                        ["ia"] = { query = "@parameter.inner", desc = "inner parameter" },
+                    ["aa"] = { query = "@parameter.outer", desc = "outer parameter" },
+                    ["ia"] = { query = "@parameter.inner", desc = "inner parameter" },
 
-                        ["aj"] = { query = "@conditional.outer", desc = "outer conditional" },
-                        ["ij"] = { query = "@conditional.inner", desc = "inner conditional" },
+                    ["aj"] = { query = "@conditional.outer", desc = "outer conditional" },
+                    ["ij"] = { query = "@conditional.inner", desc = "inner conditional" },
 
-                        ["al"] = { query = "@loop.outer", desc = "outer loop" },
-                        ["il"] = { query = "@loop.inner", desc = "inner loop" },
+                    ["al"] = { query = "@loop.outer", desc = "outer loop" },
+                    ["il"] = { query = "@loop.inner", desc = "inner loop" },
 
-                        -- ["ab"] = { query = "@block.outer", desc = "outer block" },
-                        -- ["ib"] = { query = "@block.inner", desc = "inner block" },
+                    -- ["ab"] = { query = "@block.outer", desc = "outer block" },
+                    -- ["ib"] = { query = "@block.inner", desc = "inner block" },
 
-                        ["af"] = { query = "@function.outer", desc = "outer function" },
-                        ["if"] = { query = "@function.inner", desc = "inner function" },
+                    ["af"] = { query = "@function.outer", desc = "outer function" },
+                    ["if"] = { query = "@function.inner", desc = "inner function" },
 
-                        ["ac"] = { query = "@class.outer", desc = "outer class" },
-                        ["ic"] = { query = "@class.inner", desc = "inner class" },
+                    ["ac"] = { query = "@class.outer", desc = "outer class" },
+                    ["ic"] = { query = "@class.inner", desc = "inner class" },
 
-                        ["ar"] = { query = "@return.outer", desc = "outer return" },
-                        ["ir"] = { query = "@return.outer", desc = "inner return" },
+                    ["ar"] = { query = "@return.outer", desc = "outer return" },
+                    ["ir"] = { query = "@return.outer", desc = "inner return" },
 
-                        -- ["a_"] = { query = "@comment.outer", desc = "outer comment" },
-                        -- ["i_"] = { query = "@comment.inner", desc = "inner comment" },
-                    },
-                    include_surrounding_whitespace = true,
+                    -- ["am"] = { query = "@comment.outer", desc = "outer comment" },
+                    -- ["im"] = { query = "@comment.inner", desc = "inner comment" },
                 },
-                swap = {
-                    enable = true,
-                    swap_next = {
-                        ["<leader>a"] = "@parameter.inner", -- swap object under cursor with next
-                    },
-                    swap_previous = {
-                        ["<leader>A"] = "@parameter.inner", -- swap object under cursor with previous
-                    },
+                include_surrounding_whitespace = true,
+            },
+            swap = {
+                enable = true,
+                swap_next = {
+                    ["<leader>cs"] = "@parameter.inner", -- swap object under cursor with next
                 },
-                move = {
-                    enable = true,
-                    set_jumps = true,
-                    goto_next_start = {
-                        ["]a"] = { query = "@parameter.outer", desc = "Next argument start" },
-                        ["]f"] = { query = "@function.outer", desc = "Next function start" },
-                        ["]r"] = { query = "@return.outer", desc = "Next return start" },
-                        ["]c"] = { query = "@class.outer", desc = "Next class start" },
-                        ["]j"] = { query = "@conditional.outer", desc = "Next judge start" },
-                        ["]l"] = { query = "@loop.outer", desc = "Next loop start" },
-                    },
-                    goto_next_end = {
-                        ["]A"] = { query = "@parameter.outer", desc = "Next argument end" },
-                        ["]F"] = { query = "@function.outer", desc = "Next function end" },
-                        ["]R"] = { query = "@return.outer", desc = "Next return end" },
-                        ["]C"] = { query = "@class.outer", desc = "Next class end" },
-                        ["]J"] = { query = "@conditional.outer", desc = "Next judge end" },
-                        ["]L"] = { query = "@loop.outer", desc = "Next loop end" },
-                    },
-                    goto_previous_start = {
-                        ["[a"] = { query = "@parameter.outer", desc = "Previous argument start" },
-                        ["[f"] = { query = "@function.outer", desc = "Previous function start" },
-                        ["[r"] = { query = "@return.outer", desc = "Previous return start" },
-                        ["[c"] = { query = "@class.outer", desc = "Previous class start" },
-                        ["[j"] = { query = "@conditional.outer", desc = "Previous judge start" },
-                        ["[l"] = { query = "@loop.outer", desc = "Previous loop start" },
-                    },
-                    goto_previous_end = {
-                        ["[A"] = { query = "@parameter.outer", desc = "Previous argument end" },
-                        ["[F"] = { query = "@function.outer", desc = "Previous function end" },
-                        ["[R"] = { query = "@return.outer", desc = "Previous return end" },
-                        ["[C"] = { query = "@class.outer", desc = "Previous class end" },
-                        ["[J"] = { query = "@conditional.outer", desc = "Previous judge end" },
-                        ["[L"] = { query = "@loop.outer", desc = "Previous loop end" },
-                    },
+                swap_previous = {
+                    ["<leader>cS"] = "@parameter.inner", -- swap object under cursor with previous
                 },
             },
-        })
+            move = {
+                enable = true,
+                set_jumps = true,
+                goto_next_start = {
+                    ["]a"] = { query = "@parameter.outer", desc = "Next argument start" },
+                    ["]f"] = { query = "@function.outer", desc = "Next function start" },
+                    ["]r"] = { query = "@return.outer", desc = "Next return start" },
+                    ["]c"] = { query = "@class.outer", desc = "Next class start" },
+                    ["]j"] = { query = "@conditional.outer", desc = "Next judge start" },
+                    ["]l"] = { query = "@loop.outer", desc = "Next loop start" },
+                },
+                goto_next_end = {
+                    ["]A"] = { query = "@parameter.outer", desc = "Next argument end" },
+                    ["]F"] = { query = "@function.outer", desc = "Next function end" },
+                    ["]R"] = { query = "@return.outer", desc = "Next return end" },
+                    ["]C"] = { query = "@class.outer", desc = "Next class end" },
+                    ["]J"] = { query = "@conditional.outer", desc = "Next judge end" },
+                    ["]L"] = { query = "@loop.outer", desc = "Next loop end" },
+                },
+                goto_previous_start = {
+                    ["[a"] = { query = "@parameter.outer", desc = "Previous argument start" },
+                    ["[f"] = { query = "@function.outer", desc = "Previous function start" },
+                    ["[r"] = { query = "@return.outer", desc = "Previous return start" },
+                    ["[c"] = { query = "@class.outer", desc = "Previous class start" },
+                    ["[j"] = { query = "@conditional.outer", desc = "Previous judge start" },
+                    ["[l"] = { query = "@loop.outer", desc = "Previous loop start" },
+                },
+                goto_previous_end = {
+                    ["[A"] = { query = "@parameter.outer", desc = "Previous argument end" },
+                    ["[F"] = { query = "@function.outer", desc = "Previous function end" },
+                    ["[R"] = { query = "@return.outer", desc = "Previous return end" },
+                    ["[C"] = { query = "@class.outer", desc = "Previous class end" },
+                    ["[J"] = { query = "@conditional.outer", desc = "Previous judge end" },
+                    ["[L"] = { query = "@loop.outer", desc = "Previous loop end" },
+                },
+            },
+        },
+    },
+    config = function(_, opts)
+        require("nvim-treesitter.configs").setup(opts)
 
         local ts_repeat_move = require("nvim-treesitter.textobjects.repeatable_move")
 

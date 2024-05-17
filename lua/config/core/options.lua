@@ -12,12 +12,6 @@ vim.opt.scrolloff = 10 -- min number of lines to keep between cursor and screen 
 vim.opt.sidescrolloff = 5 -- min number of cols to keep between cursor and screen edge
 vim.opt.number = true
 
--- Check if in a git repo
--- if require("utils").is_git_dir() then
---     vim.opt.signcolumn = "yes"
--- else
---     vim.opt.signcolumn = "no"
--- end
 vim.opt.signcolumn = "yes"
 vim.opt.numberwidth = 3
 vim.opt.stc = "%=%l%s"

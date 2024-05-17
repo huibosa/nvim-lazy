@@ -16,9 +16,10 @@ return {
                 enable = true,
             },
             highlight = {
-                enable = false,
+                enable = true,
                 addtional_vim_regex_highlighting = false,
-                disable = function(_, buf) return vim.api.nvim_buf_line_count(buf) > 5000 end,
+                -- disable = function(_, buf) return vim.api.nvim_buf_line_count(buf) > 5000 end,
+                disable = { "rust", "go", "c", "cpp", "bash" },
             },
             incremental_selection = {
                 enable = false,

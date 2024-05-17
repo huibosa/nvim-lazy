@@ -53,16 +53,17 @@ return {
                 keymap("n", "K", vim.lsp.buf.hover, { desc = "LSP documentation" })
                 -- keymap("n", "gs", vim.lsp.buf.signature_help, { desc = "LSP signature" })
 
-                keymap("n", "<leader>cwa", vim.lsp.buf.add_workspace_folder, { desc = "Add workspace folder" })
-                keymap("n", "<leader>cwr", vim.lsp.buf.remove_workspace_folder, { desc = "Remove workspace folder" })
+                -- Code actions
+                keymap({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, { desc = "Code Action" })
+                keymap("n", "<leader>cr", vim.lsp.buf.rename, { desc = "Rename Variable" })
+                keymap("n", "<leader>cwa", vim.lsp.buf.add_workspace_folder, { desc = "Add Workspace Folder" })
+                keymap("n", "<leader>cwr", vim.lsp.buf.remove_workspace_folder, { desc = "Remove Workspace Folder" })
                 keymap(
                     "n",
                     "<leader>cwl",
-                    "<CMD>print(vim.inspect(vim.lsp.buf.list_workspace_folders))<CR>",
-                    { desc = "List workspace folders" }
+                    "<CMD>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>",
+                    { desc = "List Workspace Folders" }
                 )
-                keymap("n", "<leader>cr", vim.lsp.buf.rename, { desc = "Rename variable" })
-                keymap({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, { desc = "Code actions" })
             end,
         })
 
