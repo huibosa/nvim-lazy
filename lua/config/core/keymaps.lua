@@ -12,8 +12,6 @@ keymap("n", "<Space>", "<Nop>")
 keymap("n", "Y", "y$")
 keymap("x", "Y", '"+y')
 
-keymap("n", "Q", ":q!<CR>")
-
 keymap("n", "c*", "*Ncgn")
 
 keymap({ "n", "x" }, "H", "^")

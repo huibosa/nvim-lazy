@@ -10,6 +10,8 @@ return {
         "hrsh7th/cmp-nvim-lsp-signature-help",
     },
     config = function()
+        vim.api.nvim_set_hl(0, "CmpGhostText", { link = "Comment", default = true })
+
         local cmp = require("cmp")
         local luasnip = require("luasnip")
 
@@ -33,6 +35,7 @@ return {
                 ["<C-Space>"] = cmp.mapping.complete(), -- show completion suggestions
                 ["<C-e>"] = cmp.mapping.abort(), -- close completion window
                 ["<CR>"] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+                ["<C-f>"] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
 
                 ["<Tab>"] = cmp.mapping(function(fallback)
                     if luasnip.jumpable(1) then
@@ -51,9 +54,9 @@ return {
                 end, { "i", "s" }),
             }),
             sources = cmp.config.sources({
-                { name = "luasnip" }, -- snippets
                 { name = "nvim_lsp" },
                 { name = "nvim_lua", priority = 1000 },
+                { name = "luasnip" }, -- snippets
                 { name = "path" }, -- file system paths
                 { name = "buffer" }, -- text within current buffer
                 { name = "nvim_lsp_signature_help" },
@@ -76,6 +79,11 @@ return {
                     item.menu = string.format("[%s]", menu_name)
                     return item
                 end,
+            },
+            experimental = {
+                ghost_text = {
+                    hl_group = "CmpGhostText",
+                },
             },
         })
     end,

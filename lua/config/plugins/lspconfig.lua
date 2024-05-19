@@ -50,12 +50,11 @@ return {
                     vim.keymap.set(mode, lhs, rhs, opts)
                 end
 
-                keymap("n", "K", vim.lsp.buf.hover, { desc = "LSP documentation" })
-                -- keymap("n", "gs", vim.lsp.buf.signature_help, { desc = "LSP signature" })
+                keymap("n", "gK", vim.lsp.buf.signature_help, { desc = "LSP Signature Help" })
 
-                -- Code actions
                 keymap({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, { desc = "Code Action" })
                 keymap("n", "<leader>cr", vim.lsp.buf.rename, { desc = "Rename Variable" })
+
                 keymap("n", "<leader>cwa", vim.lsp.buf.add_workspace_folder, { desc = "Add Workspace Folder" })
                 keymap("n", "<leader>cwr", vim.lsp.buf.remove_workspace_folder, { desc = "Remove Workspace Folder" })
                 keymap(
