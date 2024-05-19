@@ -88,6 +88,7 @@ return {
                     procMacro = { enable = true },
                     cargo = { allFeatures = true },
                     checkOnSave = {
+                        allFeatures = true,
                         command = "clippy",
                         extraArgs = { "--no-deps" },
                     },

@@ -1,3 +1,5 @@
+local function augroup(name) return vim.api.nvim_create_augroup(name, { clear = true }) end
+
 -- From vim defaults.vim
 -- ---
 -- When editing a file, always jump to the last known cursor position.
@@ -25,7 +27,7 @@ vim.api.nvim_create_autocmd("BufRead", {
 })
 
 -- highlight yanked region, see `:h lua-highlight`
-local yank_group = vim.api.nvim_create_augroup("highlight_yank", { clear = true })
+local yank_group = augroup("highlight_yank")
 vim.api.nvim_create_autocmd({ "TextYankPost" }, {
     pattern = "*",
     group = yank_group,
@@ -50,7 +52,7 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 -- Auto-create dir when saving a file, in case some intermediate directory does not exist
 vim.api.nvim_create_autocmd({ "BufWritePre" }, {
     pattern = "*",
-    group = vim.api.nvim_create_augroup("auto_create_dir", { clear = true }),
+    group = augroup("auto_create_dir"),
     callback = function(ev)
         local dir = vim.fn.fnamemodify(ev.file, ":p:h")
         local res = vim.fn.isdirectory(dir)
@@ -62,11 +64,10 @@ vim.api.nvim_create_autocmd({ "BufWritePre" }, {
 -- Automatically reload the file if it is changed outside of Nvim, see https://unix.stackexchange.com/a/383044/221410.
 -- It seems that `checktime` does not work in command line. We need to check if we are in command
 -- line before executing this command, see also https://vi.stackexchange.com/a/20397/15292 .
-vim.api.nvim_create_augroup("auto_read", { clear = true })
-
+local auto_read_group = augroup("auto_read")
 vim.api.nvim_create_autocmd({ "FileChangedShellPost" }, {
     pattern = "*",
-    group = "auto_read",
+    group = auto_read_group,
     callback = function()
         vim.notify("File changed on disk. Buffer reloaded!", vim.log.levels.WARN, { title = "nvim-config" })
     end,
@@ -74,9 +75,34 @@ vim.api.nvim_create_autocmd({ "FileChangedShellPost" }, {
 
 vim.api.nvim_create_autocmd({ "FocusGained", "CursorHold" }, {
     pattern = "*",
-    group = "auto_read",
+    group = auto_read_group,
     callback = function()
         if vim.fn.getcmdwintype() == "" then vim.cmd([[checktime]]) end
+    end,
+})
+
+-- Resize splits if window got resized (Adopted from lazyvim)
+vim.api.nvim_create_autocmd("VimResized", {
+    group = augroup("resize_splits"),
+    callback = function()
+        local current_tab = vim.fn.tabpagenr()
+        vim.cmd("tabdo wincmd = ")
+        vim.cmd("tabnext " .. current_tab)
+    end,
+})
+
+-- Close some filetypes with <q> (adopted from lazyvim)
+vim.api.nvim_create_autocmd("FileType", {
+    group = augroup("close_with_q"),
+    pattern = {
+        "help",
+        "lspinfo",
+        "qf",
+        "checkhealth",
+    },
+    callback = function(event)
+        vim.bo[event.buf].buflisted = false
+        vim.keymap.set("n", "q", "<cmd>close<cr>", { buffer = event.buf, silent = true })
     end,
 })
 
