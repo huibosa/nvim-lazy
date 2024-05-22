@@ -21,14 +21,14 @@ return {
                     key = "n",
                 },
                 {
-                    icon = "   ",
+                    icon = "   ",
                     desc = "Find",
                     group = "Label",
                     action = "FzfLua files",
                     key = "f",
                 },
                 {
-                    icon = "   ",
+                    icon = "  󰈚 ",
                     desc = "Recent",
                     group = "@module",
                     action = "FzfLua oldfiles",
