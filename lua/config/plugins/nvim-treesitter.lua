@@ -10,7 +10,6 @@ return {
                 "go",
                 "c",
                 "cpp",
-                "python",
             },
             indent = {
                 enable = true,

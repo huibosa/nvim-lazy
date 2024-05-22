@@ -50,6 +50,12 @@ return {
                     vim.keymap.set(mode, lhs, rhs, opts)
                 end
 
+                -- keymap(
+                --     "n",
+                --     "<leader>lh",
+                --     function() vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({})) end
+                -- )
+
                 keymap("n", "gK", vim.lsp.buf.signature_help, { desc = "LSP Signature Help" })
 
                 keymap({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, { desc = "Code Action" })
@@ -69,6 +75,12 @@ return {
         lspconfig.lua_ls.setup({
             settings = {
                 Lua = {
+                    workspace = {
+                        library = {
+                            vim.env.VIMRUNTIME,
+                            vim.fn.stdpath("config"),
+                        },
+                    },
                     runtime = {
                         version = "LuaJIT",
                     },

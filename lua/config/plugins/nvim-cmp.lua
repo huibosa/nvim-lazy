@@ -5,12 +5,11 @@ return {
         "hrsh7th/cmp-buffer", -- source for text in buffer
         "hrsh7th/cmp-path", -- source for file system paths
         "hrsh7th/cmp-nvim-lsp",
-        "hrsh7th/cmp-nvim-lua", -- source for nvim lua completetion
         "saadparwaiz1/cmp_luasnip", -- for autocompletion
         "hrsh7th/cmp-nvim-lsp-signature-help",
     },
     config = function()
-        vim.api.nvim_set_hl(0, "CmpGhostText", { link = "Comment", default = true })
+        -- vim.api.nvim_set_hl(0, "CmpGhostText", { link = "Comment", default = true })
 
         local cmp = require("cmp")
         local luasnip = require("luasnip")
@@ -35,7 +34,7 @@ return {
                 ["<C-Space>"] = cmp.mapping.complete(), -- show completion suggestions
                 ["<C-e>"] = cmp.mapping.abort(), -- close completion window
                 ["<CR>"] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
-                ["<C-f>"] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+                -- ["<C-f>"] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
 
                 ["<Tab>"] = cmp.mapping(function(fallback)
                     if luasnip.jumpable(1) then
@@ -80,11 +79,11 @@ return {
                     return item
                 end,
             },
-            experimental = {
-                ghost_text = {
-                    hl_group = "CmpGhostText",
-                },
-            },
+            -- experimental = {
+            --     ghost_text = {
+            --         hl_group = "CmpGhostText",
+            --     },
+            -- },
         })
     end,
 }

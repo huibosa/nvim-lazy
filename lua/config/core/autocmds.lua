@@ -99,6 +99,7 @@ vim.api.nvim_create_autocmd("FileType", {
         "lspinfo",
         "qf",
         "checkhealth",
+        "vim", -- to exit cmdline-window opened by "q:"
     },
     callback = function(event)
         vim.bo[event.buf].buflisted = false
