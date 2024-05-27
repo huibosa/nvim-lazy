@@ -115,3 +115,9 @@ vim.api.nvim_create_autocmd("FileType", {
         vim.bo.tabstop = 4
     end,
 })
+
+-- Make a spece in rust comment string
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = { "rust" },
+    callback = function() vim.bo.cms = "// %s" end,
+})
