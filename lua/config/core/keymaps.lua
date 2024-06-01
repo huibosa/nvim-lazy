@@ -7,7 +7,7 @@ local keymap = function(mode, lhs, rhs, opts)
 end
 
 -- Disable Space key (map it to Nop)
-keymap("n", "<Space>", "<Nop>")
+keymap("n", "<SPACE>", "<NOP>")
 
 keymap("n", "Y", "y$")
 keymap("x", "Y", '"+y')
@@ -26,10 +26,6 @@ keymap("v", "J", ":m '>+1<CR>gv=gv")
 
 -- Join next line without moving cursor
 keymap("n", "J", "mzJ`z")
-keymap("n", "<C-d>", "<C-d>zz")
-keymap("n", "<C-u>", "<C-u>zz")
--- keymap("n", "n", "nzzzv")
--- keymap("n", "N", "Nzzzv")
 
 -- Emulate <C-a> as vscode <Home> key
 vim.keymap.set("i", "<C-a>", "", {
@@ -64,13 +60,13 @@ vim.keymap.set("i", "<C-k>", "", {
     silent = true,
 })
 
-keymap({ "i", "x", "o" }, "<C-e>", "<End>")
-keymap({ "i", "x", "o" }, "<C-b>", "<Left>")
-keymap("i", "<C-f>", "<Right>")
-keymap("i", "<C-d>", "<Del>")
+keymap({ "i", "x", "o" }, "<C-e>", "<END>")
+keymap({ "i", "x", "o" }, "<C-b>", "<LEFT>")
+keymap("i", "<C-f>", "<RIGHT>")
+keymap("i", "<C-d>", "<DEL>")
 
-vim.keymap.set("c", "<C-a>", "<Home>")
-vim.keymap.set("c", "<C-e>", "<End>")
-vim.keymap.set("c", "<C-b>", "<Left>")
-vim.keymap.set("c", "<C-f>", "<Right>")
-vim.keymap.set("c", "<C-d>", "<Del>")
+vim.keymap.set("c", "<C-a>", "<HOME>")
+vim.keymap.set("c", "<C-e>", "<END>")
+vim.keymap.set("c", "<C-b>", "<LEFT>")
+vim.keymap.set("c", "<C-f>", "<RIGHt>")
+vim.keymap.set("c", "<C-d>", "<DEL>")
