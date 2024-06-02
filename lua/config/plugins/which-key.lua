@@ -19,20 +19,20 @@ return {
         --     align = "center", -- align columns left, center or right
         -- },
         key_labels = {
-            ["<space>"] = "SPC",
-            ["<cr>"] = "RET",
-            ["<tab>"] = "TAB",
+            ["<SPACE>"] = "SPC",
+            ["<CR>"] = "RET",
+            ["<TAB>"] = "TAB",
         },
         mappings = {
             ["g"] = { name = "+goto" },
             ["gs"] = { name = "+surround" },
             ["]"] = { name = "+next" },
             ["["] = { name = "+prev" },
-            ["<leader>f"] = { name = "+file/find" },
-            ["<leader>c"] = { name = "+code" },
-            ["<leader><leader>"] = { "FzfLua" },
-            ["<leader>h"] = { "hunk" },
-            ["<leader>cw"] = { "workspace" },
+            ["<LEADER>f"] = { name = "+file/find" },
+            ["<LEADER>c"] = { name = "+code" },
+            ["<LEADER><LEADER>"] = { "FzfLua" },
+            ["<LEADER>h"] = { "hunk" },
+            ["<LEADER>cw"] = { "workspace" },
         },
     },
     config = function(_, opts)

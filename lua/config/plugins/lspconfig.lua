@@ -52,20 +52,20 @@ return {
 
                 -- keymap(
                 --     "n",
-                --     "<leader>lh",
+                --     "<LEADER>lh",
                 --     function() vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({})) end
                 -- )
 
                 keymap("n", "gK", vim.lsp.buf.signature_help, { desc = "LSP Signature Help" })
 
-                keymap({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, { desc = "Code Action" })
-                keymap("n", "<leader>cr", vim.lsp.buf.rename, { desc = "Rename Variable" })
+                keymap({ "n", "v" }, "<LEADER>ca", vim.lsp.buf.code_action, { desc = "Code Action" })
+                keymap("n", "<LEADER>cr", vim.lsp.buf.rename, { desc = "Rename Variable" })
 
-                keymap("n", "<leader>cwa", vim.lsp.buf.add_workspace_folder, { desc = "Add Workspace Folder" })
-                keymap("n", "<leader>cwr", vim.lsp.buf.remove_workspace_folder, { desc = "Remove Workspace Folder" })
+                keymap("n", "<LEADER>cwa", vim.lsp.buf.add_workspace_folder, { desc = "Add Workspace Folder" })
+                keymap("n", "<LEADER>cwr", vim.lsp.buf.remove_workspace_folder, { desc = "Remove Workspace Folder" })
                 keymap(
                     "n",
-                    "<leader>cwl",
+                    "<LEADER>cwl",
                     "<CMD>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>",
                     { desc = "List Workspace Folders" }
                 )

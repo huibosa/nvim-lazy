@@ -35,22 +35,22 @@ return {
     },
     keys = {
         {
-            "<leader><leader>",
+            "<LEADER><LEADER>",
             function() require("fzf-lua").builtin() end,
             "Builtin",
         },
         {
-            "<c-p>",
+            "<C-p>",
             function() require("fzf-lua").files() end,
             desc = "Files",
         },
         {
-            "<leader>ff",
+            "<LEADER>ff",
             function() require("fzf-lua").files() end,
             desc = "Files",
         },
         {
-            "<c-q>",
+            "<C-q>",
             function() require("fzf-lua").live_grep_native() end,
             desc = "Live Grep",
         },
@@ -80,37 +80,37 @@ return {
             desc = "LSP Implementations",
         },
         {
-            "<leader>fs",
+            "<LEADER>fs",
             function() require("fzf-lua").lsp_document_symbols() end,
             desc = "Document Symbols",
         },
         {
-            "<leader>fS",
+            "<LEADER>fS",
             function() require("fzf-lua").lsp_live_workspace_symbols() end,
             desc = "LSP Workspace Symbols",
         },
         {
-            "<leader>fl",
+            "<LEADER>fl",
             function() require("fzf-lua").blines() end,
             desc = "Buffer Lines",
         },
         {
-            "<leader>fL",
+            "<LEADER>fL",
             function() require("fzf-lua").blines() end,
             desc = "All Lines",
         },
         {
-            "<leader>fh",
+            "<LEADER>fh",
             function() require("fzf-lua").helptags() end,
             desc = "Help",
         },
         {
-            "<leader>fb",
+            "<LEADER>fb",
             function() require("fzf-lua").buffers() end,
             desc = "Buffers",
         },
         {
-            "<leader>fr",
+            "<LEADER>fr",
             function() require("fzf-lua").oldfiles() end,
             desc = "Recent Files",
         },

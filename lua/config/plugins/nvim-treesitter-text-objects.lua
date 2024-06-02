@@ -45,10 +45,10 @@ return {
             swap = {
                 enable = true,
                 swap_next = {
-                    ["<leader>cs"] = "@parameter.inner", -- swap object under cursor with next
+                    ["<LEADER>cs"] = "@parameter.inner", -- swap object under cursor with next
                 },
                 swap_previous = {
-                    ["<leader>cS"] = "@parameter.inner", -- swap object under cursor with previous
+                    ["<LEADER>cS"] = "@parameter.inner", -- swap object under cursor with previous
                 },
             },
             move = {
