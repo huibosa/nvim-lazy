@@ -5,6 +5,7 @@ return {
         local gitsigns = require("gitsigns")
 
         gitsigns.setup({
+            attach_to_untracked = true,
             worktrees = {
                 {
                     toplevel = vim.env.HOME,
@@ -18,7 +19,7 @@ return {
                 delete = { text = "▁" },
                 topdelete = { text = "▔" },
                 changedelete = { text = "┃" },
-                untracked = { text = "┃" },
+                untracked = { text = "┇" },
             },
             on_attach = function(bufnr)
                 local gs = package.loaded.gitsigns
