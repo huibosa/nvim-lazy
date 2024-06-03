@@ -107,14 +107,14 @@ return {
         -- Make ]h, [h also repeatable with ; and ,
         local gs = require("gitsigns")
         local next_hunk_repeat, prev_hunk_repeat = ts_repeat_move.make_repeatable_move_pair(gs.next_hunk, gs.prev_hunk)
-        vim.keymap.set({ "n", "x", "o" }, "]h", next_hunk_repeat, { desc = "Next hunk" })
-        vim.keymap.set({ "n", "x", "o" }, "[h", prev_hunk_repeat, { desc = "Prev hunk" })
+        vim.keymap.set({ "n", "x", "o" }, "]h", next_hunk_repeat, { desc = "Next Hunk" })
+        vim.keymap.set({ "n", "x", "o" }, "[h", prev_hunk_repeat, { desc = "Prev Hunk" })
 
         -- Make ]d, [d also repeatable with ; and ,
         local next_diagnostic_repeat, prev_diagnostic_repeat =
             ts_repeat_move.make_repeatable_move_pair(vim.diagnostic.goto_next, vim.diagnostic.goto_prev)
-        vim.keymap.set({ "n", "x", "o" }, "]d", next_diagnostic_repeat, { desc = "Next diagnostic" })
-        vim.keymap.set({ "n", "x", "o" }, "[d", prev_diagnostic_repeat, { desc = "Prev diagnostic" })
+        vim.keymap.set({ "n", "x", "o" }, "]d", next_diagnostic_repeat, { desc = "Next Diagnostic" })
+        vim.keymap.set({ "n", "x", "o" }, "[d", prev_diagnostic_repeat, { desc = "Prev Diagnostic" })
 
         -- Make ]b, [b also repeatable with ; and ,
         local next_buffer = function()
@@ -127,7 +127,20 @@ return {
         end
         local next_buffer_repeat, prev_buffer_repeat =
             ts_repeat_move.make_repeatable_move_pair(next_buffer, prev_buffer)
-        vim.keymap.set({ "n", "x", "o" }, "]b", next_buffer_repeat, { desc = "Next buffer" })
-        vim.keymap.set({ "n", "x", "o" }, "[b", prev_buffer_repeat, { desc = "Prev buffer" })
+        vim.keymap.set({ "n", "x", "o" }, "]b", next_buffer_repeat, { desc = "Next Buffer" })
+        vim.keymap.set({ "n", "x", "o" }, "[b", prev_buffer_repeat, { desc = "Prev Buffer" })
+
+        -- Make ]b, [b also repeatable with ; and ,
+        local next_qf = function()
+            local quickfix_list = vim.fn.getqflist()
+            if not vim.tbl_isempty(quickfix_list) then vim.api.nvim_command("cnext") end
+        end
+        local prev_qf = function()
+            local quickfix_list = vim.fn.getqflist()
+            if not vim.tbl_isempty(quickfix_list) then vim.api.nvim_command("cprevious") end
+        end
+        local next_qf_repeat, prev_qf_repeat = ts_repeat_move.make_repeatable_move_pair(next_qf, prev_qf)
+        vim.keymap.set({ "n", "x", "o" }, "]q", next_qf_repeat, { desc = "Next QuickFix" })
+        vim.keymap.set({ "n", "x", "o" }, "[q", prev_qf_repeat, { desc = "Prev QuickFix" })
     end,
 }
