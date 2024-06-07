@@ -34,8 +34,8 @@ return {
                 end
 
                 -- Actions for stage
-                map({ "n", "v" }, "<LEADER>hs", ":<C-u>Gitsigns stage_hunk<CR>", { desc = "Stage Hunk" })
-                map({ "n", "v" }, "<LEADER>hr", ":<C-u>Gitsigns reset_hunk<CR>", { desc = "Reset Hunk" })
+                map({ "n", "v" }, "<LEADER>hs", ":Gitsigns stage_hunk<CR>", { desc = "Stage Hunk" })
+                map({ "n", "v" }, "<LEADER>hr", ":Gitsigns reset_hunk<CR>", { desc = "Reset Hunk" })
                 map("n", "<LEADER>hS", gs.stage_buffer, { desc = "Stage Buffer" })
                 map("n", "<LEADER>hu", gs.undo_stage_hunk, { desc = "Undo Stage Hunk" })
                 map("n", "<LEADER>hR", gs.reset_buffer, { desc = "Reset Buffer" })

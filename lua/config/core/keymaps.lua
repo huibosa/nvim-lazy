@@ -1,3 +1,4 @@
+local utils = require("utils")
 local keymap = function(mode, lhs, rhs, opts)
     opts = vim.tbl_extend("force", {
         noremap = true,
@@ -29,36 +30,17 @@ keymap("n", "J", "mzJ`z")
 
 -- Emulate <C-a> as vscode <Home> key
 vim.keymap.set("i", "<C-a>", "", {
-    callback = function()
-        local current_line = vim.fn.getline(".")
-        local non_blank_column = string.find(current_line, "%S") or 1
-
-        local start_col = vim.fn.col(".")
-        vim.fn.cursor(current_line, non_blank_column)
-
-        if vim.fn.col(".") == start_col then vim.fn.cursor(current_line, 1) end
-    end,
+    callback = utils.vscode_home_key,
     noremap = true,
     silent = true,
 })
 
 -- Map <C-k> to kill line like emacs
-vim.keymap.set("i", "<C-k>", "", {
-    callback = function()
-        local linenr = vim.fn.line(".")
-        local colnr = vim.fn.col(".")
-        local current_line = vim.fn.getline(".")
-        local str_before_cursor = current_line:sub(1, colnr - 1)
-
-        if colnr == #current_line + 1 then
-            vim.cmd([[normal! gJ]])
-        else
-            vim.fn.setline(linenr, str_before_cursor)
-        end
-    end,
-    noremap = true,
-    silent = true,
-})
+-- vim.keymap.set("i", "<C-k>", "", {
+--     callback = utils.kill_line,
+--     noremap = true,
+--     silent = true,
+-- })
 
 keymap({ "i", "x", "o" }, "<C-e>", "<END>")
 keymap({ "i", "x", "o" }, "<C-b>", "<LEFT>")

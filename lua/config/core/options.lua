@@ -180,3 +180,8 @@ vim.diagnostic.config({
         source = "always",
     },
 })
+
+vim.fn.sign_define("DiagnosticSignError", { text = "", numhl = "RedSign" })
+vim.fn.sign_define("DiagnosticSignWarn", { text = "", numhl = "YellowSign" })
+vim.fn.sign_define("DiagnosticSignInfo", { text = "", numhl = "BlueSign" })
+vim.fn.sign_define("DiagnosticSignHint", { text = "", numhl = "GreenSign" })

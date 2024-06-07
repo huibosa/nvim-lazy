@@ -10,7 +10,7 @@ return {
             desc = "Format buffer",
         },
     },
-    config = function(_, opts)
+    config = function()
         local util = require("conform.util")
         util.add_formatter_args(require("conform.formatters.shfmt"), { "-i", "4", "--space-redirects" })
 

@@ -13,16 +13,6 @@ return {
             require("cmp_nvim_lsp").default_capabilities()
         )
 
-        vim.fn.sign_define("DiagnosticSignError", { text = "", numhl = "RedSign" })
-        vim.fn.sign_define("DiagnosticSignWarn", { text = "", numhl = "YellowSign" })
-        vim.fn.sign_define("DiagnosticSignInfo", { text = "", numhl = "BlueSign" })
-        vim.fn.sign_define("DiagnosticSignHint", { text = "", numhl = "GreenSign" })
-
-        -- vim.api.nvim_set_hl(0, "LspReferenceRead", { default = false, link = "Visual" })
-        -- vim.api.nvim_set_hl(0, "LspReferenceText", { default = false, link = "Visual" })
-        -- vim.api.nvim_set_hl(0, "LspReferenceWrite", { default = false, link = "Visual" })
-        -- vim.api.nvim_set_hl(0, "CurrentWord", { default = false, link = "Visual" })
-
         vim.lsp.handlers["textDocument/publishDiagnostics"] = function(...)
             vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
                 underline = true,
@@ -57,10 +47,9 @@ return {
                 -- )
 
                 keymap("n", "gK", vim.lsp.buf.signature_help, { desc = "LSP Signature Help" })
-
+                keymap("i", "<C-k>", vim.lsp.buf.signature_help, { desc = "LSP Signature Help" })
                 keymap({ "n", "v" }, "<LEADER>ca", vim.lsp.buf.code_action, { desc = "Code Action" })
                 keymap("n", "<LEADER>cr", vim.lsp.buf.rename, { desc = "Rename Variable" })
-
                 keymap("n", "<LEADER>cwa", vim.lsp.buf.add_workspace_folder, { desc = "Add Workspace Folder" })
                 keymap("n", "<LEADER>cwr", vim.lsp.buf.remove_workspace_folder, { desc = "Remove Workspace Folder" })
                 keymap(

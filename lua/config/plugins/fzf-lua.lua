@@ -3,9 +3,6 @@ return {
     event = "VeryLazy",
     cmd = { "FzfLua" },
     opts = {
-        -- winopts = {
-        --     border = vim.g.window_borders,
-        -- },
         keymap = {
             builtin = {
                 ["<C-d>"] = "preview-page-down",

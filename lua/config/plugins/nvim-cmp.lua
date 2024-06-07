@@ -6,7 +6,6 @@ return {
         "hrsh7th/cmp-path", -- source for file system paths
         "hrsh7th/cmp-nvim-lsp",
         "saadparwaiz1/cmp_luasnip", -- for autocompletion
-        "hrsh7th/cmp-nvim-lsp-signature-help",
     },
     config = function()
         -- vim.api.nvim_set_hl(0, "CmpGhostText", { link = "Comment", default = true })
@@ -54,23 +53,18 @@ return {
             }),
             sources = cmp.config.sources({
                 { name = "nvim_lsp" },
-                { name = "nvim_lua", priority = 1000 },
                 { name = "luasnip" }, -- snippets
                 { name = "path" }, -- file system paths
                 { name = "buffer" }, -- text within current buffer
-                { name = "nvim_lsp_signature_help" },
             }),
-
             formatting = {
                 fields = { "abbr", "kind", "menu" },
                 format = function(entry, item)
                     local short_name = {
                         nvim_lsp = "LSP",
-                        nvim_lua = "LUA",
                         luasnip = "SNIP",
                         path = "PATH",
                         buffer = "BUFR",
-                        nvim_lsp_signature_help = "SIGR",
                     }
 
                     local menu_name = short_name[entry.source.name] or entry.source.name
