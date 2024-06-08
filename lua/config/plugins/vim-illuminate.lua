@@ -1,13 +1,12 @@
 return {
     "RRethy/vim-illuminate",
     event = { "BufReadPre", "BufNewFile" },
-    version = "*",
-    config = function()
-        require("illuminate").configure(
-            -- default configuration
-            require("illuminate").configure({
-                delay = 100,
-            })
-        )
-    end,
+    opts = {
+        delay = 200,
+        large_file_cutoff = 2000,
+        large_file_overrides = {
+            providers = { "lsp" },
+        },
+    },
+    config = function(_, opts) require("illuminate").configure(opts) end,
 }

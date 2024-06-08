@@ -8,10 +8,8 @@ return {
         textobjects = {
             select = {
                 enable = true,
-
-                -- Automatically jump forward to textobj, similar to targets.vim
                 lookahead = true,
-
+                include_surrounding_whitespace = true,
                 keymaps = {
                     ["a="] = { query = "@assignment.outer", desc = "outer assignment" },
                     ["i="] = { query = "@assignment.inner", desc = "inner assignment" },
@@ -40,15 +38,14 @@ return {
                     -- ["am"] = { query = "@comment.outer", desc = "outer comment" },
                     -- ["im"] = { query = "@comment.inner", desc = "inner comment" },
                 },
-                include_surrounding_whitespace = true,
             },
             swap = {
                 enable = true,
                 swap_next = {
-                    ["<LEADER>cs"] = "@parameter.inner", -- swap object under cursor with next
+                    ["<LEADER>csp"] = "@parameter.inner", -- swap object under cursor with next
                 },
                 swap_previous = {
-                    ["<LEADER>cS"] = "@parameter.inner", -- swap object under cursor with previous
+                    ["<LEADER>csP"] = "@parameter.inner", -- swap object under cursor with previous
                 },
             },
             move = {
@@ -130,17 +127,49 @@ return {
         vim.keymap.set({ "n", "x", "o" }, "]b", next_buffer_repeat, { desc = "Next Buffer" })
         vim.keymap.set({ "n", "x", "o" }, "[b", prev_buffer_repeat, { desc = "Prev Buffer" })
 
-        -- Make ]b, [b also repeatable with ; and ,
-        local next_qf = function()
-            local quickfix_list = vim.fn.getqflist()
-            if not vim.tbl_isempty(quickfix_list) then vim.api.nvim_command("cnext") end
+        -- Create ]] and [[ for go to refereces under cursor
+        local illuminate = require("illuminate")
+        local next_rf_repeat, prev_rf_repeat =
+            ts_repeat_move.make_repeatable_move_pair(illuminate.goto_next_reference, illuminate.goto_prev_reference)
+
+        vim.keymap.set({ "n", "x", "o" }, "]]", next_rf_repeat, { desc = "Next Reference" })
+        vim.keymap.set({ "n", "x", "o" }, "[[", prev_rf_repeat, { desc = "Prev Reference" })
+
+        -- also set it after loading ftplugins, since a lot overwrite [[ and ]]
+        vim.api.nvim_create_autocmd("FileType", {
+            callback = function()
+                local buffer = vim.api.nvim_get_current_buf()
+                vim.keymap.set({ "n", "x", "o" }, "]]", next_rf_repeat, { desc = "Next Reference", buffer = buffer })
+                vim.keymap.set({ "n", "x", "o" }, "[[", prev_rf_repeat, { desc = "Prev Reference", buffer = buffer })
+            end,
+        })
+
+        -- Create ]q, [q for quickfix list and make them repeatable with ; and ,
+        local check_quickfix_then_run = function(cmd)
+            local qf = vim.fn.getqflist()
+            if vim.tbl_isempty(qf) then return end
+
+            local qf_idx = vim.fn.getqflist({ idx = 0 }).idx
+
+            if qf_idx == 1 and cmd == "cprev" then
+                vim.api.nvim_command("clast")
+            elseif qf_idx == #qf and cmd == "cnext" then
+                vim.api.nvim_command("cfirst")
+            else
+                vim.api.nvim_command(cmd)
+            end
         end
-        local prev_qf = function()
-            local quickfix_list = vim.fn.getqflist()
-            if not vim.tbl_isempty(quickfix_list) then vim.api.nvim_command("cprevious") end
-        end
+
+        local next_qf = function() check_quickfix_then_run("cnext") end
+        local prev_qf = function() check_quickfix_then_run("cprev") end
         local next_qf_repeat, prev_qf_repeat = ts_repeat_move.make_repeatable_move_pair(next_qf, prev_qf)
         vim.keymap.set({ "n", "x", "o" }, "]q", next_qf_repeat, { desc = "Next QuickFix" })
         vim.keymap.set({ "n", "x", "o" }, "[q", prev_qf_repeat, { desc = "Prev QuickFix" })
+
+        -- Create ]Q and [Q
+        local first_qf = function() check_quickfix_then_run("cfirst") end
+        local last_qf = function() check_quickfix_then_run("clast") end
+        vim.keymap.set({ "n", "x", "o" }, "[Q", first_qf, { desc = "First QuickFix" })
+        vim.keymap.set({ "n", "x", "o" }, "]Q", last_qf, { desc = "Last QuickFix" })
     end,
 }

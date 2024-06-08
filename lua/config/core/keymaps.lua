@@ -8,7 +8,7 @@ local keymap = function(mode, lhs, rhs, opts)
 end
 
 -- Disable Space key (map it to Nop)
-keymap("n", "<SPACE>", "<NOP>")
+keymap({ "n", "v" }, "<SPACE>", "<NOP>")
 
 keymap("n", "Y", "y$")
 keymap("x", "Y", '"+y')
