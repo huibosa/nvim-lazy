@@ -52,39 +52,44 @@ return {
             desc = "Live Grep",
         },
         {
-            "gd",
+            "<LEADER>fd",
             function() require("fzf-lua").lsp_definitions() end,
             desc = "LSP Definitions",
         },
         {
-            "gD",
+            "<LEADER>fD",
             function() require("fzf-lua").lsp_declarations() end,
             desc = "LSP Declarations",
         },
         {
-            "gr",
+            "<LEADER>fr",
             function() require("fzf-lua").lsp_references() end,
             desc = "LSP References",
         },
         {
-            "gy",
+            "<LEADER>fy",
             function() require("fzf-lua").lsp_typedefs() end,
             desc = "LSP Type Definitions",
         },
         {
-            "gI",
+            "<LEADER>fI",
             function() require("fzf-lua").lsp_implementations() end,
             desc = "LSP Implementations",
         },
         {
             "<LEADER>fs",
             function() require("fzf-lua").lsp_document_symbols() end,
-            desc = "Document Symbols",
+            desc = "LSP Document Symbols",
         },
         {
             "<LEADER>fS",
             function() require("fzf-lua").lsp_live_workspace_symbols() end,
             desc = "LSP Workspace Symbols",
+        },
+        {
+            "<LEADER>fa",
+            function() require("fzf-lua").lsp_code_actions() end,
+            desc = "LSP Code Actions",
         },
         {
             "<LEADER>fl",
@@ -107,7 +112,7 @@ return {
             desc = "Buffers",
         },
         {
-            "<LEADER>fr",
+            "<LEADER>fo",
             function() require("fzf-lua").oldfiles() end,
             desc = "Recent Files",
         },
