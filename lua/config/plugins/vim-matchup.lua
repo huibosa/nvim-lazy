@@ -1,6 +1,7 @@
 return {
     "andymass/vim-matchup",
-    event = { "BufReadPre", "BufNewFile" },
+    enable = false,
+    -- event = { "BufReadPre", "BufNewFile" },
     config = function()
         vim.g.matchup_mappings_enabled = 0
         vim.g.matchup_mouse_enabled = 0

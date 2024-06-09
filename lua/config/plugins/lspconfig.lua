@@ -4,6 +4,23 @@ return {
     config = function()
         local lspconfig = require("lspconfig")
 
+        vim.diagnostic.config({
+            virtual_text = {
+                spacing = 3,
+                severity_sort = true,
+                source = "if_many",
+            },
+            float = {
+                border = vim.g.window_borders,
+                source = "always",
+            },
+        })
+
+        vim.fn.sign_define("DiagnosticSignError", { text = "", numhl = "RedSign" })
+        vim.fn.sign_define("DiagnosticSignWarn", { text = "", numhl = "YellowSign" })
+        vim.fn.sign_define("DiagnosticSignInfo", { text = "", numhl = "BlueSign" })
+        vim.fn.sign_define("DiagnosticSignHint", { text = "", numhl = "GreenSign" })
+
         -- Declare the client capabilities, which announce to the LSP server what
         -- features the editor can support. Here we merge the defaults lspconfig provides
         -- with the capabilities nvim-cmp adds.

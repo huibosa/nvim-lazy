@@ -106,18 +106,3 @@ vim.api.nvim_create_autocmd("FileType", {
         vim.keymap.set("n", "q", "<cmd>close<cr>", { buffer = event.buf, silent = true })
     end,
 })
-
-vim.api.nvim_create_autocmd("FileType", {
-    pattern = { "lua", "py", "sh" },
-    callback = function()
-        vim.bo.softtabstop = 4
-        vim.bo.shiftwidth = 4
-        vim.bo.tabstop = 4
-    end,
-})
-
--- Make a spece in rust comment string
-vim.api.nvim_create_autocmd("FileType", {
-    pattern = { "rust" },
-    callback = function() vim.bo.cms = "// %s" end,
-})

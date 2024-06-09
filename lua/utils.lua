@@ -1,5 +1,11 @@
 local M = {}
 
+M.has = function(feat)
+    if vim.fn.has(feat) == 1 then return true end
+
+    return false
+end
+
 M.is_git_dir = function()
     local result = vim.fn.system("git rev-parse --is-inside-work-tree 2>/dev/null")
     if string.find(result, "true") ~= nil then

@@ -92,13 +92,23 @@ return {
             desc = "LSP Code Actions",
         },
         {
+            "<LEADER>fd",
+            function() require("fzf-lua").diagnostics_document() end,
+            desc = "Document Diagnostics",
+        },
+        {
+            "<LEADER>fD",
+            function() require("fzf-lua").diagnostics_workspace() end,
+            desc = "Workspace Diagnostics",
+        },
+        {
             "<LEADER>fl",
             function() require("fzf-lua").blines() end,
-            desc = "Buffer Lines",
+            desc = "Current Buffer Lines",
         },
         {
             "<LEADER>fL",
-            function() require("fzf-lua").blines() end,
+            function() require("fzf-lua").lines() end,
             desc = "All Lines",
         },
         {
