@@ -1,29 +1,34 @@
 return {
     "neovim/nvim-lspconfig",
     event = { "BufReadPre", "BufNewFile" },
-    config = function()
-        local lspconfig = require("lspconfig")
-
-        vim.diagnostic.config({
+    opts = {
+        diagnostics = {
+            underline = true,
+            update_in_insert = false,
             virtual_text = {
-                spacing = 3,
-                severity_sort = true,
+                spacing = 4,
                 source = "if_many",
+                -- prefix = "●",
             },
+            severity_sort = true,
             float = {
                 border = vim.g.window_borders,
                 source = "always",
             },
-        })
+        },
+    },
+    config = function(_, opts)
+        local lspconfig = require("lspconfig")
 
         vim.fn.sign_define("DiagnosticSignError", { text = "", numhl = "RedSign" })
         vim.fn.sign_define("DiagnosticSignWarn", { text = "", numhl = "YellowSign" })
         vim.fn.sign_define("DiagnosticSignInfo", { text = "", numhl = "BlueSign" })
         vim.fn.sign_define("DiagnosticSignHint", { text = "", numhl = "GreenSign" })
 
+        vim.diagnostic.config(vim.deepcopy(opts.diagnostics))
+
         -- Declare the client capabilities, which announce to the LSP server what
-        -- features the editor can support. Here we merge the defaults lspconfig provides
-        -- with the capabilities nvim-cmp adds.
+        -- features the editor can support.
         lspconfig.util.default_config.capabilities = vim.tbl_deep_extend(
             "force",
             lspconfig.util.default_config.capabilities,

@@ -5,12 +5,18 @@ return {
     opts = {
         keymap = {
             builtin = {
-                ["<C-d>"] = "preview-page-down",
-                ["<C-u>"] = "preview-page-up",
+                ["<C-d>"] = "preview-down",
+                ["<C-u>"] = "preview-up",
+                ["<C-_>"] = "toggle-help",
             },
             commits = {
                 ["<C-d>"] = "preview-page-down",
                 ["<C-u>"] = "preview-page-up",
+            },
+            fzf = {
+                ["ctrl-f"] = "forward-char",
+                ["ctrl-b"] = "backward-char",
+                ["ctrl-k"] = "kill-line",
             },
         },
         fzf_colors = {
@@ -23,7 +29,7 @@ return {
             ["info"] = { "fg", "WarningMsg" },
             -- ["prompt"] = { "fg", "SpecialKey" },
             -- ["pointer"] = { "fg", "DiagnosticError" },
-            ["marker"] = { "fg", "DiagnosticError" },
+            -- ["marker"] = { "fg", "DiagnosticError" },
             ["spinner"] = { "fg", "Label" },
             ["header"] = { "fg", "Comment" },
             ["gutter"] = "-1",
