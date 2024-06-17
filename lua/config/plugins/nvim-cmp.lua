@@ -8,8 +8,6 @@ return {
         "saadparwaiz1/cmp_luasnip", -- for autocompletion
     },
     config = function()
-        -- vim.api.nvim_set_hl(0, "CmpGhostText", { link = "Comment", default = true })
-
         local cmp = require("cmp")
         local luasnip = require("luasnip")
 
@@ -28,13 +26,11 @@ return {
                 expand = function(args) luasnip.lsp_expand(args.body) end,
             },
             mapping = cmp.mapping.preset.insert({
-                -- ["<C-b>"] = cmp.mapping.scroll_docs(-4),
-                -- ["<C-f>"] = cmp.mapping.scroll_docs(4),
+                ["<C-u>"] = cmp.mapping.scroll_docs(-1),
+                ["<C-d>"] = cmp.mapping.scroll_docs(1),
                 ["<C-SPACE>"] = cmp.mapping.complete(), -- show completion suggestions
                 ["<C-e>"] = cmp.mapping.abort(), -- close completion window
                 ["<CR>"] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
-                -- ["<C-f>"] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
-
                 ["<TAB>"] = cmp.mapping(function(fallback)
                     if luasnip.jumpable(1) then
                         luasnip.jump(1)
@@ -42,7 +38,6 @@ return {
                         fallback()
                     end
                 end, { "i", "s" }),
-
                 ["<S-TAB>"] = cmp.mapping(function(fallback)
                     if luasnip.jumpable(-1) then
                         luasnip.jump(-1)
@@ -73,11 +68,6 @@ return {
                     return item
                 end,
             },
-            -- experimental = {
-            --     ghost_text = {
-            --         hl_group = "CmpGhostText",
-            --     },
-            -- },
         })
     end,
 }

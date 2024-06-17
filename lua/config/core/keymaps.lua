@@ -36,11 +36,11 @@ vim.keymap.set("i", "<C-a>", "", {
 })
 
 -- Map <C-k> to kill line like emacs
--- vim.keymap.set("i", "<C-k>", "", {
---     callback = utils.kill_line,
---     noremap = true,
---     silent = true,
--- })
+vim.keymap.set("i", "<C-k>", "", {
+    callback = utils.kill_line,
+    noremap = true,
+    silent = true,
+})
 
 keymap({ "i", "x", "o" }, "<C-e>", "<END>")
 keymap({ "i", "x", "o" }, "<C-b>", "<LEFT>")

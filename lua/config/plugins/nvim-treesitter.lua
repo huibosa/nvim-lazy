@@ -34,7 +34,7 @@ return {
             end,
         },
         incremental_selection = {
-            enable = true,
+            enable = false,
             disable = { "lua" },
             keymaps = {
                 init_selection = "<CR>",
