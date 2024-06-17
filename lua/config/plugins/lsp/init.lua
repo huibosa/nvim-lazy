@@ -3,7 +3,7 @@ return {
     event = { "BufReadPre", "BufNewFile" },
     opts = {
         diagnostics = {
-            underline = true,
+            underline = false,
             update_in_insert = false,
             virtual_text = {
                 spacing = 4,
@@ -34,14 +34,6 @@ return {
             lspconfig.util.default_config.capabilities,
             require("cmp_nvim_lsp").default_capabilities()
         )
-
-        vim.lsp.handlers["textDocument/publishDiagnostics"] = function(...)
-            vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
-                underline = true,
-                update_in_insert = false,
-            })(...)
-            pcall(vim.diagnostic.setloclist, { open = false })
-        end
 
         vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
             border = vim.g.window_borders,
