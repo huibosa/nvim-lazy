@@ -61,7 +61,7 @@ return {
                 -- )
 
                 keymap("n", "gK", vim.lsp.buf.signature_help, { desc = "LSP Signature Help" })
-                keymap("i", "<C-k>", vim.lsp.buf.signature_help, { desc = "LSP Signature Help" })
+                keymap("i", "<C-l>", vim.lsp.buf.signature_help, { desc = "LSP Signature Help" })
                 keymap("n", "gd", vim.lsp.buf.definition, { desc = "LSP Definition" })
                 keymap("n", "gD", vim.lsp.buf.declaration, { desc = "LSP Declaration" })
                 keymap("n", "gr", vim.lsp.buf.references, { desc = "LSP References" })

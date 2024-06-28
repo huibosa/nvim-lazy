@@ -32,7 +32,7 @@ return {
                     desc = "Recent",
                     group = "@module",
                     action = "FzfLua oldfiles",
-                    key = "o",
+                    key = "r",
                 },
                 {
                     icon = "   ",

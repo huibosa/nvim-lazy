@@ -29,7 +29,7 @@ keymap("v", "J", ":m '>+1<CR>gv=gv")
 keymap("n", "J", "mzJ`z")
 
 -- Emulate <C-a> as vscode <Home> key
-vim.keymap.set("i", "<C-a>", "", {
+vim.keymap.set({ "i", "x", "o" }, "<C-a>", "", {
     callback = utils.vscode_home_key,
     noremap = true,
     silent = true,
@@ -44,7 +44,7 @@ vim.keymap.set("i", "<C-k>", "", {
 
 keymap({ "i", "x", "o" }, "<C-e>", "<END>")
 keymap({ "i", "x", "o" }, "<C-b>", "<LEFT>")
-keymap("i", "<C-f>", "<RIGHT>")
+keymap({ "i", "x", "o" }, "<C-f>", "<RIGHT>")
 keymap("i", "<C-d>", "<DEL>")
 
 vim.keymap.set("c", "<C-a>", "<HOME>")
