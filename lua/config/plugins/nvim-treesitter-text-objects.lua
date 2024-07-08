@@ -103,7 +103,10 @@ return {
 
         -- Make ]h, [h also repeatable with ; and ,
         local gs = require("gitsigns")
-        local next_hunk_repeat, prev_hunk_repeat = ts_repeat_move.make_repeatable_move_pair(gs.next_hunk, gs.prev_hunk)
+        local next_hunk = function() gs.nav_hunk("next", { target = "all" }) end
+        local prev_hunk = function() gs.nav_hunk("prev", { target = "all" }) end
+        local next_hunk_repeat, prev_hunk_repeat = ts_repeat_move.make_repeatable_move_pair(next_hunk, prev_hunk)
+
         vim.keymap.set({ "n", "x", "o" }, "]h", next_hunk_repeat, { desc = "Next Hunk" })
         vim.keymap.set({ "n", "x", "o" }, "[h", prev_hunk_repeat, { desc = "Prev Hunk" })
 
