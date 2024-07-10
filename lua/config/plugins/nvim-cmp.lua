@@ -57,9 +57,9 @@ return {
                 format = function(entry, item)
                     local short_name = {
                         nvim_lsp = "LSP",
-                        luasnip = "SNIP",
-                        path = "PATH",
-                        buffer = "BUFR",
+                        luasnip = "SNP",
+                        path = "PTH",
+                        buffer = "BFR",
                     }
 
                     local menu_name = short_name[entry.source.name] or entry.source.name
