@@ -205,10 +205,11 @@ return {
                     },
                     gofumpt = true,
                     staticcheck = true,
-                    usePlaceholders = true,
+                    usePlaceholders = false,
                     completeUnimported = true,
                     directoryFilters = { "-.git", "-.vscode", "-.idea", "-.vscode-test", "-node_modules" },
                     semanticTokens = false,
+                    -- experimentalPostfixCompletions = true,
                 },
             },
         })
