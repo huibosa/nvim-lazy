@@ -7,7 +7,7 @@ return {
             "<LEADER>cf",
             function() require("conform").format({ async = true, lsp_fallback = true }) end,
             mode = "n",
-            desc = "Format buffer",
+            desc = "Format",
         },
     },
     config = function()

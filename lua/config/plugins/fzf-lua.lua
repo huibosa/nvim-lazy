@@ -44,11 +44,6 @@ return {
             desc = "Files",
         },
         {
-            "<LEADER>fF",
-            function() require("fzf-lua").files({ cwd = vim.uv.cwd() }) end,
-            desc = "Files (cwd)",
-        },
-        {
             "<LEADER>ff",
             function() require("fzf-lua").files() end,
             desc = "Files",
@@ -56,17 +51,22 @@ return {
         {
             "<LEADER>fR",
             function() require("fzf-lua").oldfiles({ cwd = vim.uv.cwd() }) end,
-            desc = "Recent Files (cwd)",
+            desc = "Recent (cwd)",
         },
         {
             "<LEADER>fr",
             function() require("fzf-lua").oldfiles() end,
-            desc = "Recent Files",
+            desc = "Recent (all)",
         },
         {
             "<LEADER>fb",
             function() require("fzf-lua").buffers() end,
             desc = "Buffers",
+        },
+        {
+            "<LEADER>fc",
+            function() require("fzf-lua").files({ cwd = vim.fn.stdpath("config") }) end,
+            desc = "Config",
         },
         -- Search
         {
@@ -75,74 +75,79 @@ return {
             desc = "Live Grep",
         },
         {
+            "<LEADER>sc",
+            function() require("fzf-lua").command_history() end,
+            desc = "Cursor Word",
+        },
+        {
             "<LEADER>sw",
             function() require("fzf-lua").grep_cword() end,
-            desc = "Grep Cursor Word",
+            desc = "Cursor Word",
         },
         {
             "<LEADER>sW",
             function() require("fzf-lua").grep_cWORD() end,
-            desc = "Grep Cursor WORD",
+            desc = "Cursor WORD",
         },
         {
             "<LEADER>sd",
             function() require("fzf-lua").lsp_definitions() end,
-            desc = "LSP Definitions",
+            desc = "Definitions",
         },
         {
             "<LEADER>sD",
             function() require("fzf-lua").lsp_declarations() end,
-            desc = "LSP Declarations",
+            desc = "Declarations",
         },
         {
             "<LEADER>sr",
             function() require("fzf-lua").lsp_references() end,
-            desc = "LSP References",
+            desc = "References",
         },
         {
             "<LEADER>sy",
             function() require("fzf-lua").lsp_typedefs() end,
-            desc = "LSP Type Definitions",
+            desc = "Type Definitions",
         },
         {
             "<LEADER>sI",
             function() require("fzf-lua").lsp_implementations() end,
-            desc = "LSP Implementations",
+            desc = "Implementations",
         },
         {
             "<LEADER>ss",
             function() require("fzf-lua").lsp_document_symbols() end,
-            desc = "LSP Document Symbols",
+            desc = "Symbols (document)",
         },
         {
             "<LEADER>sS",
             function() require("fzf-lua").lsp_live_workspace_symbols() end,
-            desc = "LSP Workspace Symbols",
+            desc = "Symbols (workspace)",
         },
         {
             "<LEADER>sa",
             function() require("fzf-lua").lsp_code_actions() end,
-            desc = "LSP Code Actions",
+            desc = "Code Actions",
         },
         {
             "<LEADER>sG",
             function() require("fzf-lua").diagnostics_document() end,
-            desc = "Document Diagnostics",
+            desc = "Diagnostics (document)",
         },
         {
             "<LEADER>sg",
             function() require("fzf-lua").diagnostics_workspace() end,
-            desc = "Workspace Diagnostics",
+            desc = "Diagnostics (Workspace)",
         },
         {
             "<LEADER>sl",
             function() require("fzf-lua").blines() end,
-            desc = "Current Buffer Lines",
+            desc = "Lines (document)",
         },
         {
             "<LEADER>sL",
             function() require("fzf-lua").lines() end,
-            desc = "All Lines",
+            desc = "Lines (workspace)",
         },
         {
             "<LEADER>sh",
@@ -151,14 +156,34 @@ return {
         },
         -- Git
         {
-            "<LEADER>gc",
+            "<LEADER>gC",
             function() require("fzf-lua").git_commits() end,
-            desc = "Commits",
+            desc = "Commits (project)",
+        },
+        {
+            "<LEADER>gc",
+            function() require("fzf-lua").git_bcommits() end,
+            desc = "Commits (buffer)",
         },
         {
             "<LEADER>gs",
             function() require("fzf-lua").git_status() end,
             desc = "Status",
+        },
+        {
+            "<LEADER>gt",
+            function() require("fzf-lua").git_tags() end,
+            desc = "Tags",
+        },
+        {
+            "<LEADER>gb",
+            function() require("fzf-lua").git_branches() end,
+            desc = "Branches",
+        },
+        {
+            "<LEADER>gS",
+            function() require("fzf-lua").git_stash() end,
+            desc = "Stash",
         },
     },
     config = function(_, opts)

@@ -60,27 +60,22 @@ return {
                 --     function() vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({})) end
                 -- )
 
-                keymap("n", "gK", vim.lsp.buf.signature_help, { desc = "LSP Signature Help" })
-                keymap("i", "<C-l>", vim.lsp.buf.signature_help, { desc = "LSP Signature Help" })
-                keymap("n", "gd", vim.lsp.buf.definition, { desc = "LSP Definition" })
-                keymap("n", "gD", vim.lsp.buf.declaration, { desc = "LSP Declaration" })
-                keymap("n", "gr", vim.lsp.buf.references, { desc = "LSP References" })
-                keymap("n", "gy", vim.lsp.buf.type_definition, { desc = "LSP Type Definitions" })
-                keymap("n", "gI", vim.lsp.buf.implementation, { desc = "LSP Implementation" })
-                keymap({ "n", "v" }, "<LEADER>ca", vim.lsp.buf.code_action, { desc = "LSP Code Action" })
-                keymap("n", "<LEADER>cr", vim.lsp.buf.rename, { desc = "LSP Rename" })
-                keymap("n", "<LEADER>cwa", vim.lsp.buf.add_workspace_folder, { desc = "LSP Add Workspace Folder" })
-                keymap(
-                    "n",
-                    "<LEADER>cwr",
-                    vim.lsp.buf.remove_workspace_folder,
-                    { desc = "LSP Remove Workspace Folder" }
-                )
+                keymap("n", "gK", vim.lsp.buf.signature_help, { desc = "Signature Help" })
+                keymap("i", "<C-l>", vim.lsp.buf.signature_help, { desc = "Signature Help" })
+                keymap("n", "gd", vim.lsp.buf.definition, { desc = "Definition" })
+                keymap("n", "gD", vim.lsp.buf.declaration, { desc = "Declaration" })
+                keymap("n", "gr", vim.lsp.buf.references, { desc = "References" })
+                keymap("n", "gy", vim.lsp.buf.type_definition, { desc = "Type Definitions" })
+                keymap("n", "gI", vim.lsp.buf.implementation, { desc = "Implementation" })
+                keymap({ "n", "v" }, "<LEADER>ca", vim.lsp.buf.code_action, { desc = "Code Action" })
+                keymap("n", "<LEADER>cr", vim.lsp.buf.rename, { desc = "Rename" })
+                keymap("n", "<LEADER>cwa", vim.lsp.buf.add_workspace_folder, { desc = "Add Folder" })
+                keymap("n", "<LEADER>cwr", vim.lsp.buf.remove_workspace_folder, { desc = "Remove Folder" })
                 keymap(
                     "n",
                     "<LEADER>cwl",
                     "<CMD>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>",
-                    { desc = "LSP List Workspace Folders" }
+                    { desc = "List Folders" }
                 )
             end,
         })

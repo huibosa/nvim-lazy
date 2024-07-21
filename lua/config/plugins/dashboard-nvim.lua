@@ -1,7 +1,7 @@
 return {
     "glepnir/dashboard-nvim",
     event = "VimEnter",
-    dependencies = { "nvim-tree/nvim-web-devicons" },
+    dependencies = { "echasnovski/mini.icons", "nvim-tree/nvim-web-devicons" },
     opts = {
         theme = "hyper",
         shortcut_type = "letter",
