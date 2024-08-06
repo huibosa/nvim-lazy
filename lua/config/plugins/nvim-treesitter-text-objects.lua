@@ -1,9 +1,6 @@
 return {
     "nvim-treesitter/nvim-treesitter-textobjects",
     event = { "BufReadPost", "BufNewFile" },
-    dependencies = {
-        "nvim-treesitter/nvim-treesitter",
-    },
     opts = {
         textobjects = {
             select = {
@@ -42,10 +39,10 @@ return {
             swap = {
                 enable = true,
                 swap_next = {
-                    ["<LEADER>csp"] = "@parameter.inner", -- swap object under cursor with next
+                    ["<LEADER>csn"] = "@parameter.inner", -- swap object under cursor with next
                 },
                 swap_previous = {
-                    ["<LEADER>csP"] = "@parameter.inner", -- swap object under cursor with previous
+                    ["<LEADER>csp"] = "@parameter.inner", -- swap object under cursor with previous
                 },
             },
             move = {
