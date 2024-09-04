@@ -99,7 +99,21 @@ return {
             },
         })
 
-        lspconfig.pyright.setup({})
+        lspconfig.pyright.setup({
+            cmd = {
+                "delance-langserver",
+                "--stdio",
+            },
+            settings = {
+                python = {
+                    -- disableOrganizeImports = false,
+                    pythonPath = vim.fn.exepath("python3"),
+                    analysis = {
+                        typeCheckingMode = "basic",
+                    },
+                },
+            },
+        })
 
         lspconfig.rust_analyzer.setup({
             cmd = {
