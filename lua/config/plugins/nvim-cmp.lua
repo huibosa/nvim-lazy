@@ -32,7 +32,7 @@ return {
                 ["<C-e>"] = cmp.mapping.abort(), -- close completion window
                 ["<CR>"] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
                 ["<TAB>"] = cmp.mapping(function(fallback)
-                    if luasnip.jumpable(1) then
+                    if luasnip.expand_or_locally_jumpable() then
                         luasnip.jump(1)
                     else
                         fallback()
