@@ -1,12 +1,22 @@
 return {
-    "hrsh7th/nvim-cmp",
-    event = "InsertEnter",
+    -- "hrsh7th/nvim-cmp",
+    -- dependencies = {
+    --     "hrsh7th/cmp-buffer", -- source for text in buffer
+    --     "hrsh7th/cmp-path", -- source for file system paths
+    --     "hrsh7th/cmp-nvim-lsp",
+    --     "saadparwaiz1/cmp_luasnip", -- for autocompletion
+    -- },
+    "iguanacucumber/magazine.nvim",
+    name = "nvim-cmp",
     dependencies = {
-        "hrsh7th/cmp-buffer", -- source for text in buffer
-        "hrsh7th/cmp-path", -- source for file system paths
-        "hrsh7th/cmp-nvim-lsp",
-        "saadparwaiz1/cmp_luasnip", -- for autocompletion
+        { "iguanacucumber/mag-nvim-lsp", name = "cmp-nvim-lsp", opts = {} },
+        { "iguanacucumber/mag-nvim-lua", name = "cmp-nvim-lua" },
+        { "iguanacucumber/mag-buffer", name = "cmp-buffer" },
+        { "iguanacucumber/mag-cmdline", name = "cmp-cmdline" },
+        "saadparwaiz1/cmp_luasnip",
+        "https://codeberg.org/FelipeLema/cmp-async-path",
     },
+    event = "InsertEnter",
     config = function()
         local cmp = require("cmp")
         local luasnip = require("luasnip")
@@ -49,7 +59,7 @@ return {
             sources = cmp.config.sources({
                 { name = "nvim_lsp" },
                 { name = "luasnip" }, -- snippets
-                { name = "path" }, -- file system paths
+                { name = "async_path" }, -- file system paths
                 { name = "buffer" }, -- text within current buffer
             }),
             formatting = {
