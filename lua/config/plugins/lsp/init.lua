@@ -66,15 +66,11 @@ return {
                 --     function() vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({})) end
                 -- )
 
-                keymap("n", "gK", vim.lsp.buf.signature_help, { desc = "Signature Help" })
                 keymap("i", "<C-l>", vim.lsp.buf.signature_help, { desc = "Signature Help" })
                 keymap("n", "gd", vim.lsp.buf.definition, { desc = "Definition" })
                 keymap("n", "gD", vim.lsp.buf.declaration, { desc = "Declaration" })
-                keymap("n", "gr", vim.lsp.buf.references, { desc = "References" })
-                keymap("n", "gy", vim.lsp.buf.type_definition, { desc = "Type Definitions" })
-                keymap("n", "gI", vim.lsp.buf.implementation, { desc = "Implementation" })
-                keymap({ "n", "v" }, "<LEADER>ca", vim.lsp.buf.code_action, { desc = "Code Action" })
-                keymap("n", "<LEADER>cr", vim.lsp.buf.rename, { desc = "Rename" })
+                keymap("n", "grt", vim.lsp.buf.type_definition, { desc = "Type Definitions" })
+                keymap("n", "grf", vim.lsp.buf.format, { desc = "Format document" })
                 keymap("n", "<LEADER>cwa", vim.lsp.buf.add_workspace_folder, { desc = "Add Folder" })
                 keymap("n", "<LEADER>cwr", vim.lsp.buf.remove_workspace_folder, { desc = "Remove Folder" })
                 keymap(
