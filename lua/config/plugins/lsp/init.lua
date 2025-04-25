@@ -35,13 +35,19 @@ return {
             require("cmp_nvim_lsp").default_capabilities()
         )
 
-        vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
-            border = vim.g.window_borders,
-        })
+        local hover = vim.lsp.buf.hover
+        vim.lsp.buf.hover = function()
+            return hover({
+                border = vim.g.window_borders,
+            })
+        end
 
-        vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
-            border = vim.g.window_borders,
-        })
+        local signature_help = vim.lsp.buf.signature_help
+        vim.lsp.buf.signature_help = function()
+            return signature_help({
+                border = vim.g.window_borders,
+            })
+        end
 
         vim.api.nvim_create_autocmd("LspAttach", {
             group = vim.api.nvim_create_augroup("UserLspConfig", {}),
