@@ -53,11 +53,11 @@ return {
             group = vim.api.nvim_create_augroup("UserLspConfig", {}),
             callback = function(ev)
                 local bufnr = ev.buf
-                local keymap = function(mode, lhs, rhs, opts)
-                    opts = opts or {}
-                    opts.silent = true
-                    opts.buffer = bufnr
-                    vim.keymap.set(mode, lhs, rhs, opts)
+                local keymap = function(mode, lhs, rhs, opts_)
+                    opts_ = opts_ or {}
+                    opts_.silent = true
+                    opts_.buffer = bufnr
+                    vim.keymap.set(mode, lhs, rhs, opts_)
                 end
 
                 -- keymap(
