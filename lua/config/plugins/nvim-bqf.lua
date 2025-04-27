@@ -6,7 +6,7 @@ return {
 
         require("bqf").setup({
             preview = {
-                border = { "┏", "━", "┓", "┃", "┛", "━", "┗", "┃" },
+                border = vim.g.window_borders,
                 show_title = false,
                 winblend = 0,
             },
