@@ -11,22 +11,24 @@ return {
         "selene.yml",
         ".git",
     },
-    Lua = {
-        workspace = {
-            library = {
-                vim.env.VIMRUNTIME,
-                vim.fn.stdpath("config"),
+    single_file_surpport = true,
+    settings = {
+        Lua = {
+            workspace = {
+                library = {
+                    vim.env.VIMRUNTIME,
+                    vim.fn.stdpath("config"),
+                },
+            },
+            runtime = {
+                version = "LuaJIT",
+            },
+            diagnostics = {
+                globals = { "vim" },
+            },
+            hint = {
+                enable = true,
             },
         },
-        runtime = {
-            version = "LuaJIT",
-        },
-        diagnostics = {
-            globals = { "vim" },
-        },
-        hint = {
-            enable = true,
-        },
     },
-    single_file_surpport = true,
 }
