@@ -19,7 +19,7 @@ return {
             formatters_by_ft = {
                 c = { "clang_format" },
                 cpp = { "clang_format" },
-                python = { "isort", "black" },
+                python = { "ruff_fix", "ruff_format" },
                 sh = { "shfmt" },
                 lua = { "stylua" },
             },

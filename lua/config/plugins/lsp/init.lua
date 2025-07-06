@@ -102,19 +102,25 @@ return {
         })
 
         lspconfig.pyright.setup({
-            cmd = {
-                "delance-langserver",
-                "--stdio",
-            },
+            -- cmd = { "delance-langserver", "--stdio" },
             settings = {
+                pyright = {
+                    -- Use ruff for sorting
+                    disableOrganizeImports = true,
+                    disableTaggedHints = false,
+                },
                 python = {
-                    -- disableOrganizeImports = false,
-                    pythonPath = vim.fn.exepath("python3"),
                     analysis = {
                         typeCheckingMode = "basic",
                     },
                 },
             },
+        })
+
+        lspconfig.ruff.setup({
+            on_attach = function(client, _)
+                if client.name == "ruff" then client.server_capabilities.hoverProvider = false end
+            end,
         })
 
         lspconfig.rust_analyzer.setup({
