@@ -6,6 +6,8 @@ M.has = function(feat)
     return false
 end
 
+function M.executable(name) return vim.fn.executable(name) > 0 end
+
 M.is_git_dir = function()
     local result = vim.fn.system("git rev-parse --is-inside-work-tree 2>/dev/null")
     if string.find(result, "true") ~= nil then

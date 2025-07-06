@@ -28,8 +28,8 @@ diagnostic.config({
     },
     float = {
         source = true,
-        header = "Diagnostics:",
-        prefix = " ",
+        -- header = "Diagnostics:",
+        -- prefix = " ",
         border = vim.g.window_borders,
     },
 })

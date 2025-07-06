@@ -29,7 +29,9 @@ return {
         vim.api.nvim_create_autocmd("LspAttach", {
             group = vim.api.nvim_create_augroup("UserLspConfig", {}),
             callback = function(ev)
+                local client = vim.lsp.get_client_by_id(ev.data.client_id)
                 local bufnr = ev.buf
+
                 local keymap = function(mode, lhs, rhs, opts_)
                     opts_ = opts_ or {}
                     opts_.silent = true
@@ -56,6 +58,10 @@ return {
                     "<CMD>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>",
                     { desc = "List Folders" }
                 )
+
+                -- Set some key bindings conditional on server capabilities
+                -- Disable ruff hover feature in favor of Pyright
+                if client.name == "ruff" then client.server_capabilities.hoverProvider = false end
             end,
         })
 
@@ -95,9 +101,12 @@ return {
         })
 
         lspconfig.ruff.setup({
-            on_attach = function(client, _)
-                if client.name == "ruff" then client.server_capabilities.hoverProvider = false end
-            end,
+            init_options = {
+                -- the settings can be found here: https://docs.astral.sh/ruff/editors/settings/
+                settings = {
+                    organizeImports = true,
+                },
+            },
         })
 
         lspconfig.rust_analyzer.setup({
