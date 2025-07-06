@@ -1,31 +1,8 @@
 return {
     "neovim/nvim-lspconfig",
     event = { "BufReadPre", "BufNewFile" },
-    opts = {
-        diagnostics = {
-            underline = false,
-            update_in_insert = false,
-            virtual_text = {
-                spacing = 4,
-                source = "if_many",
-                -- prefix = "●",
-            },
-            severity_sort = true,
-            float = {
-                border = vim.g.window_borders,
-                source = "always",
-            },
-        },
-    },
-    config = function(_, opts)
+    config = function()
         local lspconfig = require("lspconfig")
-
-        vim.fn.sign_define("DiagnosticSignError", { text = "", numhl = "RedSign" })
-        vim.fn.sign_define("DiagnosticSignWarn", { text = "", numhl = "YellowSign" })
-        vim.fn.sign_define("DiagnosticSignInfo", { text = "", numhl = "BlueSign" })
-        vim.fn.sign_define("DiagnosticSignHint", { text = "", numhl = "GreenSign" })
-
-        vim.diagnostic.config(vim.deepcopy(opts.diagnostics))
 
         -- Declare the client capabilities, which announce to the LSP server what
         -- features the editor can support.
@@ -102,7 +79,7 @@ return {
         })
 
         lspconfig.pyright.setup({
-            -- cmd = { "delance-langserver", "--stdio" },
+            cmd = { "delance-langserver", "--stdio" },
             settings = {
                 pyright = {
                     -- Use ruff for sorting
@@ -111,7 +88,7 @@ return {
                 },
                 python = {
                     analysis = {
-                        typeCheckingMode = "basic",
+                        typeCheckingMode = "standard",
                     },
                 },
             },
