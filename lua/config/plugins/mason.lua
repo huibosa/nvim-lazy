@@ -26,9 +26,9 @@ return {
                 "pyright",
                 "ruff",
                 "clangd",
-                "bashls",
                 "gopls",
                 "lua_ls",
+                "bashls",
             },
             -- auto-install configured servers (with lspconfig)
             automatic_installation = true, -- not the same as ensure_installed
