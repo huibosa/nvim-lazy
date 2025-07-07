@@ -62,6 +62,9 @@ return {
                 -- Set some key bindings conditional on server capabilities
                 -- Disable ruff hover feature in favor of Pyright
                 if client.name == "ruff" then client.server_capabilities.hoverProvider = false end
+
+                -- Disable pyright formating, use ruff
+                if client.name == "pyright" then client.server_capabilities.documentFormattingProvider = false end
             end,
         })
 
