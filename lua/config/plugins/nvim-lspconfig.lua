@@ -68,12 +68,30 @@ return {
             end,
         })
 
-        vim.lsp.enable("lua_ls")
-        vim.lsp.enable("pyright")
-        vim.lsp.enable("ruff")
-        vim.lsp.enable("rust_analyzer")
-        vim.lsp.enable("clangd")
-        vim.lsp.enable("gopls")
-        vim.lsp.enable("bashls")
+        -- A mapping from lsp server name to the executable name
+        local enabled_lsp_servers = {
+            lua_ls = "lua-language-server",
+            pyright = "delance-langserver",
+            ruff = "ruff",
+            rust_analyzer = "rust-analyzer",
+            clangd = "clangd",
+            bashls = "bash-language-server",
+            gopls = "gopls",
+        }
+
+        local utils = require("utils")
+
+        for server_name, lsp_executable in pairs(enabled_lsp_servers) do
+            if utils.executable(lsp_executable) then
+                vim.lsp.enable(server_name)
+            else
+                local msg = string.format(
+                    "Executable '%s' for server '%s' not found! Server will not be enabled",
+                    lsp_executable,
+                    server_name
+                )
+                vim.notify(msg, vim.log.levels.WARN, { title = "Nvim-config" })
+            end
+        end
     end,
 }
