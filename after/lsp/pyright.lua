@@ -21,16 +21,6 @@ local new_capability = {
 
 return {
     cmd = { "delance-langserver", "--stdio" },
-    filetypes = { "python" },
-    root_markers = {
-        "pyproject.toml",
-        "setup.py",
-        "setup.cfg",
-        "requirements.txt",
-        "Pipfile",
-        "pyrightconfig.json",
-        ".git",
-    },
     settings = {
         pyright = {
             -- disable import sorting and use Ruff for this
