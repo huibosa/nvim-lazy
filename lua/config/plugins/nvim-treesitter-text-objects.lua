@@ -108,8 +108,10 @@ return {
         vim.keymap.set({ "n", "x", "o" }, "[h", prev_hunk_repeat, { desc = "Prev Hunk" })
 
         -- Make ]d, [d also repeatable with ; and ,
+        local next_diagnostic = function() vim.diagnostic.jump({ count = 1, float = true }) end
+        local prev_diagnostic = function() vim.diagnostic.jump({ count = -1, float = true }) end
         local next_diagnostic_repeat, prev_diagnostic_repeat =
-            ts_repeat_move.make_repeatable_move_pair(vim.diagnostic.goto_next, vim.diagnostic.goto_prev)
+            ts_repeat_move.make_repeatable_move_pair(next_diagnostic, prev_diagnostic)
         vim.keymap.set({ "n", "x", "o" }, "]d", next_diagnostic_repeat, { desc = "Next Diagnostic" })
         vim.keymap.set({ "n", "x", "o" }, "[d", prev_diagnostic_repeat, { desc = "Prev Diagnostic" })
 
