@@ -47,8 +47,6 @@ opt.smartindent = true
 
 opt.foldenable = true
 opt.foldlevel = 99
-opt.foldmethod = "expr"
-opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 opt.foldtext = ""
 opt.foldcolumn = "0"
 

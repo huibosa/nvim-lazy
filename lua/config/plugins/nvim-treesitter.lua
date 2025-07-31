@@ -1,51 +1,18 @@
 return {
     "nvim-treesitter/nvim-treesitter",
-    event = { "BufReadPre", "BufNewFile" },
+    lazy = false,
     build = ":TSUpdate",
-    opts = {
-        ensure_installed = {
-            "rust",
-            "go",
-            "c",
-            "cpp",
-        },
-        indent = { enable = true },
-        highlight = {
-            enable = true,
-            addtional_vim_regex_highlighting = false,
-            disable = function(lang, buf)
-                -- Check if disabled languages
-                local disabled_lang = false
-                local lang_list = {
-                    "c",
-                    "cpp",
-                    "bash",
-                    "rust",
-                }
-                for _, str in ipairs(lang_list) do
-                    if str == lang then disabled_lang = true end
-                end
+    branch = "main",
+    config = function()
+        require('nvim-treesitter').install({ 'rust', 'go', 'c', 'cpp', 'python' })
 
-                -- Check if is large file
-                local large_file = vim.api.nvim_buf_line_count(buf) > 5000
+        vim.opt.foldmethod = "expr"
+        vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 
-                return disabled_lang or large_file
-            end,
-        },
-        incremental_selection = {
-            enable = false,
-            disable = { "lua" },
-            keymaps = {
-                init_selection = "<CR>",
-                scope_incremental = "<CR>",
-                node_incremental = "v",
-                node_decremental = "V",
-            },
-        },
-    },
-    config = function(_, opts)
-        local treesitter = require("nvim-treesitter.configs")
-
-        treesitter.setup(opts)
-    end,
+        -- Enable highlight
+        vim.api.nvim_create_autocmd('FileType', {
+            pattern = { 'python', 'go' },
+            callback = function() vim.treesitter.start() end,
+        })
+    end
 }
