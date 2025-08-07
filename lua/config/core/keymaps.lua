@@ -14,15 +14,8 @@ keymap("x", "Y", '"+y')
 
 keymap("n", "c*", "*Ncgn")
 
-keymap({ "n", "x" }, "H", "^")
-keymap({ "n", "x" }, "L", "$")
-
 keymap("n", "j", "j")
 keymap("n", "k", "k")
-
--- Moving highlighted line in visual mode
-keymap("v", "K", ":m '<-2<CR>gv=gv")
-keymap("v", "J", ":m '>+1<CR>gv=gv")
 
 -- Join next line without moving cursor
 keymap("n", "J", "mzJ`z")
