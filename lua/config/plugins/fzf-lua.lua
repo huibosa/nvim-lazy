@@ -3,6 +3,9 @@ return {
     event = "VeryLazy",
     cmd = { "FzfLua" },
     opts = {
+        defaults = {
+            formatter = "path.filename_first",
+        },
         keymap = {
             builtin = {
                 ["<C-d>"] = "preview-down",
@@ -40,7 +43,7 @@ return {
         },
         {
             "<C-p>",
-            function() require("fzf-lua").files() end,
+            function() require("fzf-lua").global() end,
             desc = "Files",
         },
         {
@@ -71,7 +74,7 @@ return {
         -- Search
         {
             "<C-q>",
-            function() require("fzf-lua").live_grep_native() end,
+            function() require("fzf-lua").live_grep_native({ resume = true }) end,
             desc = "Live Grep",
         },
         {
