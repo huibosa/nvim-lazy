@@ -2,13 +2,15 @@ return {
     "L3MON4D3/LuaSnip",
     event = "InsertEnter",
     config = function()
-        local path = ""
+        local paths = {}
+
+        ---@diagnostic disable-next-line: undefined-field
         if vim.loop.os_uname().sysname == "Darwin" then
-            path = "~/Library/Application Support/Code/User/snippets"
+            table.insert(paths, "~/Library/Application Support/Code/User/snippets")
         else
-            path = "~/winhome/AppData/Roaming/Code/User/snippets"
+            table.insert(paths, "~/winhome/AppData/Roaming/Code/User/snippets")
         end
 
-        require("luasnip.loaders.from_vscode").lazy_load({ paths = path })
+        require("luasnip.loaders.from_vscode").lazy_load({ paths = paths })
     end,
 }
