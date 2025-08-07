@@ -17,6 +17,9 @@ return {
             changedelete = { text = "┃" },
             untracked = { text = "┇" },
         },
+        preview_config = {
+            border = vim.g.window_borders
+        },
         on_attach = function(bufnr)
             local gs = package.loaded.gitsigns
 
@@ -49,16 +52,19 @@ return {
             map("n", "<LEADER>hp", gs.preview_hunk, { desc = "Preview hunk" })
             map("n", "<LEADER>hb", function() gs.blame_line({ full = true }) end, { desc = "Blame Line" })
             map("n", "<LEADER>hd", gs.diffthis, { desc = "Diff current change" })
-            map("n", "<LEADER>hD", ":<C-u>Gitsigns diffthis ", { desc = "Diff with given commit" })
+            map("n", "<LEADER>hD", function() gs.diffthis('~') end, { desc = "Diff with given commit" })
 
-            map("n", "<LEADER>htb", gs.toggle_current_line_blame, { desc = "Blame" })
-            map("n", "<LEADER>htd", gs.toggle_deleted, { desc = "Deleted hunk" })
-            map("n", "<LEADER>hth", gs.toggle_linehl, { desc = "Line highlight" })
-            map("n", "<LEADER>htn", gs.toggle_numhl, { desc = "Linenr highlight" })
-            map("n", "<LEADER>hts", gs.toggle_signs, { desc = "Signs" })
-            map("n", "<LEADER>htw", gs.toggle_word_diff, { desc = "Word diff" })
+            map('n', '<leader>hQ', function() gs.setqflist('all') end, { desc = "All file to quickfix" })
+            map('n', '<leader>hq', gs.setqflist, { desc = "Current file to quickfix" })
 
-            map({ "o", "x" }, "ih", ":<C-u>Gitsigns select_hunk<CR>", { desc = "Hunk" })
+            map("n", "<LEADER>tb", gs.toggle_current_line_blame, { desc = "Blame" })
+            map("n", "<LEADER>td", gs.toggle_deleted, { desc = "Deleted hunk" })
+            map("n", "<LEADER>tl", gs.toggle_linehl, { desc = "Line highlight" })
+            map("n", "<LEADER>tn", gs.toggle_numhl, { desc = "Linenr highlight" })
+            map("n", "<LEADER>ts", gs.toggle_signs, { desc = "Signs" })
+            map("n", "<LEADER>tw", gs.toggle_word_diff, { desc = "Word diff" })
+
+            map({ "o", "x" }, "ih", gs.select_hunk, { desc = "Hunk" })
         end,
     },
 }

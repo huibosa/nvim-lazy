@@ -3,17 +3,17 @@ local opt = vim.opt
 -- Use English as main language
 vim.cmd([[language en_US.UTF-8]])
 
-opt.mouse = "" -- disable the mouse
-opt.termguicolors = true -- enable 24bit colors
+opt.mouse = ""             -- disable the mouse
+opt.termguicolors = true   -- enable 24bit colors
 
-opt.updatetime = 300 -- decrease updatetime
-opt.fileformat = "unix" -- <NL> for EOL
+opt.updatetime = 300       -- decrease updatetime
+opt.fileformat = "unix"    -- <NL> for EOL
 opt.fileencoding = "utf-8" -- encoding for reading and writing files
-opt.encoding = "utf-8" -- encoding for specifying text
+opt.encoding = "utf-8"     -- encoding for specifying text
 opt.matchpairs = { "(:)", "{:}", "[:]", "<:>" }
 
-opt.cmdheight = 1 -- cmdline height
-opt.scrolloff = 10 -- min number of lines to keep between cursor and screen edge
+opt.cmdheight = 1     -- cmdline height
+opt.scrolloff = 5     -- min number of lines to keep between cursor and screen edge
 opt.sidescrolloff = 5 -- min number of cols to keep between cursor and screen edge
 opt.number = true
 
@@ -22,11 +22,11 @@ opt.numberwidth = 3
 opt.stc = "%=%l%s"
 
 -- General tab settings
-opt.tabstop = 2 -- Tab indentation levels every two columns
-opt.softtabstop = 2 -- Tab indentation when mixing tabs & spaces
-opt.shiftwidth = 2 -- Indent/outdent by two columns
+opt.tabstop = 2       -- Tab indentation levels every two columns
+opt.softtabstop = 2   -- Tab indentation when mixing tabs & spaces
+opt.shiftwidth = 2    -- Indent/outdent by two columns
 opt.shiftround = true -- Always indent/outdent to nearest tabstop
-opt.expandtab = true -- Convert all tabs that are typed into spaces
+opt.expandtab = true  -- Convert all tabs that are typed into spaces
 
 opt.swapfile = false
 
@@ -102,8 +102,8 @@ opt.wildignorecase = true
 
 -- Diff options
 opt.diffopt = {}
-opt.diffopt:append("vertical") -- Show diff in vertical position
-opt.diffopt:append("filler") -- Show filler for deleted lines
-opt.diffopt:append("closeoff") -- Turn off diff when one file window is closed
+opt.diffopt:append("vertical")  -- Show diff in vertical position
+opt.diffopt:append("filler")    -- Show filler for deleted lines
+opt.diffopt:append("closeoff")  -- Turn off diff when one file window is closed
 opt.diffopt:append("context:3") -- Context for diff
 opt.diffopt:append("internal,indent-heuristic,algorithm:histogram")
