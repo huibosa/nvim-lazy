@@ -65,6 +65,7 @@ return {
             map("n", "<LEADER>tw", gs.toggle_word_diff, { desc = "Word diff" })
 
             map({ "o", "x" }, "ih", gs.select_hunk, { desc = "Hunk" })
+            map({ "o", "x" }, "ah", gs.select_hunk, { desc = "Hunk" })
         end,
     },
 }

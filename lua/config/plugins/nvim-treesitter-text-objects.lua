@@ -51,7 +51,7 @@ return {
                 goto_next_start = {
                     ["]a"] = { query = "@parameter.outer", desc = "Next argument start" },
                     ["]f"] = { query = "@function.outer", desc = "Next function start" },
-                    ["]e"] = { query = "@return.outer", desc = "Next return start" },
+                    ["]r"] = { query = "@return.outer", desc = "Next return start" },
                     ["]c"] = { query = "@class.outer", desc = "Next class start" },
                     ["]j"] = { query = "@conditional.outer", desc = "Next judge start" },
                     ["]l"] = { query = "@loop.outer", desc = "Next loop start" },
@@ -59,7 +59,7 @@ return {
                 goto_next_end = {
                     ["]A"] = { query = "@parameter.outer", desc = "Next argument end" },
                     ["]F"] = { query = "@function.outer", desc = "Next function end" },
-                    ["]E"] = { query = "@return.outer", desc = "Next return end" },
+                    ["]R"] = { query = "@return.outer", desc = "Next return end" },
                     ["]C"] = { query = "@class.outer", desc = "Next class end" },
                     ["]J"] = { query = "@conditional.outer", desc = "Next judge end" },
                     ["]L"] = { query = "@loop.outer", desc = "Next loop end" },
@@ -67,7 +67,7 @@ return {
                 goto_previous_start = {
                     ["[a"] = { query = "@parameter.outer", desc = "Previous argument start" },
                     ["[f"] = { query = "@function.outer", desc = "Previous function start" },
-                    ["[e"] = { query = "@return.outer", desc = "Previous return start" },
+                    ["[r"] = { query = "@return.outer", desc = "Previous return start" },
                     ["[c"] = { query = "@class.outer", desc = "Previous class start" },
                     ["[j"] = { query = "@conditional.outer", desc = "Previous judge start" },
                     ["[l"] = { query = "@loop.outer", desc = "Previous loop start" },
@@ -75,7 +75,7 @@ return {
                 goto_previous_end = {
                     ["[A"] = { query = "@parameter.outer", desc = "Previous argument end" },
                     ["[F"] = { query = "@function.outer", desc = "Previous function end" },
-                    ["[E"] = { query = "@return.outer", desc = "Previous return end" },
+                    ["[R"] = { query = "@return.outer", desc = "Previous return end" },
                     ["[C"] = { query = "@class.outer", desc = "Previous class end" },
                     ["[J"] = { query = "@conditional.outer", desc = "Previous judge end" },
                     ["[L"] = { query = "@loop.outer", desc = "Previous loop end" },
@@ -134,17 +134,17 @@ return {
         local next_rf_repeat, prev_rf_repeat =
             ts_repeat_move.make_repeatable_move_pair(illuminate.goto_next_reference, illuminate.goto_prev_reference)
 
-        vim.keymap.set({ "n", "x", "o" }, "]r", next_rf_repeat, { desc = "Next Reference" })
-        vim.keymap.set({ "n", "x", "o" }, "[r", prev_rf_repeat, { desc = "Prev Reference" })
+        vim.keymap.set({ "n", "x", "o" }, "]]", next_rf_repeat, { desc = "Next Reference" })
+        vim.keymap.set({ "n", "x", "o" }, "[[", prev_rf_repeat, { desc = "Prev Reference" })
 
-        -- -- also set it after loading ftplugins, since a lot overwrite [[ and ]]
-        -- vim.api.nvim_create_autocmd("FileType", {
-        --     callback = function()
-        --         local buffer = vim.api.nvim_get_current_buf()
-        --         vim.keymap.set({ "n", "x", "o" }, "]]", next_rf_repeat, { desc = "Next Reference", buffer = buffer })
-        --         vim.keymap.set({ "n", "x", "o" }, "[[", prev_rf_repeat, { desc = "Prev Reference", buffer = buffer })
-        --     end,
-        -- })
+        -- also set it after loading ftplugins, since a lot overwrite [[ and ]]
+        vim.api.nvim_create_autocmd("FileType", {
+            callback = function()
+                local buffer = vim.api.nvim_get_current_buf()
+                vim.keymap.set({ "n", "x", "o" }, "]]", next_rf_repeat, { desc = "Next Reference", buffer = buffer })
+                vim.keymap.set({ "n", "x", "o" }, "[[", prev_rf_repeat, { desc = "Prev Reference", buffer = buffer })
+            end,
+        })
 
         -- Create ]q, [q for quickfix list and make them repeatable with ; and ,
         local check_quickfix_then_run = function(cmd)
