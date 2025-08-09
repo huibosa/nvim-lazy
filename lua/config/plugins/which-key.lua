@@ -12,8 +12,8 @@ return {
             replace = {
                 key = {
                     { "<Space>", "SPC" },
-                    { "<CR>", "RET" },
-                    { "<TAB>", "TAB" },
+                    { "<CR>",    "RET" },
+                    { "<TAB>",   "TAB" },
                 },
             },
         })
@@ -34,9 +34,9 @@ return {
             { "<LEADER><SPACE>", group = "FzfLua" },
             { "<LEADER>f", group = "+File/Find" },
             { "<LEADER>s", group = "+Search" },
-            { "<LEADER>g", group = "+Git" },
+            -- { "<LEADER>g", group = "+Git" },
             { "<LEADER>h", group = "+Hunk" },
-            { "<LEADER>ht", group = "+Hunk toggle" },
+            { "<LEADER>t", group = "+Toggle" },
             { "<LEADER>c", group = "+Code" },
             { "<LEADER>cw", group = "+Workspace" },
             { "<LEADER>cs", group = "+Swap" },
