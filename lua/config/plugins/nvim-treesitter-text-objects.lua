@@ -20,8 +20,8 @@ return {
                     ["al"] = { query = "@loop.outer", desc = "outer loop" },
                     ["il"] = { query = "@loop.inner", desc = "inner loop" },
 
-                    -- ["ab"] = { query = "@block.outer", desc = "outer block" },
-                    -- ["ib"] = { query = "@block.inner", desc = "inner block" },
+                    ["ab"] = { query = "@block.outer", desc = "outer block" },
+                    ["ib"] = { query = "@block.inner", desc = "inner block" },
 
                     ["af"] = { query = "@function.outer", desc = "outer function" },
                     ["if"] = { query = "@function.inner", desc = "inner function" },
@@ -32,8 +32,8 @@ return {
                     ["ar"] = { query = "@return.outer", desc = "outer return" },
                     ["ir"] = { query = "@return.outer", desc = "inner return" },
 
-                    -- ["am"] = { query = "@comment.outer", desc = "outer comment" },
-                    -- ["im"] = { query = "@comment.inner", desc = "inner comment" },
+                    ["a/"] = { query = "@comment.outer", desc = "outer comment" },
+                    ["i/"] = { query = "@comment.inner", desc = "inner comment" },
                 },
             },
             swap = {
@@ -55,6 +55,7 @@ return {
                     ["]c"] = { query = "@class.outer", desc = "Next class start" },
                     ["]j"] = { query = "@conditional.outer", desc = "Next judge start" },
                     ["]l"] = { query = "@loop.outer", desc = "Next loop start" },
+                    ["]/"] = { query = "@comment.outer", desc = "Next comment start" },
                 },
                 goto_next_end = {
                     ["]A"] = { query = "@parameter.outer", desc = "Next argument end" },
@@ -71,6 +72,7 @@ return {
                     ["[c"] = { query = "@class.outer", desc = "Previous class start" },
                     ["[j"] = { query = "@conditional.outer", desc = "Previous judge start" },
                     ["[l"] = { query = "@loop.outer", desc = "Previous loop start" },
+                    ["[/"] = { query = "@comment.outer", desc = "Next comment start" },
                 },
                 goto_previous_end = {
                     ["[A"] = { query = "@parameter.outer", desc = "Previous argument end" },
