@@ -54,8 +54,8 @@ return {
             map("n", "<LEADER>hd", gs.diffthis, { desc = "Diff current change" })
             map("n", "<LEADER>hD", function() gs.diffthis('~') end, { desc = "Diff with given commit" })
 
-            map('n', '<leader>hQ', function() gs.setqflist('all') end, { desc = "All file to quickfix" })
-            map('n', '<leader>hq', gs.setqflist, { desc = "Current file to quickfix" })
+            map('n', '<leader>hq', function() gs.setqflist('all') end, { desc = "All file to quickfix" })
+            map('n', '<leader>hQ', gs.setloclist, { desc = "Current file to loclist" })
 
             map("n", "<LEADER>tb", gs.toggle_current_line_blame, { desc = "Blame" })
             map("n", "<LEADER>td", gs.toggle_deleted, { desc = "Deleted hunk" })
