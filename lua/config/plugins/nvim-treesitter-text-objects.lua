@@ -17,8 +17,8 @@ return {
                     ["aj"] = { query = "@conditional.outer", desc = "outer conditional" },
                     ["ij"] = { query = "@conditional.inner", desc = "inner conditional" },
 
-                    ["al"] = { query = "@loop.outer", desc = "outer loop" },
-                    ["il"] = { query = "@loop.inner", desc = "inner loop" },
+                    ["ao"] = { query = "@loop.outer", desc = "outer loop" },
+                    ["io"] = { query = "@loop.inner", desc = "inner loop" },
 
                     ["ab"] = { query = "@block.outer", desc = "outer block" },
                     ["ib"] = { query = "@block.inner", desc = "inner block" },
@@ -54,7 +54,7 @@ return {
                     ["]r"] = { query = "@return.outer", desc = "Next return start" },
                     ["]c"] = { query = "@class.outer", desc = "Next class start" },
                     ["]j"] = { query = "@conditional.outer", desc = "Next judge start" },
-                    ["]l"] = { query = "@loop.outer", desc = "Next loop start" },
+                    ["]o"] = { query = "@loop.outer", desc = "Next loop start" },
                     ["]/"] = { query = "@comment.outer", desc = "Next comment start" },
                 },
                 goto_next_end = {
@@ -63,7 +63,7 @@ return {
                     ["]R"] = { query = "@return.outer", desc = "Next return end" },
                     ["]C"] = { query = "@class.outer", desc = "Next class end" },
                     ["]J"] = { query = "@conditional.outer", desc = "Next judge end" },
-                    ["]L"] = { query = "@loop.outer", desc = "Next loop end" },
+                    ["]O"] = { query = "@loop.outer", desc = "Next loop end" },
                 },
                 goto_previous_start = {
                     ["[a"] = { query = "@parameter.outer", desc = "Previous argument start" },
@@ -71,7 +71,7 @@ return {
                     ["[r"] = { query = "@return.outer", desc = "Previous return start" },
                     ["[c"] = { query = "@class.outer", desc = "Previous class start" },
                     ["[j"] = { query = "@conditional.outer", desc = "Previous judge start" },
-                    ["[l"] = { query = "@loop.outer", desc = "Previous loop start" },
+                    ["[o"] = { query = "@loop.outer", desc = "Previous loop start" },
                     ["[/"] = { query = "@comment.outer", desc = "Next comment start" },
                 },
                 goto_previous_end = {
@@ -80,7 +80,7 @@ return {
                     ["[R"] = { query = "@return.outer", desc = "Previous return end" },
                     ["[C"] = { query = "@class.outer", desc = "Previous class end" },
                     ["[J"] = { query = "@conditional.outer", desc = "Previous judge end" },
-                    ["[L"] = { query = "@loop.outer", desc = "Previous loop end" },
+                    ["[O"] = { query = "@loop.outer", desc = "Previous loop end" },
                 },
             },
         },
@@ -148,32 +148,16 @@ return {
             end,
         })
 
-        -- Create ]q, [q for quickfix list and make them repeatable with ; and ,
-        local check_quickfix_then_run = function(cmd)
-            local qf = vim.fn.getqflist()
-            if vim.tbl_isempty(qf) then return end
-
-            local qf_idx = vim.fn.getqflist({ idx = 0 }).idx
-
-            if qf_idx == 1 and cmd == "cprev" then
-                vim.api.nvim_command("clast")
-            elseif qf_idx == #qf and cmd == "cnext" then
-                vim.api.nvim_command("cfirst")
-            else
-                vim.api.nvim_command(cmd)
-            end
-        end
-
-        local next_qf = function() check_quickfix_then_run("cnext") end
-        local prev_qf = function() check_quickfix_then_run("cprev") end
+        local next_qf = function() pcall(vim.api.nvim_command, "cnext") end
+        local prev_qf = function() pcall(vim.api.nvim_command, "cprev") end
         local next_qf_repeat, prev_qf_repeat = ts_repeat_move.make_repeatable_move_pair(next_qf, prev_qf)
         vim.keymap.set({ "n", "x", "o" }, "]q", next_qf_repeat, { desc = "Next QuickFix" })
         vim.keymap.set({ "n", "x", "o" }, "[q", prev_qf_repeat, { desc = "Prev QuickFix" })
 
-        -- Create ]Q and [Q
-        local first_qf = function() check_quickfix_then_run("cfirst") end
-        local last_qf = function() check_quickfix_then_run("clast") end
-        vim.keymap.set({ "n", "x", "o" }, "[Q", first_qf, { desc = "First QuickFix" })
-        vim.keymap.set({ "n", "x", "o" }, "]Q", last_qf, { desc = "Last QuickFix" })
+        local next_loc = function() pcall(vim.api.nvim_command, "lnext") end
+        local prev_loc = function() pcall(vim.api.nvim_command, "lprev") end
+        local next_loc_repeat, prev_loc_repeat = ts_repeat_move.make_repeatable_move_pair(next_loc, prev_loc)
+        vim.keymap.set({ "n", "x", "o" }, "]l", next_loc_repeat, { desc = "Next Location" })
+        vim.keymap.set({ "n", "x", "o" }, "[l", prev_loc_repeat, { desc = "Prev Location" })
     end,
 }
