@@ -31,7 +31,6 @@ return {
                 --     function() vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({})) end
                 -- )
 
-                keymap("i", "<C-l>", vim.lsp.buf.signature_help, { desc = "Signature Help" })
                 keymap("n", "gd", vim.lsp.buf.definition, { desc = "Definition" })
                 keymap("n", "gD", vim.lsp.buf.declaration, { desc = "Declaration" })
                 keymap("n", "grt", vim.lsp.buf.type_definition, { desc = "Type Definitions" })
