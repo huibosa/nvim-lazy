@@ -80,6 +80,9 @@ return {
         --
         -- See the fuzzy documentation for more information
         fuzzy = { implementation = "prefer_rust_with_warning" },
+        cmdline = {
+            enabled = false,
+        }
     },
     opts_extend = { "sources.default" }
 }
