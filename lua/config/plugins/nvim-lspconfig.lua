@@ -2,16 +2,6 @@ return {
     "neovim/nvim-lspconfig",
     event = { "BufReadPre", "BufNewFile" },
     config = function()
-        -- local lspconfig = require("lspconfig")
-        --
-        -- -- Declare the client capabilities, which announce to the LSP server what
-        -- -- features the editor can support.
-        -- lspconfig.util.default_config.capabilities = vim.tbl_deep_extend(
-        --     "force",
-        --     lspconfig.util.default_config.capabilities,
-        --     require("cmp_nvim_lsp").default_capabilities()
-        -- )
-
         vim.api.nvim_create_autocmd("LspAttach", {
             group = vim.api.nvim_create_augroup("UserLspConfig", {}),
             callback = function(ev)
