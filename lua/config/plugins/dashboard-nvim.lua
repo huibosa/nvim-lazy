@@ -49,7 +49,7 @@ return {
                     group = "Number",
                     action = function()
                         local config_dir = vim.fn.stdpath("config")
-                        vim.loop.chdir(config_dir)
+                        vim.uv.chdir(config_dir)
 
                         local fzf = require("fzf-lua")
                         fzf.files({ cwd = config_dir })

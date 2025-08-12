@@ -11,13 +11,14 @@ vim.g.is_mac = utils.has("macunix") and true or false
 vim.g.backupdir = vim.fn.expand(vim.fn.stdpath("data") .. "/backup//")
 --opt.backupdir = vim.g.backupdir
 
-vim.g.loaded_perl_provider = 0 -- Disable perl provider
-vim.g.loaded_ruby_provider = 0 -- Disable ruby provider
-vim.g.loaded_node_provider = 0 -- Disable node provider
+vim.g.loaded_perl_provider = 0      -- Disable perl provider
+vim.g.loaded_ruby_provider = 0      -- Disable ruby provider
+vim.g.loaded_node_provider = 0      -- Disable node provider
 vim.g.did_install_default_menus = 1 -- do not load menu
 
 -- Custom mapping <LEADER> (see `:h mapleader` for more info)
 vim.g.mapleader = " "
+vim.g.maplocalleader = "\\"
 
 -- Enable highlighting for lua HERE doc inside vim script
 vim.g.vimsyn_embed = "l"
