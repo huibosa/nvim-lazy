@@ -41,6 +41,7 @@ return {
                 auto_show = true,
                 draw = {
                     align_to = 'cursor',
+                    gap = 2,
                 }
             },
             documentation = {

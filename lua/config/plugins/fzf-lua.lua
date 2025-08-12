@@ -6,18 +6,18 @@ return {
         defaults = {
             formatter = "path.filename_first",
         },
-        keymap = {
-            builtin = {
-                ["<C-d>"] = "preview-down",
-                ["<C-u>"] = "preview-up",
-                ["<C-_>"] = "toggle-help",
-            },
-            fzf = {
-                ["ctrl-f"] = "forward-char",
-                ["ctrl-b"] = "backward-char",
-                ["ctrl-k"] = "kill-line",
-            },
-        },
+        -- keymap = {
+        --     builtin = {
+        --         ["<C-d>"] = "preview-down",
+        --         ["<C-u>"] = "preview-up",
+        --         ["<C-_>"] = "toggle-help",
+        --     },
+        --     fzf = {
+        --         ["ctrl-f"] = "forward-char",
+        --         ["ctrl-b"] = "backward-char",
+        --         ["ctrl-k"] = "kill-line",
+        --     },
+        -- },
         fzf_colors = {
             ["fg"] = { "fg", "Comment" },
             ["bg"] = "-1",
