@@ -46,12 +46,15 @@ return {
         -- A mapping from lsp server name to the executable name
         local enabled_lsp_servers = {
             lua_ls = "lua-language-server",
-            pyright = "delance-langserver",
-            ruff = "ruff",
             rust_analyzer = "rust-analyzer",
             clangd = "clangd",
             bashls = "bash-language-server",
             gopls = "gopls",
+            ruff = "ruff",
+            -- ty = "ty",
+            -- pyright = "delance-langserver",
+            basedpyright = "basedpyright-langserver",
+            -- pyrefly = "pyrefly",
         }
 
         local utils = require("utils")

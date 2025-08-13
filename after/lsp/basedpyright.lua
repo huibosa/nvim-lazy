@@ -1,8 +1,3 @@
--- For what diagnostic is enabled in which type checking mode, check doc:
--- https://github.com/microsoft/pyright/blob/main/docs/configuration.md#diagnostic-settings-defaults
--- Currently, the pyright also has some issues displaying hover documentation:
--- https://www.reddit.com/r/neovim/comments/1gdv1rc/what_is_causeing_the_lsp_hover_docs_to_looks_like/
-
 local new_capability = {
     -- this will remove some of the diagnostics that duplicates those from ruff, idea taken and adapted from
     -- here: https://github.com/astral-sh/ruff-lsp/issues/384#issuecomment-1989619482
@@ -20,17 +15,15 @@ local new_capability = {
 }
 
 return {
-    cmd = { "delance-langserver", "--stdio" },
+    cmd = { "basedpyright-langserver", "--stdio" },
     settings = {
-        pyright = {
-            -- disable import sorting and use Ruff for this
+        basedpyright = {
             disableOrganizeImports = true,
             disableTaggedHints = false,
-        },
-        python = {
             analysis = {
-                -- diagnosticMode = "workspace",
-                typeCheckingMode = "basic",
+                diagnosticMode = "openFilesOnly",
+                typeCheckingMode = "standard",
+                autoImportCompletions = true,
                 autoSearchPaths = true,
                 useLibraryCodeForTypes = true,
                 -- we can this setting below to redefine some diagnostics
