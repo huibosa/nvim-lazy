@@ -1,3 +1,9 @@
+local hls = {
+    bg    = "PmenuSbar",
+    sel   = "PmenuSel",
+    title = "IncSearch"
+}
+
 return {
     "ibhagwan/fzf-lua",
     event = "VeryLazy",
@@ -6,18 +12,17 @@ return {
         defaults = {
             formatter = "path.filename_first",
         },
-        -- keymap = {
-        --     builtin = {
-        --         ["<C-d>"] = "preview-down",
-        --         ["<C-u>"] = "preview-up",
-        --         ["<C-_>"] = "toggle-help",
-        --     },
-        --     fzf = {
-        --         ["ctrl-f"] = "forward-char",
-        --         ["ctrl-b"] = "backward-char",
-        --         ["ctrl-k"] = "kill-line",
-        --     },
-        -- },
+        winopts = {
+            preview = {
+                hidden = true,
+            }
+        },
+        hls = {
+            title         = hls.title,
+            preview_title = hls.title,
+            scrollfloat_e = "",
+            scrollfloat_f = hls.sel,
+        },
         fzf_colors = {
             ["fg"] = { "fg", "Comment" },
             ["bg"] = "-1",
@@ -37,7 +42,7 @@ return {
     },
     keys = {
         {
-            "<LEADER><LEADER>",
+            "<C-k>",
             function() require("fzf-lua").builtin() end,
             "Builtin",
         },
