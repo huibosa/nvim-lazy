@@ -1,6 +1,7 @@
 return {
     'saghen/blink.cmp',
     event = "InsertEnter",
+    dependencies = { "onsails/lspkind.nvim" },
     version = '1.*',
     ---@module 'blink.cmp'
     ---@type blink.cmp.Config
@@ -40,8 +41,38 @@ return {
             menu = {
                 auto_show = true,
                 draw = {
-                    align_to = 'cursor',
                     gap = 2,
+                    columns = {
+                        { "label",     "label_description", gap = 2 },
+                        { "kind_icon", "kind" },
+                        -- { "source_name" },
+                    },
+                    components = {
+                        label = {
+                            text = function(item)
+                                return item.label
+                            end,
+                        },
+                        kind_icon = {
+                            text = function(item)
+                                local kind = require("lspkind").symbol_map[item.kind] or ""
+                                return kind .. " "
+                            end,
+                            highlight = function(ctx)
+                                local _, hl, _ = require("mini.icons").get('lsp', ctx.kind)
+                                return hl
+                            end
+                        },
+                        kind = {
+                            text = function(item)
+                                return item.kind
+                            end,
+                            highlight = function(ctx)
+                                local _, hl, _ = require("mini.icons").get('lsp', ctx.kind)
+                                return hl
+                            end
+                        },
+                    },
                 }
             },
             documentation = {
