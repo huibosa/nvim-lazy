@@ -30,7 +30,7 @@ return {
                     ["ic"] = { query = "@class.inner", desc = "inner class" },
 
                     ["ar"] = { query = "@return.outer", desc = "outer return" },
-                    ["ir"] = { query = "@return.outer", desc = "inner return" },
+                    ["ir"] = { query = "@return.inner", desc = "inner return" },
 
                     ["a/"] = { query = "@comment.outer", desc = "outer comment" },
                     ["i/"] = { query = "@comment.inner", desc = "inner comment" },

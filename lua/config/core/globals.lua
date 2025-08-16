@@ -17,8 +17,8 @@ vim.g.loaded_node_provider = 0      -- Disable node provider
 vim.g.did_install_default_menus = 1 -- do not load menu
 
 -- Custom mapping <LEADER> (see `:h mapleader` for more info)
-vim.g.mapleader = "\\"
-vim.g.maplocalleader = " "
+vim.g.mapleader = " "
+vim.g.maplocalleader = "\\"
 
 -- Enable highlighting for lua HERE doc inside vim script
 vim.g.vimsyn_embed = "l"

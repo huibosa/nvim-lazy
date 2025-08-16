@@ -9,16 +9,15 @@ end
 
 -- Disable Space key (map it to Nop)
 keymap({ "n", "v" }, "<SPACE>", "<NOP>")
-
 keymap("x", "Y", '"+y')
-
 keymap("n", "c*", "*Ncgn")
-
+keymap({ "n", "x" }, "H", "^")
+keymap({ "n", "x" }, "L", "$")
 keymap("n", "j", "j")
 keymap("n", "k", "k")
+keymap("n", "J", "mzJ`z") -- Join next line without moving cursor
 
--- Join next line without moving cursor
-keymap("n", "J", "mzJ`z")
+keymap("n", "<BS>", "<C-^>")
 
 -- Emulate <C-a> as vscode <Home> key
 vim.keymap.set({ "i", "x", "o" }, "<C-a>", "", {
