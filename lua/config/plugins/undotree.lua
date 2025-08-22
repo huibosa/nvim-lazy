@@ -2,7 +2,7 @@ return {
     "mbbill/undotree",
     keys = { "<LEADER>tu" },
     config = function()
-        vim.keymap.set('n', '<LEADER>tu', vim.cmd.UndotreeToggle)
+        vim.keymap.set('n', '<LEADER>tu', vim.cmd.UndotreeToggle, { desc = "Undotree" })
 
         if vim.fn.has("persistent_undo") == 1 then
             local target_path = vim.fn.stdpath('data') .. '/undodir//'
