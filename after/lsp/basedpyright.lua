@@ -19,23 +19,22 @@ return {
     settings = {
         basedpyright = {
             disableOrganizeImports = true,
-            disableTaggedHints = false,
+            disableTaggedHints = true,
             analysis = {
                 diagnosticMode = "openFilesOnly",
                 typeCheckingMode = "standard",
                 autoImportCompletions = true,
                 autoSearchPaths = true,
                 useLibraryCodeForTypes = true,
-                -- we can this setting below to redefine some diagnostics
                 diagnosticSeverityOverrides = {
                     deprecateTypingAliases = false,
                 },
-                -- inlay hint settings are provided by pylance?
                 inlayHints = {
-                    callArgumentNames = "partial",
+                    variableTypes = true,
+                    callArgumentNames = true,
                     functionReturnTypes = true,
                     pytestParameters = true,
-                    variableTypes = true,
+                    genericTypes = true,
                 },
             },
         },
