@@ -103,6 +103,14 @@ return {
                     -- make lazydev completions top priority (see `:h blink.cmp`)
                     score_offset = 100,
                 },
+                snippets = {
+                    opts = {
+                        search_paths = {
+                            vim.fn.stdpath('config') .. '/snippets',
+                            vim.uv.cwd() .. "/.vscode",
+                        }
+                    }
+                }
             },
         },
 
