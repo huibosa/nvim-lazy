@@ -21,7 +21,8 @@ return {
             disableOrganizeImports = true,
             disableTaggedHints = true,
             analysis = {
-                diagnosticMode = "openFilesOnly",
+                -- diagnosticMode = "openFilesOnly",
+                diagnosticMode = "workspace",
                 typeCheckingMode = "standard",
                 autoImportCompletions = true,
                 autoSearchPaths = true,

@@ -42,7 +42,7 @@ return {
     },
     keys = {
         {
-            "<C-k>",
+            "<C-\\>",
             function() require("fzf-lua").builtin() end,
             "Builtin",
         },
