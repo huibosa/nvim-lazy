@@ -46,11 +46,11 @@ return {
             function() require("fzf-lua").builtin() end,
             "Builtin",
         },
-        {
-            "<C-p>",
-            function() require("fzf-lua").global() end,
-            desc = "Files",
-        },
+        -- {
+        --     "<C-p>",
+        --     function() require("fzf-lua").global() end,
+        --     desc = "Files",
+        -- },
         {
             "<LEADER>ff",
             function() require("fzf-lua").files() end,
