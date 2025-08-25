@@ -3,6 +3,7 @@
   "conform.nvim": { "branch": "master", "commit": "a0ab60ed666c56b37fd7ed1847d2ac52f2482ce0" },
   "everforest": { "branch": "master", "commit": "28d59e29d972e21f2e802ce916f28dcab30697ae" },
   "fzf-lua": { "branch": "main", "commit": "7d66cd81cf485fb17c22d82021cc166ce332a14c" },
+  "fzf-lua-frecency.nvim": { "branch": "master", "commit": "9ee3d5f023c1a07bc595daf165e6b6be66509a8e" },
   "gitsigns.nvim": { "branch": "main", "commit": "6e3c66548035e50db7bd8e360a29aec6620c3641" },
   "gruvbox-material": { "branch": "master", "commit": "6a100833060d26cd3ab85c34c5f7154a1000c12f" },
   "lazy.nvim": { "branch": "main", "commit": "6c3bda4aca61a13a9c63f1c1d1b16b9d3be90d7a" },
