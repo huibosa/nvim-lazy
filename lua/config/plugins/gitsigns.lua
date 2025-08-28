@@ -60,7 +60,7 @@ return {
             map("n", "<LEADER>hP", gs.preview_hunk, { desc = "Preview hunk" })
             map("n", "<LEADER>hb", function() gs.blame_line({ full = true }) end, { desc = "Blame Line" })
             map("n", "<LEADER>hd", gs.diffthis, { desc = "Diff current change" })
-            map("n", "<LEADER>hD", function() gs.diffthis('~') end, { desc = "Diff with given commit" })
+            map("n", "<LEADER>hD", ":<C-u>Gitsigns diffthis ", { desc = "Diff with given commit" })
 
             map('n', '<leader>hq', function() gs.setqflist('all') end, { desc = "All file to quickfix" })
             map('n', '<leader>hQ', gs.setloclist, { desc = "Current file to loclist" })
