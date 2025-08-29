@@ -1,5 +1,5 @@
 return {
-    "echasnovski/mini.icons",
+    "nvim-mini/mini.icons",
     lazy = false,
     version = "*", -- Use for stability; omit to use `main` branch for the latest features
     config = function()
