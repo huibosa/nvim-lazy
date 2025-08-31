@@ -6,7 +6,7 @@ return {
         vim.g.rustaceanvim = {
             tools = {
                 float_win_config = {
-                    border = vim.g.window_borders,
+                    border = 'bold',
                 }
             },
         }

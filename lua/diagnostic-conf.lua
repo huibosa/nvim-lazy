@@ -30,6 +30,6 @@ diagnostic.config({
         source = true,
         -- header = "Diagnostics:",
         -- prefix = " ",
-        border = vim.g.window_borders,
+        border = 'bold',
     },
 })

@@ -6,7 +6,7 @@ return {
 
         require("bqf").setup({
             preview = {
-                border = vim.g.window_borders,
+                border = 'solid',
                 show_title = false,
                 winblend = 0,
                 auto_preview = false,

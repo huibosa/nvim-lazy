@@ -26,7 +26,7 @@ return {
             untracked    = { text = '┇' },
         },
         preview_config = {
-            border = vim.g.window_borders
+            border = 'bold'
         },
         on_attach = function(bufnr)
             local gs = package.loaded.gitsigns

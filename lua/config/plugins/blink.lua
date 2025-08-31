@@ -77,7 +77,7 @@ return {
             },
             documentation = {
                 auto_show = false,
-                window = { border = vim.g.window_borders }
+                window = { border = 'bold' }
             },
             list = {
                 selection = {
