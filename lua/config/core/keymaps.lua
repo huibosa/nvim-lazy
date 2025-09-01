@@ -11,8 +11,8 @@ end
 keymap({ "n", "v" }, "<SPACE>", "<NOP>")
 keymap("x", "Y", '"+y')
 keymap("n", "c*", "*Ncgn")
-keymap({ "n", "x" }, "H", "^")
-keymap({ "n", "x" }, "L", "$")
+-- keymap({ "n", "x" }, "H", "^")
+-- keymap({ "n", "x" }, "L", "$")
 keymap("n", "j", "j")
 keymap("n", "k", "k")
 keymap("n", "J", "mzJ`z") -- Join next line without moving cursor
