@@ -19,6 +19,7 @@ return {
 
         vim.g.undotree_SetFocusWhenToggle = 1
         vim.g.undotree_WindowLayout = 4
-        vim.g.undotree_SplitWidth = 50
+        vim.g.undotree_SplitWidth = 30
+        vim.g.undotree_DiffAutoOpen = 0
     end
 }
