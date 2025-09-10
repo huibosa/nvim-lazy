@@ -46,11 +46,11 @@ return {
             function() require("fzf-lua").builtin() end,
             "Builtin",
         },
-        -- {
-        --     "<C-p>",
-        --     function() require("fzf-lua").global() end,
-        --     desc = "Files",
-        -- },
+        {
+            "<C-p>",
+            function() require("fzf-lua").global() end,
+            desc = "Files",
+        },
         {
             "<LEADER>ff",
             function() require("fzf-lua").files() end,
@@ -162,37 +162,6 @@ return {
             function() require("fzf-lua").helptags() end,
             desc = "Help",
         },
-        -- Git
-        -- {
-        --     "<LEADER>gC",
-        --     function() require("fzf-lua").git_commits() end,
-        --     desc = "Commits (project)",
-        -- },
-        -- {
-        --     "<LEADER>gc",
-        --     function() require("fzf-lua").git_bcommits() end,
-        --     desc = "Commits (buffer)",
-        -- },
-        -- {
-        --     "<LEADER>gs",
-        --     function() require("fzf-lua").git_status() end,
-        --     desc = "Status",
-        -- },
-        -- {
-        --     "<LEADER>gt",
-        --     function() require("fzf-lua").git_tags() end,
-        --     desc = "Tags",
-        -- },
-        -- {
-        --     "<LEADER>gb",
-        --     function() require("fzf-lua").git_branches() end,
-        --     desc = "Branches",
-        -- },
-        -- {
-        --     "<LEADER>gS",
-        --     function() require("fzf-lua").git_stash() end,
-        --     desc = "Stash",
-        -- },
     },
     config = function(_, opts)
         require("fzf-lua").setup(opts)
