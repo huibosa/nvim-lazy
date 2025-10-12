@@ -19,7 +19,7 @@ opt.number = true
 
 opt.signcolumn = "yes"
 opt.numberwidth = 3
-opt.stc = "%=%l%s"
+opt.statuscolumn = "%=%l%s"
 
 -- General tab settings
 opt.tabstop = 2       -- Tab indentation levels every two columns
@@ -45,8 +45,12 @@ opt.wildmenu = true
 opt.autoindent = true
 opt.smartindent = true
 
-opt.foldmethod = "syntax"
-opt.foldenable = false
+opt.foldenable = true
+opt.foldlevel = 99
+opt.foldmethod = "expr"
+opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+opt.foldtext = ""
+opt.foldcolumn = "0"
 
 opt.splitright = true
 opt.splitbelow = true
