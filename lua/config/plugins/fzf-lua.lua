@@ -36,13 +36,12 @@ return {
             -- ["marker"] = { "fg", "DiagnosticError" },
             ["spinner"] = { "fg", "Label" },
             ["header"] = { "fg", "Comment" },
-            ["gutter"] = "-1",
             ["scrollbar"] = { "fg", "WarningMsg" },
         },
     },
     keys = {
         {
-            "<C-\\>",
+            "<C-k>",
             function() require("fzf-lua").builtin() end,
             "Builtin",
         },
@@ -55,6 +54,11 @@ return {
             "<LEADER>ff",
             function() require("fzf-lua").files() end,
             desc = "Files",
+        },
+        {
+            "<LEADER>fu",
+            function() require("fzf-lua").undotree() end,
+            desc = "Undo tree",
         },
         {
             "<LEADER>fR",
