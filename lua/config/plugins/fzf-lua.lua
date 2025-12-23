@@ -12,6 +12,11 @@ return {
         defaults = {
             formatter = "path.filename_first",
         },
+        keymap = {
+            fzf = {
+                ["alt-r"] = "toggle-raw",
+            }
+        },
         winopts = {
             preview = {
                 hidden = true,

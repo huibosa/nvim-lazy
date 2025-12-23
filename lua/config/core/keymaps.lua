@@ -9,7 +9,7 @@ end
 
 -- Disable Space key (map it to Nop)
 keymap({ "n", "v" }, "<SPACE>", "<NOP>")
-keymap("x", "Y", '"+y')
+-- keymap("x", "Y", '"+y')
 -- keymap({ "n", "x" }, "H", "^")
 -- keymap({ "n", "x" }, "L", "$")
 keymap("n", "j", "j")
