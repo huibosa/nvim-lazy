@@ -6,7 +6,7 @@ return {
     config = function()
         local ts = require('nvim-treesitter')
 
-        ts.install({
+        local ensure_installed = {
             'rust', 'go', 'c', 'cpp', 'python', 'lua',
             'bash',
             'comment',
@@ -38,16 +38,20 @@ return {
             'vimdoc',
             'vue',
             'xml',
-        })
+        }
+        ts.install(ensure_installed)
 
-        vim.opt.foldmethod = "expr"
-        vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
-        vim.opt.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
-
-        -- Enable highlight
-        vim.api.nvim_create_autocmd('FileType', {
-            pattern = { 'python', 'go' },
-            callback = function() vim.treesitter.start() end,
+        vim.api.nvim_create_autocmd("FileType", {
+            pattern = ensure_installed,
+            callback = function()
+                -- syntax highlighting, provided by Neovim
+                vim.treesitter.start()
+                -- folds, provided by Neovim
+                vim.opt.foldmethod = "expr"
+                vim.wo.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+                -- indentation, provided by nvim-treesitter
+                vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+            end,
         })
     end
 }
