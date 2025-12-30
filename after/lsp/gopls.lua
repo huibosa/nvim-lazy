@@ -30,7 +30,6 @@ return {
                 shadow = true,
                 unusedparams = true,
                 unusewrites = true,
-                fieldalignment = true,
                 unusedwrite = true,
                 useany = true,
             },
