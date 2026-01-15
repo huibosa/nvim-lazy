@@ -37,7 +37,7 @@ opt.hidden = true
 opt.hlsearch = true
 opt.incsearch = true
 
-opt.inccommand = "nosplit"
+opt.inccommand = "split"
 opt.ignorecase = true
 opt.smartcase = true
 opt.wildmenu = true
