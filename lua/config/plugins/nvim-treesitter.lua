@@ -25,7 +25,6 @@ return {
             'make',
             'markdown',
             'markdown_inline',
-            'norg',
             'query',
             'regex',
             'scss',
@@ -50,7 +49,7 @@ return {
                 vim.opt.foldmethod = "expr"
                 vim.wo.foldexpr = "v:lua.vim.treesitter.foldexpr()"
                 -- indentation, provided by nvim-treesitter
-                vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+                -- vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
             end,
         })
     end
