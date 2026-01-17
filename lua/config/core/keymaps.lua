@@ -18,9 +18,15 @@ keymap("n", "J", "mzJ`z") -- Join next line without moving cursor
 
 keymap("n", "<BS>", "<C-^>")
 
--- Emulate <C-a> as vscode <Home> key
+-- Smart <C-a> behavior
 vim.keymap.set({ "i", "x", "o" }, "<C-a>", "", {
-    callback = utils.vscode_home_key,
+    callback = utils.smart_c_a,
+    noremap = true,
+    silent = true,
+})
+
+vim.keymap.set({ "i", "x", "o" }, "<C-e>", "", {
+    callback = utils.smart_c_e,
     noremap = true,
     silent = true,
 })
@@ -32,7 +38,6 @@ vim.keymap.set("i", "<C-k>", "", {
     silent = true,
 })
 
-keymap({ "i", "x", "o" }, "<C-e>", "<END>")
 keymap({ "i", "x", "o" }, "<C-b>", "<LEFT>")
 keymap({ "i", "x", "o" }, "<C-f>", "<RIGHT>")
 keymap("i", "<C-d>", "<DEL>")
