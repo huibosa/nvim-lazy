@@ -3,7 +3,7 @@ return {
     dependencies = { "MunifTanjim/nui.nvim" },
     cmd = "CodeDiff",
     config = function()
-        require("vscode-diff").setup({
+        require("codediff").setup({
             -- Highlight configuration
             highlights = {
                 -- Line-level: accepts highlight group names or hex colors (e.g., "#2ea043")

@@ -52,9 +52,9 @@ return {
             bashls = "bash-language-server",
             gopls = "gopls",
             ruff = "ruff",
-            -- ty = "ty",
+            ty = "ty",
             -- pyright = "delance-langserver",
-            basedpyright = "basedpyright-langserver",
+            -- basedpyright = "basedpyright-langserver",
             -- pyrefly = "pyrefly",
         }
 

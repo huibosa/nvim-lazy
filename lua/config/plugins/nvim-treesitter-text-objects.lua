@@ -42,8 +42,8 @@ return {
         keymap(modes, "af", function() select("@function.outer", "textobjects") end, { desc = "outer function" })
         keymap(modes, "if", function() select("@function.inner", "textobjects") end, { desc = "inner function" })
 
-        keymap(modes, "ac", function() select("@class.outer", "textobjects") end, { desc = "outer class" })
-        keymap(modes, "ic", function() select("@class.inner", "textobjects") end, { desc = "inner class" })
+        keymap(modes, "as", function() select("@class.outer", "textobjects") end, { desc = "outer class" })
+        keymap(modes, "is", function() select("@class.inner", "textobjects") end, { desc = "inner class" })
 
         keymap(modes, "ar", function() select("@return.outer", "textobjects") end, { desc = "outer return" })
         keymap(modes, "ir", function() select("@return.inner", "textobjects") end, { desc = "inner return" })
@@ -70,7 +70,7 @@ return {
             { desc = "Next func start" })
         keymap(move_modes, "]r", function() move.goto_next_start("@return.outer", "textobjects") end,
             { desc = "Next return start" })
-        keymap(move_modes, "]c", function() move.goto_next_start("@class.outer", "textobjects") end,
+        keymap(move_modes, "]s", function() move.goto_next_start("@class.outer", "textobjects") end,
             { desc = "Next class start" })
         keymap(move_modes, "]j", function() move.goto_next_start("@conditional.outer", "textobjects") end,
             { desc = "Next cond start" })
@@ -83,7 +83,7 @@ return {
         keymap(move_modes, "]A", function() move.goto_next_end("@parameter.outer", "textobjects") end)
         keymap(move_modes, "]F", function() move.goto_next_end("@function.outer", "textobjects") end)
         keymap(move_modes, "]R", function() move.goto_next_end("@return.outer", "textobjects") end)
-        keymap(move_modes, "]C", function() move.goto_next_end("@class.outer", "textobjects") end)
+        keymap(move_modes, "]S", function() move.goto_next_end("@class.outer", "textobjects") end)
         keymap(move_modes, "]J", function() move.goto_next_end("@conditional.outer", "textobjects") end)
         keymap(move_modes, "]O", function() move.goto_next_end("@loop.outer", "textobjects") end)
 
@@ -91,7 +91,7 @@ return {
         keymap(move_modes, "[a", function() move.goto_previous_start("@parameter.outer", "textobjects") end)
         keymap(move_modes, "[f", function() move.goto_previous_start("@function.outer", "textobjects") end)
         keymap(move_modes, "[r", function() move.goto_previous_start("@return.outer", "textobjects") end)
-        keymap(move_modes, "[c", function() move.goto_previous_start("@class.outer", "textobjects") end)
+        keymap(move_modes, "[s", function() move.goto_previous_start("@class.outer", "textobjects") end)
         keymap(move_modes, "[j", function() move.goto_previous_start("@conditional.outer", "textobjects") end)
         keymap(move_modes, "[o", function() move.goto_previous_start("@loop.outer", "textobjects") end)
         keymap(move_modes, "[/", function() move.goto_previous_start("@comment.outer", "textobjects") end)
@@ -100,7 +100,7 @@ return {
         keymap(move_modes, "[A", function() move.goto_previous_end("@parameter.outer", "textobjects") end)
         keymap(move_modes, "[F", function() move.goto_previous_end("@function.outer", "textobjects") end)
         keymap(move_modes, "[R", function() move.goto_previous_end("@return.outer", "textobjects") end)
-        keymap(move_modes, "[C", function() move.goto_previous_end("@class.outer", "textobjects") end)
+        keymap(move_modes, "[S", function() move.goto_previous_end("@class.outer", "textobjects") end)
         keymap(move_modes, "[J", function() move.goto_previous_end("@conditional.outer", "textobjects") end)
         keymap(move_modes, "[O", function() move.goto_previous_end("@loop.outer", "textobjects") end)
 
