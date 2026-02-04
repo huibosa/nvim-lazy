@@ -4,6 +4,6 @@ return {
     config = true,
     opts = {
         incr_key = '<CR>',
-        decr_key = '<BS>',
+        decr_key = '<M-CR>',
     }
 }
