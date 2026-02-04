@@ -83,7 +83,7 @@ M.smart_c_e = function()
         return
     end
 
-    if current_col < line_length then
+    if current_col <= line_length then
         vim.fn.cursor(current_line, line_length + 1)
     else
         local total_lines = vim.fn.line("$")
