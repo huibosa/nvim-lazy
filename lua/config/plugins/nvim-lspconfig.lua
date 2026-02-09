@@ -41,7 +41,9 @@ return {
                 if client.name == "ruff" then client.server_capabilities.hoverProvider = false end
 
                 -- Disable pyright formating, use ruff
-                if client.name == "pyright" then client.server_capabilities.documentFormattingProvider = false end
+                if client.name == "pyright" or client.name == "basedpyright" then
+                    client.server_capabilities.documentFormattingProvider = false
+                end
             end,
         })
 
