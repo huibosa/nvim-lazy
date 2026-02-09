@@ -37,6 +37,7 @@ return {
                     pytestParameters = true,
                     genericTypes = true,
                 },
+                autoFormatStrings = true,
             },
         },
     },
