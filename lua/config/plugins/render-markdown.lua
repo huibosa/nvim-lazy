@@ -5,5 +5,10 @@ return {
         'nvim-mini/mini.icons',
     },
     ft = { 'markdown' },
-    opts = {},
+    opts = {
+        heading = {
+            sign = false,
+            icons = { '# ', '## ', '### ', '#### ', '##### ', '###### ' },
+        },
+    },
 }
