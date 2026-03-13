@@ -10,5 +10,8 @@ return {
             sign = false,
             icons = { '# ', '## ', '### ', '#### ', '##### ', '###### ' },
         },
+        code = {
+            sign = false,
+        },
     },
 }
