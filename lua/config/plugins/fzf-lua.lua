@@ -12,6 +12,7 @@ return {
         defaults = {
             formatter = "path.filename_first",
         },
+        files_command = { "sh", "-c", os.getenv("FZF_DEFAULT_COMMAND") or "fd --type f" },
         keymap = {
             fzf = {
                 ["alt-r"] = "toggle-raw",

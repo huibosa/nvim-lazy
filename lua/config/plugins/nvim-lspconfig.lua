@@ -53,10 +53,11 @@ return {
             clangd = "clangd",
             bashls = "bash-language-server",
             gopls = "gopls",
+            jsonls = "vscode-json-language-server",
             ruff = "ruff",
-            -- ty = "ty",
+            ty = "ty",
             -- pyright = "delance-langserver",
-            basedpyright = "basedpyright-langserver",
+            -- basedpyright = "basedpyright-langserver",
             -- pyrefly = "pyrefly",
         }
 
