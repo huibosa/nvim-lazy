@@ -1,7 +1,10 @@
 return {
     'saghen/blink.cmp',
     event = "InsertEnter",
-    dependencies = { "onsails/lspkind.nvim" },
+    dependencies = {
+        "onsails/lspkind.nvim",
+        'mgalliou/blink-cmp-tmux',
+    },
     version = '1.*',
     ---@module 'blink.cmp'
     ---@type blink.cmp.Config
@@ -95,7 +98,7 @@ return {
         -- Default list of enabled providers defined so that you can extend it
         -- elsewhere in your config, without redefining it, due to `opts_extend`
         sources = {
-            default = { 'lazydev', 'lsp', 'path', 'snippets', 'buffer' },
+            default = { 'lazydev', 'lsp', 'path', 'snippets', 'buffer', 'tmux' },
             providers = {
                 lazydev = {
                     name = "LazyDev",
@@ -109,6 +112,15 @@ return {
                             vim.fn.stdpath('config') .. '/snippets',
                             vim.uv.cwd() .. "/.vscode",
                         }
+                    }
+                },
+                tmux = {
+                    name = 'Tmux',
+                    module = 'blink-cmp-tmux',
+                    opts = {
+                        all_panes = false,
+                        current_pane = false,
+                        visible_only = true,
                     }
                 }
             },
