@@ -5,11 +5,6 @@ return {
             callback = function()
                 local params = vim.lsp.util.make_range_params()
                 params.context = { only = { "source.organizeImports" } }
-                -- buf_request_sync defaults to a 1000ms timeout. Depending on your
-                -- machine and codebase, you may want longer. Add an additional
-                -- argument after params if you find that you have to write the file
-                -- twice for changes to be saved.
-                -- E.g., vim.lsp.buf_request_sync(0, "textDocument/codeAction", params, 3000)
                 local result = vim.lsp.buf_request_sync(0, "textDocument/codeAction", params)
                 for cid, res in pairs(result or {}) do
                     for _, r in pairs(res.result or {}) do
@@ -25,12 +20,33 @@ return {
     end,
     settings = {
         gopls = {
+            ["local"] = "",
+            buildFlags = {},
+            templateExtensions = {},
+            standaloneTags = { "ignore" },
+            expandWorkspaceToModule = true,
+            directoryFilters = { "-.git", "-.vscode", "-.idea", "-.vscode-test", "-node_modules" },
+
             analyses = {
                 nilness = true,
                 shadow = true,
                 unusedwrite = true,
                 useany = true,
+                unusedparams = true,
+                unreachable = true,
             },
+            staticcheck = true,
+            vulncheck = "Imports",
+            annotations = {
+                bounds = true,
+                escape = true,
+                inline = true,
+                ["nil"] = true,
+            },
+            diagnosticsDelay = "1s",
+            diagnosticsTrigger = "Edit",
+            analysisProgressReporting = true,
+
             hints = {
                 assignVariableTypes = true,
                 compositeLiteralFields = true,
@@ -39,25 +55,37 @@ return {
                 parameterNames = true,
                 rangeVariableTypes = true,
             },
-            inlayHints = {
-                enable = true,
-                variableTypes = true,
-                parameterNames = true,
-                functionTypeParameters = true,
-                constantValues = true,
-                rangeVariableTypes = true,
-                assignVariableTypes = true,
-                compositeLiteralFields = true,
-            },
+
             gofumpt = true,
-            staticcheck = true,
-            vulncheck = "Imports",
-            matcher = "fuzzy",
-            usePlaceholders = false,
-            completeUnimported = true,
-            directoryFilters = { "-.git", "-.vscode", "-.idea", "-.vscode-test", "-node_modules" },
+
             semanticTokens = true,
-            -- experimentalPostfixCompletions = true,
+            newGoFileHeader = true,
+            codelenses = {
+                generate = true,
+                regenerate_cgo = true,
+                run_govulncheck = true,
+                tidy = true,
+                upgrade_dependency = true,
+                vendor = true,
+                test = false,
+                vulncheck = false,
+            },
+
+            usePlaceholders = false,
+            completeFunctionCalls = true,
+            experimentalPostfixCompletions = true,
+            matcher = "Fuzzy",
+            completeUnimported = true,
+            completionBudget = "100ms",
+
+            importShortcut = "Both",
+            symbolMatcher = "FastFuzzy",
+            symbolStyle = "Dynamic",
+            symbolScope = "all",
+
+            hoverKind = "FullDocumentation",
+            linkTarget = "pkg.go.dev",
+            linksInHover = true,
         },
     },
 }
