@@ -132,12 +132,12 @@ return {
                     }
                 },
                 buffer = {
-                    score_offset = -3,
+                    score_offset = -1000,
                 },
                 tmux = {
                     name = 'Tmux',
                     module = 'blink-cmp-tmux',
-                    score_offset = -10,
+                    score_offset = -1000,
                     opts = {
                         all_panes = false,
                         current_pane = false,
@@ -153,6 +153,14 @@ return {
         --
         -- See the fuzzy documentation for more information
         fuzzy = { implementation = "prefer_rust_with_warning" },
+
+        sort = {
+            priority = {
+                kind = {
+                    Text = -1000,
+                }
+            }
+        },
         cmdline = {
             enabled = false,
         }
