@@ -143,7 +143,7 @@ return {
                         current_pane = false,
                         visible_only = true,
                     }
-                }
+                },
             },
         },
 

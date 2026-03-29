@@ -31,6 +31,7 @@ return {
                 typescriptreact = { "prettier" },
                 javascript = { "prettier" },
                 javascriptreact = { "prettier" },
+                rust = { "rustfmt" },
             },
             format_on_save = function(bufnr)
                 local ft = vim.bo[bufnr].filetype
