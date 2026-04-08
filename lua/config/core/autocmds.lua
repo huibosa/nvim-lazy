@@ -31,7 +31,7 @@ local yank_group = augroup("highlight_yank")
 vim.api.nvim_create_autocmd({ "TextYankPost" }, {
     pattern = "*",
     group = yank_group,
-    callback = function() vim.highlight.on_yank({ higroup = "HighlightedyankRegion", timeout = 500 }) end,
+    callback = function() vim.hl.on_yank({ higroup = "HighlightedyankRegion", timeout = 500 }) end,
 })
 
 -- Keep cursor stays in position after visual yank
@@ -103,7 +103,7 @@ vim.api.nvim_create_autocmd("FileType", {
     },
     callback = function(event)
         vim.bo[event.buf].buflisted = false
-        vim.keymap.set("n", "q", "<cmd>close<cr>", { buffer = event.buf, silent = true })
+        vim.keymap.set("n", "q", "<cmd>close<cr>", { buf = event.buf, silent = true })
     end,
 })
 
@@ -114,7 +114,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
         local client = vim.lsp.get_client_by_id(args.data.client_id)
         if client:supports_method('textDocument/foldingRange') then
             local win = vim.api.nvim_get_current_win()
-            vim.wo[win][0].foldexpr = 'v:lua.vim.lsp.foldexpr()'
+            vim.wo[win].foldexpr = 'v:lua.vim.lsp.foldexpr()'
         end
     end,
 })

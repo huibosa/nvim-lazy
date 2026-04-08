@@ -191,8 +191,8 @@ return {
         vim.api.nvim_create_autocmd("FileType", {
             callback = function()
                 local buffer = vim.api.nvim_get_current_buf()
-                keymap(move_modes, "]]", next_rf_repeat, { desc = "Next Reference", buffer = buffer })
-                keymap(move_modes, "[[", prev_rf_repeat, { desc = "Prev Reference", buffer = buffer })
+                keymap(move_modes, "]]", next_rf_repeat, { desc = "Next Reference", buf = buffer })
+                keymap(move_modes, "[[", prev_rf_repeat, { desc = "Prev Reference", buf = buffer })
             end,
         })
 

@@ -11,7 +11,7 @@ return {
                 local keymap = function(mode, lhs, rhs, opts_)
                     opts_ = opts_ or {}
                     opts_.silent = true
-                    opts_.buffer = bufnr
+                    opts_.buf = bufnr
                     vim.keymap.set(mode, lhs, rhs, opts_)
                 end
 
