@@ -114,9 +114,13 @@ return {
                         }
                     }
                 },
+                buffer = {
+                    score_offset = -3,
+                },
                 tmux = {
                     name = 'Tmux',
                     module = 'blink-cmp-tmux',
+                    score_offset = -10,
                     opts = {
                         all_panes = false,
                         current_pane = false,

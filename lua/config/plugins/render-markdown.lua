@@ -4,8 +4,9 @@ return {
         'nvim-treesitter/nvim-treesitter',
         'nvim-mini/mini.icons',
     },
-    ft = { 'markdown' },
+    ft = { 'markdown', 'opencode_output' },
     opts = {
+        anti_conceal = { enabled = false },
         heading = {
             sign = false,
             icons = { '# ', '## ', '### ', '#### ', '##### ', '###### ' },

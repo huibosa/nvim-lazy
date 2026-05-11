@@ -67,6 +67,6 @@ return {
             if utils.executable(lsp_executable) then
                 vim.lsp.enable(server_name)
             end
-            end
+        end
     end,
 }

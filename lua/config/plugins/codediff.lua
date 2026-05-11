@@ -28,8 +28,8 @@ return {
 
             -- Explorer panel configuration
             explorer = {
-                position = "right",     -- "left" or "bottom"
-                width = 40,             -- Width when position is "left" (columns)
+                position = "left",      -- "left" or "bottom"
+                width = 50,             -- Width when position is "left" (columns)
                 height = 15,            -- Height when position is "bottom" (lines)
                 indent_markers = true,  -- Show indent markers in tree view (│, ├, └)
                 icons = {
@@ -38,7 +38,7 @@ return {
                 },
                 view_mode = "list",     -- "list" or "tree"
                 file_filter = {
-                    ignore = {},        -- Glob patterns to hide (e.g., {"*.lock", "dist/*"})
+                    ignore = { ".git/**", ".jj/**", "node_modules/**", ".venv/**", "__pycache__/**", "*.pyc" },
                 },
             },
 
