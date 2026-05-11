@@ -37,7 +37,6 @@ return {
             -- { "<LEADER>g", group = "+Git" },
             { "<LEADER>h", group = "+Hunk" },
             { "<LEADER>t", group = "+Toggle" },
-            { "<LEADER>o", group = "+Opencode" },
             { "<LEADER>c", group = "+Code" },
             { "<LEADER>cw", group = "+Workspace" },
             { "<LEADER>cs", group = "+Swap" },
