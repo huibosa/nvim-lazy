@@ -1,3 +1,12 @@
+vim.lsp.config("jsonls", {
+    filetypes = { "json", "jsonc" },
+    settings = {
+        json = {
+            validate = { enable = true },
+        },
+    },
+})
+
 local hover = vim.lsp.buf.hover
 vim.lsp.buf.hover = function()
     return hover({ border = 'bold' })
