@@ -33,8 +33,8 @@ return {
         keymap(modes, "aj", function() select("@conditional.outer", "textobjects") end, { desc = "outer conditional" })
         keymap(modes, "ij", function() select("@conditional.inner", "textobjects") end, { desc = "inner conditional" })
 
-        keymap(modes, "ao", function() select("@loop.outer", "textobjects") end, { desc = "outer loop" })
-        keymap(modes, "io", function() select("@loop.inner", "textobjects") end, { desc = "inner loop" })
+        keymap(modes, "al", function() select("@loop.outer", "textobjects") end, { desc = "outer loop" })
+        keymap(modes, "il", function() select("@loop.inner", "textobjects") end, { desc = "inner loop" })
 
         keymap(modes, "ab", function() select("@block.outer", "textobjects") end, { desc = "outer block" })
         keymap(modes, "ib", function() select("@block.inner", "textobjects") end, { desc = "inner block" })
@@ -74,10 +74,10 @@ return {
             { desc = "Next class start" })
         keymap(move_modes, "]j", function() move.goto_next_start("@conditional.outer", "textobjects") end,
             { desc = "Next cond start" })
-        keymap(move_modes, "]o", function() move.goto_next_start("@loop.outer", "textobjects") end,
+        keymap(move_modes, "]l", function() move.goto_next_start("@loop.outer", "textobjects") end,
             { desc = "Next loop start" })
         keymap(move_modes, "]/", function() move.goto_next_start("@comment.outer", "textobjects") end,
-            { desc = "Next loop start" })
+            { desc = "Next comment start" })
 
         -- Goto next end
         keymap(move_modes, "]A", function() move.goto_next_end("@parameter.outer", "textobjects") end)
@@ -85,7 +85,7 @@ return {
         keymap(move_modes, "]R", function() move.goto_next_end("@return.outer", "textobjects") end)
         keymap(move_modes, "]S", function() move.goto_next_end("@class.outer", "textobjects") end)
         keymap(move_modes, "]J", function() move.goto_next_end("@conditional.outer", "textobjects") end)
-        keymap(move_modes, "]O", function() move.goto_next_end("@loop.outer", "textobjects") end)
+        keymap(move_modes, "]L", function() move.goto_next_end("@loop.outer", "textobjects") end)
 
         -- Goto previous start
         keymap(move_modes, "[a", function() move.goto_previous_start("@parameter.outer", "textobjects") end)
@@ -93,7 +93,7 @@ return {
         keymap(move_modes, "[r", function() move.goto_previous_start("@return.outer", "textobjects") end)
         keymap(move_modes, "[s", function() move.goto_previous_start("@class.outer", "textobjects") end)
         keymap(move_modes, "[j", function() move.goto_previous_start("@conditional.outer", "textobjects") end)
-        keymap(move_modes, "[o", function() move.goto_previous_start("@loop.outer", "textobjects") end)
+        keymap(move_modes, "[l", function() move.goto_previous_start("@loop.outer", "textobjects") end)
         keymap(move_modes, "[/", function() move.goto_previous_start("@comment.outer", "textobjects") end)
 
         -- Goto previous end
@@ -102,7 +102,7 @@ return {
         keymap(move_modes, "[R", function() move.goto_previous_end("@return.outer", "textobjects") end)
         keymap(move_modes, "[S", function() move.goto_previous_end("@class.outer", "textobjects") end)
         keymap(move_modes, "[J", function() move.goto_previous_end("@conditional.outer", "textobjects") end)
-        keymap(move_modes, "[O", function() move.goto_previous_end("@loop.outer", "textobjects") end)
+        keymap(move_modes, "[L", function() move.goto_previous_end("@loop.outer", "textobjects") end)
 
         local ts_repeat_move = require("nvim-treesitter-textobjects.repeatable_move")
 
@@ -218,10 +218,10 @@ return {
         keymap(move_modes, "]q", next_qf_repeat, { desc = "Next QuickFix" })
         keymap(move_modes, "[q", prev_qf_repeat, { desc = "Prev QuickFix" })
 
-        local next_loc = function() pcall(vim.api.nvim_command, "lnext") end
-        local prev_loc = function() pcall(vim.api.nvim_command, "lprev") end
-        local next_loc_repeat, prev_loc_repeat = make_repeatable_move_pair(next_loc, prev_loc)
-        keymap(move_modes, "]l", next_loc_repeat, { desc = "Next Location" })
-        keymap(move_modes, "[l", prev_loc_repeat, { desc = "Prev Location" })
+        -- local next_loc = function() pcall(vim.api.nvim_command, "lnext") end
+        -- local prev_loc = function() pcall(vim.api.nvim_command, "lprev") end
+        -- local next_loc_repeat, prev_loc_repeat = make_repeatable_move_pair(next_loc, prev_loc)
+        -- keymap(move_modes, "]l", next_loc_repeat, { desc = "Next Location" })
+        -- keymap(move_modes, "[l", prev_loc_repeat, { desc = "Prev Location" })
     end,
 }
