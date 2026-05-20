@@ -15,7 +15,9 @@ return {
         files_command = { "sh", "-c", os.getenv("FZF_DEFAULT_COMMAND") or "fd --type f" },
         keymap = {
             fzf = {
-                ["alt-r"] = "toggle-raw",
+                ["alt-r"]  = "toggle-raw",
+                ["ctrl-j"] = "ignore",
+                ["ctrl-k"] = "kill-line",
             }
         },
         winopts = {
