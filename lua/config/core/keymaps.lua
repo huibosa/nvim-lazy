@@ -38,9 +38,38 @@ vim.keymap.set("i", "<C-k>", "", {
     silent = true,
 })
 
-keymap({ "i", "x", "o" }, "<C-b>", "<LEFT>")
-keymap({ "i", "x", "o" }, "<C-f>", "<RIGHT>")
+keymap({ "x", "o" }, "<C-b>", "<LEFT>")
+keymap({ "x", "o" }, "<C-f>", "<RIGHT>")
+
+-- <C-f>/<C-b> in insert mode: move one char, wrapping across line boundaries
+vim.keymap.set("i", "<C-f>", function()
+    local row, col = unpack(vim.api.nvim_win_get_cursor(0))
+    local line = vim.api.nvim_get_current_line()
+    if col >= #line then
+        if row < vim.api.nvim_buf_line_count(0) then
+            vim.api.nvim_win_set_cursor(0, { row + 1, 0 })
+        end
+    else
+        vim.api.nvim_win_set_cursor(0, { row, col + 1 })
+    end
+end, { noremap = true, silent = true })
+
+vim.keymap.set("i", "<C-b>", function()
+    local row, col = unpack(vim.api.nvim_win_get_cursor(0))
+    if col == 0 then
+        if row > 1 then
+            local prev = vim.api.nvim_buf_get_lines(0, row - 2, row - 1, false)[1]
+            vim.api.nvim_win_set_cursor(0, { row - 1, #prev })
+        end
+    else
+        vim.api.nvim_win_set_cursor(0, { row, col - 1 })
+    end
+end, { noremap = true, silent = true })
 keymap("i", "<C-d>", "<DEL>")
+
+-- Undo in insert mode (Ctrl+/ and Ctrl+_ send the same byte in most terminals)
+keymap("i", "<C-_>", "<C-o>u", { desc = "Undo in insert mode" })
+keymap("i", "<C-/>", "<C-o>u", { desc = "Undo in insert mode" })
 
 vim.keymap.set("c", "<C-a>", "<HOME>")
 vim.keymap.set("c", "<C-e>", "<END>")

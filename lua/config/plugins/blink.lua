@@ -9,7 +9,24 @@ return {
     ---@module 'blink.cmp'
     ---@type blink.cmp.Config
     opts = {
-        keymap = { preset = 'enter' },
+        keymap = {
+            preset = 'enter',
+            -- When the menu is visible, navigate it; otherwise move the cursor
+            ['<C-n>'] = {
+                function(cmp)
+                    if cmp.is_visible() then return cmp.select_next() end
+                    vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<Down>', true, false, true), 'n', false)
+                    return true
+                end,
+            },
+            ['<C-p>'] = {
+                function(cmp)
+                    if cmp.is_visible() then return cmp.select_prev() end
+                    vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<Up>', true, false, true), 'n', false)
+                    return true
+                end,
+            },
+        },
 
         -- keymap = {
         --     ['<C-SPACE>'] = { 'show', 'show_documentation', 'hide_documentation' },
