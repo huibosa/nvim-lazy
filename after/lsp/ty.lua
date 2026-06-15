@@ -8,7 +8,7 @@ local new_capability = {
             },
         },
         hover = {
-            contentFormat = { "plaintext" },
+            contentFormat = { "markdown", "plaintext" },
             dynamicRegistration = true,
         },
     },

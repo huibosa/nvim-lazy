@@ -6,6 +6,9 @@ return {
     config = function()
         local ts = require('nvim-treesitter')
 
+        -- treat .jsonl files as json so Treesitter highlighting/folding applies
+        vim.filetype.add({ extension = { jsonl = "json" } })
+
         local ensure_installed = {
             'rust', 'go', 'c', 'cpp', 'python', 'lua',
             'bash',

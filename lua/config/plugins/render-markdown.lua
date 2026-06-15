@@ -13,8 +13,7 @@ return {
         },
         code = {
             sign = false,
-            conceal_delimiters = false,
-            border = 'none',
+            border = 'hide',
         },
     },
 }
