@@ -13,6 +13,10 @@ return {
             formatter = "path.filename_first",
         },
         files_command = { "sh", "-c", os.getenv("FZF_DEFAULT_COMMAND") or "fd --type f" },
+        -- `filename_first` puts the file part first, so fzf's `--scheme=path`
+        -- tail-bonus lands on the directory; force `default` so filename wins.
+        files  = { fzf_opts = { ["--scheme"] = "default" } },
+        global = { fzf_opts = { ["--scheme"] = "default" } },
         keymap = {
             fzf = {
                 ["alt-r"]  = "toggle-raw",
