@@ -56,7 +56,7 @@ opt.showmode = true
 
 -- Break line at predefined characters
 opt.linebreak = true
-opt.showbreak = "↪"
+opt.showbreak = "└ "
 
 opt.autowrite = true
 opt.undofile = true
