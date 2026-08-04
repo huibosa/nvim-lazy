@@ -41,7 +41,7 @@ vim.keymap.set("i", "<C-k>", "", {
 keymap({ "x", "o" }, "<C-b>", "<LEFT>")
 keymap({ "x", "o" }, "<C-f>", "<RIGHT>")
 
--- <C-f>/<C-b> in insert mode: move one char, wrapping across line boundaries
+-- <C-f>/<C-b> in insert mode: move one character (not byte), wrapping across line boundaries
 vim.keymap.set("i", "<C-f>", function()
     local row, col = unpack(vim.api.nvim_win_get_cursor(0))
     local line = vim.api.nvim_get_current_line()
@@ -50,7 +50,12 @@ vim.keymap.set("i", "<C-f>", function()
             vim.api.nvim_win_set_cursor(0, { row + 1, 0 })
         end
     else
-        vim.api.nvim_win_set_cursor(0, { row, col + 1 })
+        local charidx = vim.fn.charidx(line, col)
+        local newcol = vim.fn.byteidx(line, charidx + 1)
+        if newcol == -1 then
+            newcol = #line
+        end
+        vim.api.nvim_win_set_cursor(0, { row, newcol })
     end
 end, { noremap = true, silent = true })
 
@@ -62,7 +67,10 @@ vim.keymap.set("i", "<C-b>", function()
             vim.api.nvim_win_set_cursor(0, { row - 1, #prev })
         end
     else
-        vim.api.nvim_win_set_cursor(0, { row, col - 1 })
+        local line = vim.api.nvim_get_current_line()
+        local charidx = vim.fn.charidx(line, col)
+        local newcol = vim.fn.byteidx(line, charidx - 1)
+        vim.api.nvim_win_set_cursor(0, { row, newcol })
     end
 end, { noremap = true, silent = true })
 keymap("i", "<C-d>", "<DEL>")
