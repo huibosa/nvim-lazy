@@ -2,30 +2,38 @@ local function patch_navigation_for_repeat()
   local ts_repeat_move = require("nvim-treesitter-textobjects.repeatable_move")
   local navigation = require("codediff.ui.view.navigation")
 
-  local orig_next_hunk = navigation.next_hunk
-  local orig_prev_hunk = navigation.prev_hunk
-  local orig_next_file = navigation.next_file
-  local orig_prev_file = navigation.prev_file
+  -- Mirror nvim-treesitter-textobjects' repeatable-move-pair pattern: the
+  -- dispatcher stored on `last_move` branches on `opts.forward`, so `;`
+  -- repeats the original direction and `,` repeats the opposite one. A
+  -- direction-hardcoded closure (the previous approach) made `;` and `,`
+  -- always repeat the same way, since `repeat_last_move_opposite` only flips
+  -- `opts.forward` — which the closure ignored.
+  local function make_repeatable_pair(forward_fn, backward_fn)
+    local dispatch = function(opts, ...)
+      if opts.forward then
+        forward_fn(...)
+      else
+        backward_fn(...)
+      end
+    end
 
-  navigation.next_hunk = function()
-    ts_repeat_move.last_move = { func = function() navigation.next_hunk() end, opts = { forward = true }, additional_args = {} }
-    return orig_next_hunk()
+    local repeatable_forward = function(...)
+      ts_repeat_move.last_move = { func = dispatch, opts = { forward = true }, additional_args = { ... } }
+      return forward_fn(...)
+    end
+
+    local repeatable_backward = function(...)
+      ts_repeat_move.last_move = { func = dispatch, opts = { forward = false }, additional_args = { ... } }
+      return backward_fn(...)
+    end
+
+    return repeatable_forward, repeatable_backward
   end
 
-  navigation.prev_hunk = function()
-    ts_repeat_move.last_move = { func = function() navigation.prev_hunk() end, opts = { forward = false }, additional_args = {} }
-    return orig_prev_hunk()
-  end
-
-  navigation.next_file = function()
-    ts_repeat_move.last_move = { func = function() navigation.next_file() end, opts = { forward = true }, additional_args = {} }
-    return orig_next_file()
-  end
-
-  navigation.prev_file = function()
-    ts_repeat_move.last_move = { func = function() navigation.prev_file() end, opts = { forward = false }, additional_args = {} }
-    return orig_prev_file()
-  end
+  -- Read the originals before reassigning so the wrappers call the real
+  -- moves instead of recursing into themselves.
+  navigation.next_hunk, navigation.prev_hunk = make_repeatable_pair(navigation.next_hunk, navigation.prev_hunk)
+  navigation.next_file, navigation.prev_file = make_repeatable_pair(navigation.next_file, navigation.prev_file)
 end
 
 return {
