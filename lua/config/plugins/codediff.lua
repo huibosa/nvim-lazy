@@ -71,7 +71,7 @@ return {
         diff_get = "do",
         diff_put = "dp",
         toggle_layout = "t",
-        toggle_compact = "gc",
+        toggle_compact = "zc",
         toggle_stage = "-",
         stage_hunk = "hs",
         discard_hunk = "hr",
