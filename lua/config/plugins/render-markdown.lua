@@ -9,6 +9,7 @@ return {
         anti_conceal = { enabled = false },
         heading = {
             sign = false,
+            backgrounds = {},
             icons = { '# ', '## ', '### ', '#### ', '##### ', '###### ' },
         },
         code = {
