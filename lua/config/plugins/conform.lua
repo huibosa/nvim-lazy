@@ -18,7 +18,7 @@ return {
         require("conform").setup({
             formatters = {
                 prettier = {
-                    prepend_args = { "--use-tabs", "--tab-width", "2", "--print-width", "9999" },
+                    prepend_args = { "--print-width", "100", "--trailing-comma", "none" },
                 },
             },
             formatters_by_ft = {
@@ -35,11 +35,6 @@ return {
             },
             format_on_save = function(bufnr)
                 local ft = vim.bo[bufnr].filetype
-                -- Let Claude Code own TS/JS style; format manually with <leader>cf
-                if ft == "typescript" or ft == "typescriptreact"
-                    or ft == "javascript" or ft == "javascriptreact" then
-                    return
-                end
                 if ft == "json" or ft == "jsonc" then return end
                 if slow_format_filetypes[ft] then return end
                 local function on_format(err)

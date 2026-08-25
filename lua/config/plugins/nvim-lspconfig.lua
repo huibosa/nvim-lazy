@@ -56,7 +56,7 @@ return {
             jsonls = "vscode-json-language-server",
             ruff = "ruff",
             ty = "ty",
-            ts_ls = "typescript-language-server",
+            vtsls = "vtsls",
             -- pyright = "delance-langserver",
             -- basedpyright = "basedpyright-langserver",
             -- pyrefly = "pyrefly",
