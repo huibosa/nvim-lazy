@@ -139,9 +139,10 @@ return {
                     module = 'blink-cmp-tmux',
                     score_offset = -1000,
                     opts = {
-                        all_panes = false,
-                        current_pane = false,
-                        visible_only = true,
+                        -- 'window' | 'session' | 'all'
+                        panes = 'window',
+                        -- capture_history = false keeps suggestions to visible
+                        -- pane text only (no scrollback)
                     }
                 },
             },
