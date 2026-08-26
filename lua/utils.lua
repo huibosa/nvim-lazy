@@ -66,6 +66,14 @@ M.smart_c_a = function()
 end
 
 M.smart_c_e = function()
+    -- If an LSP floating preview (signature help / hover) is displayed,
+    -- close it without moving the cursor
+    local float_win = vim.b.lsp_floating_preview
+    if float_win and vim.api.nvim_win_is_valid(float_win) then
+        vim.api.nvim_win_close(float_win, true)
+        return
+    end
+
     local current_line = vim.fn.line(".")
     local current_col = vim.fn.col(".")
     local current_line_text = vim.fn.getline(".")
