@@ -30,39 +30,16 @@ M.kill_line = function()
     end
 end
 
-M.vscode_home_key = function()
-    local current_line = vim.fn.getline(".")
-    local non_blank_column = string.find(current_line, "%S") or 1
-
-    local start_col = vim.fn.col(".")
-    vim.fn.cursor(current_line, non_blank_column)
-
-    if vim.fn.col(".") == start_col then vim.fn.cursor(current_line, 1) end
-end
-
 M.smart_c_a = function()
     local current_line = vim.fn.line(".")
     local current_col = vim.fn.col(".")
-    local current_line_text = vim.fn.getline(".")
 
-    local first_non_blank = string.find(current_line_text, "%S")
+    -- Toggle between the first non-blank character and column 1
+    local first_non_blank = string.find(vim.fn.getline("."), "%S") or 1
+    vim.fn.cursor(current_line, first_non_blank)
 
-    if first_non_blank == nil then
-        if current_line > 1 then
-            local prev_line = vim.fn.getline(current_line - 1)
-            vim.fn.cursor(current_line - 1, #prev_line + 1)
-        end
-        return
-    end
-
-    if current_col ~= first_non_blank then
-        vim.fn.cursor(current_line, first_non_blank)
-    else
-        if current_line > 1 then
-            local prev_line = vim.fn.getline(current_line - 1)
-            vim.fn.cursor(current_line - 1, #prev_line + 1)
-        end
-    end
+    if vim.fn.col(".") ~= current_col then return end
+    vim.fn.cursor(current_line, 1)
 end
 
 M.smart_c_e = function()
@@ -76,31 +53,10 @@ M.smart_c_e = function()
 
     local current_line = vim.fn.line(".")
     local current_col = vim.fn.col(".")
-    local current_line_text = vim.fn.getline(".")
-    local line_length = #current_line_text
+    local line_length = #vim.fn.getline(".")
 
-    local first_non_blank = string.find(current_line_text, "%S")
-
-    if first_non_blank == nil then
-        local total_lines = vim.fn.line("$")
-        if current_line < total_lines then
-            local next_line = vim.fn.getline(current_line + 1)
-            local next_first_non_blank = string.find(next_line, "%S") or 1
-            vim.fn.cursor(current_line + 1, next_first_non_blank)
-        end
-        return
-    end
-
-    if current_col <= line_length then
-        vim.fn.cursor(current_line, line_length + 1)
-    else
-        local total_lines = vim.fn.line("$")
-        if current_line < total_lines then
-            local next_line = vim.fn.getline(current_line + 1)
-            local next_first_non_blank = string.find(next_line, "%S") or 1
-            vim.fn.cursor(current_line + 1, next_first_non_blank)
-        end
-    end
+    -- Already past the last character (insertion point at EOL); stay put
+    if current_col <= line_length then vim.fn.cursor(current_line, line_length + 1) end
 end
 
 return M
