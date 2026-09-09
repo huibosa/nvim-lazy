@@ -38,8 +38,8 @@ vim.keymap.set("i", "<C-k>", "", {
     silent = true,
 })
 
-keymap({ "x", "o" }, "<C-b>", "<LEFT>")
-keymap({ "x", "o" }, "<C-f>", "<RIGHT>")
+keymap("o", "<C-b>", "<LEFT>")
+keymap("o", "<C-f>", "<RIGHT>")
 
 -- <C-f>/<C-b> in insert mode: move one character (not byte), wrapping across line boundaries
 vim.keymap.set("i", "<C-f>", function()

@@ -7,12 +7,9 @@ opt.mouse = ""             -- disable the mouse
 opt.termguicolors = true   -- enable 24bit colors
 
 opt.updatetime = 300       -- decrease updatetime
-opt.fileformat = "unix"    -- <NL> for EOL
 opt.fileencoding = "utf-8" -- encoding for reading and writing files
-opt.encoding = "utf-8"     -- encoding for specifying text
 opt.matchpairs = { "(:)", "{:}", "[:]", "<:>" }
 
-opt.cmdheight = 1     -- cmdline height
 opt.scrolloff = 5     -- min number of lines to keep between cursor and screen edge
 opt.sidescrolloff = 5 -- min number of cols to keep between cursor and screen edge
 opt.number = true
@@ -31,28 +28,17 @@ opt.expandtab = true  -- Convert all tabs that are typed into spaces
 opt.swapfile = false
 
 -- Editor behavior
--- opt.filetype = "plugin"
-opt.hidden = true
-
-opt.hlsearch = true
-opt.incsearch = true
-
 opt.inccommand = "split"
 opt.ignorecase = true
 opt.smartcase = true
-opt.wildmenu = true
 
-opt.autoindent = true
 opt.smartindent = true
 
-opt.foldenable = true
 opt.foldlevel = 99
 opt.foldtext = ""
-opt.foldcolumn = "0"
 
 opt.splitright = true
 opt.splitbelow = true
-opt.showmode = true
 
 -- Break line at predefined characters
 opt.linebreak = true
@@ -66,9 +52,8 @@ opt.virtualedit = "block"
 opt.formatoptions:append({ m = true, M = true })
 
 -- External program to use for grep command
-if vim.fn.executable("rg") then
+if vim.fn.executable("rg") == 1 then
     opt.grepprg = "rg --vimgrep --no-heading --smart-case"
-    opt.grepformat = "%f:%l:%c:%m"
 end
 
 -- Set up cursor color and shape in various modes
