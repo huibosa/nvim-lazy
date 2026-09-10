@@ -9,7 +9,7 @@ return {
                 border = 'solid',
                 show_title = false,
                 winblend = 0,
-                auto_preview = false,
+                auto_preview = true,
             },
             func_map = {
                 ptogglemode = '<F2>',

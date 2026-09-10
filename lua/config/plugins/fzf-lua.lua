@@ -26,7 +26,7 @@ return {
         },
         winopts = {
             preview = {
-                hidden = true,
+                hidden = false,
             }
         },
         hls = {

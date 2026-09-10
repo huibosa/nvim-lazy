@@ -3,7 +3,31 @@ return {
     event = "InsertEnter",
     dependencies = {
         "onsails/lspkind.nvim",
-        'mgalliou/blink-cmp-tmux',
+        {
+            'mgalliou/blink-cmp-tmux',
+            config = function()
+                -- capture-pane without -S always returns the live screen, so a
+                -- sibling pane sitting in copy mode scrolled back contributes none
+                -- of the text it displays. Capture the copy-mode viewport instead.
+                local tmux = require('blink-cmp-tmux')
+                local orig = tmux.get_pane_content
+                function tmux:get_pane_content(pane_id)
+                    local info = vim.system({
+                        'tmux', 'display-message', '-p', '-t', pane_id,
+                        '#{pane_mode}|#{scroll_position}|#{pane_height}',
+                    }, { text = true }):wait().stdout or ''
+                    local mode, scroll_s, height_s = info:match('^([^|]*)|([^|]*)|([^|%s]*)')
+                    local scroll, height = tonumber(scroll_s), tonumber(height_s)
+                    if mode == 'copy-mode' and scroll and scroll > 0 and height then
+                        return vim.system({
+                            'tmux', 'capture-pane', '-p', '-t', pane_id, '-J',
+                            '-S', '-' .. scroll, '-E', tostring(height - 1 - scroll),
+                        }, { text = true }):wait().stdout or ''
+                    end
+                    return orig(self, pane_id)
+                end
+            end,
+        },
     },
     version = '1.*',
     ---@module 'blink.cmp'
@@ -25,6 +49,23 @@ return {
                     vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<Up>', true, false, true), 'n', false)
                     return true
                 end,
+            },
+            -- Close the LSP signature/hover float first; only then the menu.
+            -- Falls back to smart_c_e (EOL jump) when neither is shown.
+            ['<C-e>'] = {
+                function(cmp)
+                    local float_win = vim.b.lsp_floating_preview
+                    if float_win and vim.api.nvim_win_is_valid(float_win) then
+                        vim.schedule(function()
+                            if vim.api.nvim_win_is_valid(float_win) then
+                                vim.api.nvim_win_close(float_win, true)
+                            end
+                        end)
+                        return true
+                    end
+                    if cmp.is_visible() then return cmp.hide() end
+                end,
+                'fallback',
             },
         },
 
