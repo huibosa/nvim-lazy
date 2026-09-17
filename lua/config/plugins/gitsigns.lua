@@ -61,6 +61,13 @@ return {
             map("n", "<LEADER>hb", function() gs.blame_line({ full = true }) end, { desc = "Blame Line" })
             map("n", "<LEADER>hd", gs.diffthis, { desc = "Diff current change" })
             map("n", "<LEADER>hD", ":<C-u>Gitsigns diffthis ", { desc = "Diff with given commit" })
+            map("n", "<LEADER>hB", function()
+                vim.ui.input({ prompt = "Change diff base (global): " }, function(ref)
+                    if ref and ref ~= "" then
+                        gs.change_base(ref, true)
+                    end
+                end)
+            end, { desc = "Change diff base (global)" })
 
             map('n', '<leader>hq', function() gs.setqflist('all') end, { desc = "All file to quickfix" })
             map('n', '<leader>hQ', gs.setloclist, { desc = "Current file to loclist" })
